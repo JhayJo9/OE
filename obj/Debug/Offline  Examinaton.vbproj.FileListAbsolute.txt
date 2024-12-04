@@ -1,0 +1,105 @@
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Offline  Examinaton.exe.config
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Offline  Examinaton.exe
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Offline  Examinaton.pdb
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Offline  Examinaton.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.AssemblyReference.cache
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.Resources.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.GenerateResource.cache
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.CoreCompileInputs.cache
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.exe
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline  Examinaton.pdb
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.Form1.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.AboutBox1.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.SplashScreen1.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.formlogin.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.formRegister.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline__Examinaton.formFeeDetail.resources
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Google.Protobuf.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\MySql.Data.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Buffers.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.IO.Pipelines.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Memory.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\ZstdSharp.dll
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Google.Protobuf.pdb
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Google.Protobuf.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\MySql.Data.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Buffers.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.IO.Pipelines.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Memory.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\CONNIE\source\repos\VISUAL STUDIO ACTIVITIES\Offline  Examinaton\obj\Debug\Offline .688020E8.Up2Date
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Offline  Examinaton.exe.config
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Offline  Examinaton.exe
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Offline  Examinaton.pdb
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Offline  Examinaton.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Google.Protobuf.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\MySql.Data.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Buffers.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.IO.Pipelines.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Memory.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\ZstdSharp.dll
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Google.Protobuf.pdb
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Google.Protobuf.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\MySql.Data.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Buffers.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.IO.Pipelines.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Memory.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\penal\Downloads\Offline  Examinaton\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.AssemblyReference.cache
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.AboutBox1.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Form1.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formFeeDetail.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formlogin.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formRegister.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Resources.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.SplashScreen1.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.GenerateResource.cache
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.vbproj.CoreCompileInputs.cache
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline .688020E8.Up2Date
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.exe
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.xml
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.pdb
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.verifyStudent.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formDashboard.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourse.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormEditQuestionList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestion.resources
