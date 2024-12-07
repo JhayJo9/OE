@@ -28,7 +28,7 @@ Public Class formlogin
             End Using
 
             ' Checking 
-            If txtPassword.Text = passwordfromdb And role = "Admin" Then
+            If txtPassword.Text = passwordfromdb And role = "admin" Then
                 MsgBox("Login successfully!")
                 Me.Dispose()
                 ' Open the next form

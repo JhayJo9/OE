@@ -32,7 +32,7 @@ Partial Class verifyStudent
         '
         'txtusername
         '
-        Me.txtusername.Location = New System.Drawing.Point(28, 107)
+        Me.txtusername.Location = New System.Drawing.Point(77, 96)
         Me.txtusername.Multiline = True
         Me.txtusername.Name = "txtusername"
         Me.txtusername.Size = New System.Drawing.Size(381, 30)
@@ -40,15 +40,16 @@ Partial Class verifyStudent
         '
         'txtpassword
         '
-        Me.txtpassword.Location = New System.Drawing.Point(28, 143)
+        Me.txtpassword.Location = New System.Drawing.Point(77, 132)
         Me.txtpassword.Multiline = True
         Me.txtpassword.Name = "txtpassword"
+        Me.txtpassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtpassword.Size = New System.Drawing.Size(381, 30)
         Me.txtpassword.TabIndex = 1
         '
         'btnVerify
         '
-        Me.btnVerify.Location = New System.Drawing.Point(168, 179)
+        Me.btnVerify.Location = New System.Drawing.Point(217, 168)
         Me.btnVerify.Name = "btnVerify"
         Me.btnVerify.Size = New System.Drawing.Size(127, 38)
         Me.btnVerify.TabIndex = 2
@@ -58,7 +59,7 @@ Partial Class verifyStudent
         'lblusername
         '
         Me.lblusername.AutoSize = True
-        Me.lblusername.Location = New System.Drawing.Point(25, 58)
+        Me.lblusername.Location = New System.Drawing.Point(74, 47)
         Me.lblusername.Name = "lblusername"
         Me.lblusername.Size = New System.Drawing.Size(84, 16)
         Me.lblusername.TabIndex = 3
@@ -67,7 +68,7 @@ Partial Class verifyStudent
         'lblpassword
         '
         Me.lblpassword.AutoSize = True
-        Me.lblpassword.Location = New System.Drawing.Point(25, 83)
+        Me.lblpassword.Location = New System.Drawing.Point(74, 72)
         Me.lblpassword.Name = "lblpassword"
         Me.lblpassword.Size = New System.Drawing.Size(86, 16)
         Me.lblpassword.TabIndex = 4
@@ -76,9 +77,11 @@ Partial Class verifyStudent
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 9)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Red
+        Me.Label3.Location = New System.Drawing.Point(9, 9)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(397, 16)
+        Me.Label3.Size = New System.Drawing.Size(541, 20)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "YOU NEED TO RE-TYPE YOUR USERNAME AND PASSWORD"
         '
@@ -86,15 +89,16 @@ Partial Class verifyStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(423, 220)
+        Me.ClientSize = New System.Drawing.Size(562, 220)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblpassword)
         Me.Controls.Add(Me.lblusername)
         Me.Controls.Add(Me.btnVerify)
         Me.Controls.Add(Me.txtpassword)
         Me.Controls.Add(Me.txtusername)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "verifyStudent"
-        Me.Text = "verifyStudent"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -22,12 +22,9 @@ Partial Class AdminDashboard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnResult = New System.Windows.Forms.Button()
         Me.btnAddCourse = New System.Windows.Forms.Button()
         Me.btnAddQuestion = New System.Windows.Forms.Button()
-        Me.btnAddQuestionList = New System.Windows.Forms.Button()
+        Me.btnUser = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
@@ -35,62 +32,46 @@ Partial Class AdminDashboard
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.panell = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(12, 47)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(96, 32)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Registration"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'btnResult
-        '
-        Me.btnResult.Location = New System.Drawing.Point(12, 85)
-        Me.btnResult.Name = "btnResult"
-        Me.btnResult.Size = New System.Drawing.Size(96, 30)
-        Me.btnResult.TabIndex = 1
-        Me.btnResult.Text = "Result"
-        Me.btnResult.UseVisualStyleBackColor = True
         '
         'btnAddCourse
         '
-        Me.btnAddCourse.Location = New System.Drawing.Point(12, 121)
+        Me.btnAddCourse.Location = New System.Drawing.Point(12, 118)
         Me.btnAddCourse.Name = "btnAddCourse"
         Me.btnAddCourse.Size = New System.Drawing.Size(96, 30)
         Me.btnAddCourse.TabIndex = 2
-        Me.btnAddCourse.Text = "Add Course"
+        Me.btnAddCourse.Text = "Course"
         Me.btnAddCourse.UseVisualStyleBackColor = True
         '
         'btnAddQuestion
         '
-        Me.btnAddQuestion.Location = New System.Drawing.Point(12, 157)
+        Me.btnAddQuestion.Location = New System.Drawing.Point(12, 154)
         Me.btnAddQuestion.Name = "btnAddQuestion"
         Me.btnAddQuestion.Size = New System.Drawing.Size(96, 30)
         Me.btnAddQuestion.TabIndex = 3
-        Me.btnAddQuestion.Text = "Add Question"
+        Me.btnAddQuestion.Text = "Question"
         Me.btnAddQuestion.UseVisualStyleBackColor = True
         '
-        'btnAddQuestionList
+        'btnUser
         '
-        Me.btnAddQuestionList.Location = New System.Drawing.Point(12, 193)
-        Me.btnAddQuestionList.Name = "btnAddQuestionList"
-        Me.btnAddQuestionList.Size = New System.Drawing.Size(96, 30)
-        Me.btnAddQuestionList.TabIndex = 4
-        Me.btnAddQuestionList.Text = "Add Question List"
-        Me.btnAddQuestionList.UseVisualStyleBackColor = True
+        Me.btnUser.Location = New System.Drawing.Point(12, 190)
+        Me.btnUser.Name = "btnUser"
+        Me.btnUser.Size = New System.Drawing.Size(96, 30)
+        Me.btnUser.TabIndex = 4
+        Me.btnUser.Text = "Users"
+        Me.btnUser.UseVisualStyleBackColor = True
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(12, 229)
+        Me.Button6.Location = New System.Drawing.Point(12, 226)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(96, 30)
         Me.Button6.TabIndex = 5
-        Me.Button6.Text = "Button6"
+        Me.Button6.Text = "Statistics"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button7
@@ -131,68 +112,78 @@ Partial Class AdminDashboard
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(12, 409)
+        Me.Button11.Location = New System.Drawing.Point(12, 82)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(96, 30)
         Me.Button11.TabIndex = 10
-        Me.Button11.Text = "Button11"
+        Me.Button11.Text = "Dashboard"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'btnExit
         '
-        Me.btnExit.Location = New System.Drawing.Point(336, 483)
+        Me.btnExit.Location = New System.Drawing.Point(22, 456)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(96, 32)
         Me.btnExit.TabIndex = 11
         Me.btnExit.Text = "EXIT"
         Me.btnExit.UseVisualStyleBackColor = True
         '
-        'ContextMenuStrip1
+        'Panel1
         '
-        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.Button11)
+        Me.Panel1.Controls.Add(Me.btnExit)
+        Me.Panel1.Controls.Add(Me.btnAddCourse)
+        Me.Panel1.Controls.Add(Me.btnAddQuestion)
+        Me.Panel1.Controls.Add(Me.btnUser)
+        Me.Panel1.Controls.Add(Me.Button6)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(230, 543)
+        Me.Panel1.TabIndex = 14
         '
-        'MenuStrip1
+        'Label1
         '
-        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1075, 24)
-        Me.MenuStrip1.TabIndex = 13
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(22, 13)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(124, 16)
+        Me.Label1.TabIndex = 12
+        Me.Label1.Text = "Admin's dashboard"
+        '
+        'panell
+        '
+        Me.panell.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panell.Location = New System.Drawing.Point(230, 0)
+        Me.panell.Name = "panell"
+        Me.panell.Size = New System.Drawing.Size(877, 543)
+        Me.panell.TabIndex = 15
         '
         'AdminDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1075, 569)
-        Me.Controls.Add(Me.MenuStrip1)
-        Me.Controls.Add(Me.btnExit)
-        Me.Controls.Add(Me.Button11)
+        Me.ClientSize = New System.Drawing.Size(1107, 543)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.panell)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.btnAddQuestionList)
-        Me.Controls.Add(Me.btnAddQuestion)
-        Me.Controls.Add(Me.btnAddCourse)
-        Me.Controls.Add(Me.btnResult)
-        Me.Controls.Add(Me.Button1)
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "AdminDashboard"
-        Me.Text = "Admin's dashboard"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Button1 As Button
-    Friend WithEvents btnResult As Button
     Friend WithEvents btnAddCourse As Button
     Friend WithEvents btnAddQuestion As Button
-    Friend WithEvents btnAddQuestionList As Button
+    Friend WithEvents btnUser As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
@@ -200,6 +191,7 @@ Partial Class AdminDashboard
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents btnExit As Button
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents panell As Panel
 End Class

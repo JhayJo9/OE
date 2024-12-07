@@ -5,22 +5,24 @@ Public Class FormCourse
     Public Sub insertCourse()
         Dim insert As String = "INSERT INTO tb_course VALUES (null, @courseTitle, @courseCode)"
         Using cmd As New MySqlCommand(insert, conn)
-            cmd.Parameters.AddWithValue("@courseTitle", txtAddCourse.Text)
-            cmd.Parameters.AddWithValue("@courseCode", txtsddcourseCode.Text)
+            'cmd.Parameters.AddWithValue("@courseTitle", txtAddCourse.Text)
+            'cmd.Parameters.AddWithValue("@courseCode", txtsddcourseCode.Text)
 
             cmd.ExecuteNonQuery()
             MsgBox("Course Added Successfully", MsgBoxStyle.Information, "Success")
 
             ' Clear the textboxes
             DataGridView1.Rows.Clear()
-            txtAddCourse.Clear()
-            txtsddcourseCode.Clear()
+            'txtAddCourse.Clear()
+            'txtsddcourseCode.Clear()
             fetchCourse()
         End Using
     End Sub
 
     Public Sub fetchCourse()
         Try
+            DataGridView1.Rows.Clear()
+
             If OPENDB() Then
                 Dim fetch As String = "SELECT * FROM tb_course"
                 Using cmd As New MySqlCommand(fetch, conn)
@@ -42,10 +44,8 @@ Public Class FormCourse
             MsgBox("SELECT COURSE: " & ex.Message)
         End Try
     End Sub
-    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        Me.Dispose()
-        AdminDashboard.Show()
-    End Sub
+
+
 
     Private Sub FormCourse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OPENDB()
@@ -56,7 +56,12 @@ Public Class FormCourse
         closeConnection()
     End Sub
 
-    Private Sub btnAddCourse_Click(sender As Object, e As EventArgs) Handles btnAddCourse.Click
-        insertCourse()
+    Private Sub btnAddCourse_Click(sender As Object, e As EventArgs)
+        'insertCourse()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim addingCourse As New AddingCourse()
+        addingCourse.Show()
     End Sub
 End Class

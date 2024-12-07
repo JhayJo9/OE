@@ -42,14 +42,14 @@ Partial Class Form1
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(908, 87)
+        Me.Panel1.Size = New System.Drawing.Size(691, 87)
         Me.Panel1.TabIndex = 0
         '
         'PictureBox1
         '
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox1.Image = Global.Offline__Examinaton.My.Resources.Resources.kindpng_42068__1_
-        Me.PictureBox1.Location = New System.Drawing.Point(847, 10)
+        Me.PictureBox1.Location = New System.Drawing.Point(597, 23)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(49, 43)
@@ -62,7 +62,7 @@ Partial Class Form1
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Modern No. 20", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(208, 30)
+        Me.Label1.Location = New System.Drawing.Point(27, 23)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(504, 41)
@@ -73,10 +73,10 @@ Partial Class Form1
         '
         Me.PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox3.Image = Global.Offline__Examinaton.My.Resources.Resources.Register
-        Me.PictureBox3.Location = New System.Drawing.Point(485, 270)
+        Me.PictureBox3.Location = New System.Drawing.Point(243, 115)
         Me.PictureBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(164, 112)
+        Me.PictureBox3.Size = New System.Drawing.Size(97, 71)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox3.TabIndex = 2
         Me.PictureBox3.TabStop = False
@@ -85,10 +85,10 @@ Partial Class Form1
         '
         Me.picbxLogin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.picbxLogin.Image = Global.Offline__Examinaton.My.Resources.Resources.Login
-        Me.picbxLogin.Location = New System.Drawing.Point(270, 270)
+        Me.picbxLogin.Location = New System.Drawing.Point(99, 115)
         Me.picbxLogin.Margin = New System.Windows.Forms.Padding(4)
         Me.picbxLogin.Name = "picbxLogin"
-        Me.picbxLogin.Size = New System.Drawing.Size(164, 112)
+        Me.picbxLogin.Size = New System.Drawing.Size(99, 71)
         Me.picbxLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picbxLogin.TabIndex = 1
         Me.picbxLogin.TabStop = False
@@ -98,7 +98,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Khaki
-        Me.ClientSize = New System.Drawing.Size(908, 405)
+        Me.ClientSize = New System.Drawing.Size(691, 280)
         Me.ControlBox = False
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.picbxLogin)
