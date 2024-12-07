@@ -145,10 +145,10 @@
     <Compile Include="FormCourse.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formDashboard.Designer.vb">
-      <DependentUpon>formDashboard.vb</DependentUpon>
+    <Compile Include="AdminDashboard.Designer.vb">
+      <DependentUpon>AdminDashboard.vb</DependentUpon>
     </Compile>
-    <Compile Include="formDashboard.vb">
+    <Compile Include="AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEditQuestionList.Designer.vb">
@@ -203,6 +203,18 @@
     <Compile Include="SplashScreen1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StaffDashboard.Designer.vb">
+      <DependentUpon>StaffDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StaffDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentDashboard.Designer.vb">
+      <DependentUpon>StudentDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudentDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="verifyStudent.Designer.vb">
       <DependentUpon>verifyStudent.vb</DependentUpon>
     </Compile>
@@ -220,8 +232,8 @@
     <EmbeddedResource Include="FormCourse.resx">
       <DependentUpon>FormCourse.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formDashboard.resx">
-      <DependentUpon>formDashboard.vb</DependentUpon>
+    <EmbeddedResource Include="AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditQuestionList.resx">
       <DependentUpon>FormEditQuestionList.vb</DependentUpon>

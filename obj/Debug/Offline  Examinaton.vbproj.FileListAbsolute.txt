@@ -99,7 +99,7 @@ C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.exe
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.xml
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.pdb
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.verifyStudent.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formDashboard.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourse.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormEditQuestionList.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestion.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.AdminDashboard.resources

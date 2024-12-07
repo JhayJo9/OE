@@ -44,7 +44,7 @@ Public Class FormCourse
     End Sub
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Dispose()
-        formDashboard.Show()
+        AdminDashboard.Show()
     End Sub
 
     Private Sub FormCourse_Load(sender As Object, e As EventArgs) Handles MyBase.Load

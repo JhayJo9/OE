@@ -31,7 +31,7 @@ Public Class FormQuestion
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Dispose()
-        formDashboard.Show()
+        AdminDashboard.Show()
     End Sub
 
     Private Sub FormQuestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load

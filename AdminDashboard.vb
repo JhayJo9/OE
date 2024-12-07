@@ -1,4 +1,4 @@
-﻿Public Class formDashboard
+﻿Public Class AdminDashboard
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Me.Dispose()
         Form1.Show()

@@ -86,7 +86,7 @@ Partial Class verifyStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(430, 220)
+        Me.ClientSize = New System.Drawing.Size(423, 220)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lblpassword)
         Me.Controls.Add(Me.lblusername)

@@ -4,7 +4,7 @@
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        Me.Dispose()
-        formDashboard.Show()
+        'Me.Dispose()
+        'formDashboard.Show()
     End Sub
 End Class

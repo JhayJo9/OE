@@ -5,75 +5,40 @@ Public Class formlogin
         Me.Hide()
         Form1.Show()
     End Sub
-
-    Public Sub checkadmin()
-        conn.Close()
-        Try
-            Dim passwordfromdb As String = ""
-            If OPENDB() Then
-                'conn.Open()
-                Dim query As String = "select password from tb_admins where username = @username"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@username", txtUsername.Text)
-                    'conn.Open()
-                    Using dtreader As MySqlDataReader = cmd.ExecuteReader()
-
-                        If dtreader.Read Then
-                            passwordfromdb = dtreader.GetString("password")
-                        Else
-                            MsgBox("Invalid username or password.")
-                            Return
-                        End If
-                    End Using
-
-                    ' Checking 
-                    If txtPassword.Text = passwordfromdb Then
-                        MsgBox("Login successfully!")
-
-                        Me.Dispose()
-
-                        ' Open the next form
-                        Dim fee As New formDashboard()
-                        fee.Show()
-                    Else
-                        MsgBox("Invalid username or password.")
-                    End If
-                End Using
-            End If
-        Catch ex As Exception
-            MsgBox("check admin: " & ex.Message)
-        End Try
-    End Sub
     Public Sub CheckUser()
         Try
             ' Initialize variables
-            Dim hashedPasswordFromDb As String = ""
+            Dim passwordfromdb As String = ""
+            Dim role As String = ""
 
-            Dim query As String = "SELECT password FROM tb_generatedusernamepassword WHERE username = @username"
+            Dim query As String = "SELECT password, role FROM tb_generatedusernamepassword WHERE username = @username"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@username", txtUsername.Text)
 
                 ' Execute the query
                 Using dtreader As MySqlDataReader = cmd.ExecuteReader()
                     If dtreader.Read() Then
-                        hashedPasswordFromDb = dtreader.GetString("password")
+                        passwordfromdb = dtreader.GetString("password")
+                        role = dtreader.GetString("role")
                     Else
-                        'MsgBox("Invalid username or password.")
-                        checkadmin() ' check admin table
-                        'conn.Close()
+
                         Return
                     End If
                 End Using
             End Using
 
             ' Checking 
-            If txtPassword.Text = hashedPasswordFromDb Then
+            If txtPassword.Text = passwordfromdb And role = "Admin" Then
                 MsgBox("Login successfully!")
-
                 Me.Dispose()
-
                 ' Open the next form
-                Dim fee As New formDashboard()
+                Dim fee As New AdminDashboard()
+                fee.Show()
+            ElseIf txtPassword.Text = passwordfromdb And role = "Student" Then
+                MsgBox("Login successfully!")
+                Me.Dispose()
+                ' Open the next form
+                Dim fee As New StudentDashboard()
                 fee.Show()
             Else
                 MsgBox("Invalid username or password.")
@@ -98,9 +63,6 @@ Public Class formlogin
             ElseIf Len(Trim(txtPassword.Text)) = 0 Then
                 MessageBox.Show("Please Enter Password", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 txtPassword.Focus()
-                Exit Sub
-            ElseIf Len(Trim(cmbusertype.Text)) = 0 Then
-                MessageBox.Show("Please Enter User Type", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
             End If
 
