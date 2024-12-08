@@ -49,6 +49,7 @@ Partial Class FormQuestionList
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.courseId, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colAssessmentType, Me.dateEdit, Me.colEdit, Me.colDelete})
         Me.DataGridView1.Location = New System.Drawing.Point(18, 43)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
@@ -62,6 +63,7 @@ Partial Class FormQuestionList
         Me.questionID.HeaderText = "QuestionID"
         Me.questionID.MinimumWidth = 6
         Me.questionID.Name = "questionID"
+        Me.questionID.ReadOnly = True
         Me.questionID.Width = 102
         '
         'courseId
@@ -70,6 +72,7 @@ Partial Class FormQuestionList
         Me.courseId.HeaderText = "CourseID"
         Me.courseId.MinimumWidth = 6
         Me.courseId.Name = "courseId"
+        Me.courseId.ReadOnly = True
         Me.courseId.Width = 92
         '
         'Question
@@ -78,6 +81,7 @@ Partial Class FormQuestionList
         Me.Question.HeaderText = "Question"
         Me.Question.MinimumWidth = 6
         Me.Question.Name = "Question"
+        Me.Question.ReadOnly = True
         '
         'questionA
         '
@@ -85,6 +89,7 @@ Partial Class FormQuestionList
         Me.questionA.HeaderText = "A"
         Me.questionA.MinimumWidth = 6
         Me.questionA.Name = "questionA"
+        Me.questionA.ReadOnly = True
         Me.questionA.Width = 45
         '
         'optionB
@@ -93,6 +98,7 @@ Partial Class FormQuestionList
         Me.optionB.HeaderText = "B"
         Me.optionB.MinimumWidth = 6
         Me.optionB.Name = "optionB"
+        Me.optionB.ReadOnly = True
         Me.optionB.Width = 45
         '
         'optionC
@@ -101,6 +107,7 @@ Partial Class FormQuestionList
         Me.optionC.HeaderText = "C"
         Me.optionC.MinimumWidth = 6
         Me.optionC.Name = "optionC"
+        Me.optionC.ReadOnly = True
         Me.optionC.Width = 45
         '
         'optionD
@@ -109,6 +116,7 @@ Partial Class FormQuestionList
         Me.optionD.HeaderText = "D"
         Me.optionD.MinimumWidth = 6
         Me.optionD.Name = "optionD"
+        Me.optionD.ReadOnly = True
         Me.optionD.Width = 46
         '
         'CorrectAnswer
@@ -117,6 +125,7 @@ Partial Class FormQuestionList
         Me.CorrectAnswer.HeaderText = "Correct Answer"
         Me.CorrectAnswer.MinimumWidth = 6
         Me.CorrectAnswer.Name = "CorrectAnswer"
+        Me.CorrectAnswer.ReadOnly = True
         Me.CorrectAnswer.Width = 116
         '
         'colAssessmentType
@@ -125,6 +134,7 @@ Partial Class FormQuestionList
         Me.colAssessmentType.HeaderText = "Assessment Type"
         Me.colAssessmentType.MinimumWidth = 6
         Me.colAssessmentType.Name = "colAssessmentType"
+        Me.colAssessmentType.ReadOnly = True
         Me.colAssessmentType.Width = 133
         '
         'dateEdit
@@ -133,6 +143,7 @@ Partial Class FormQuestionList
         Me.dateEdit.HeaderText = "Date Edit"
         Me.dateEdit.MinimumWidth = 6
         Me.dateEdit.Name = "dateEdit"
+        Me.dateEdit.ReadOnly = True
         Me.dateEdit.Width = 84
         '
         'colEdit
@@ -141,6 +152,7 @@ Partial Class FormQuestionList
         Me.colEdit.HeaderText = "Edit"
         Me.colEdit.MinimumWidth = 6
         Me.colEdit.Name = "colEdit"
+        Me.colEdit.ReadOnly = True
         Me.colEdit.Width = 36
         '
         'colDelete
@@ -149,6 +161,7 @@ Partial Class FormQuestionList
         Me.colDelete.HeaderText = "Delete"
         Me.colDelete.MinimumWidth = 6
         Me.colDelete.Name = "colDelete"
+        Me.colDelete.ReadOnly = True
         Me.colDelete.Width = 53
         '
         'btnAddnew
