@@ -100,9 +100,14 @@ C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.xml
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.pdb
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.verifyStudent.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourse.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormEditQuestionList.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestion.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.AdminDashboard.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.AddingCourse.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.bin.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.users.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourseList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormSectionList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormSection.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExam.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExamList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestionList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormUserList.resources

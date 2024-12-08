@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormCourse
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Formcourse
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,106 +20,116 @@ Partial Class FormCourse
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.courseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.courseTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.courseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.btnAddCourse = New System.Windows.Forms.Button()
+        Me.txtAddCourse = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtsddcourseCode = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.btnEdit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'DataGridView1
+        'Label3
         '
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.courseID, Me.courseTitle, Me.courseCode, Me.colEdit, Me.colDelete})
-        Me.DataGridView1.Location = New System.Drawing.Point(18, 43)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.RowHeadersWidth = 51
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(795, 275)
-        Me.DataGridView1.TabIndex = 15
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(28, 18)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(156, 25)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Adding Course"
         '
-        'courseID
+        'btnAddCourse
         '
-        Me.courseID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.courseID.HeaderText = "course ID"
-        Me.courseID.MinimumWidth = 6
-        Me.courseID.Name = "courseID"
-        Me.courseID.Width = 93
+        Me.btnAddCourse.Location = New System.Drawing.Point(205, 153)
+        Me.btnAddCourse.Name = "btnAddCourse"
+        Me.btnAddCourse.Size = New System.Drawing.Size(140, 31)
+        Me.btnAddCourse.TabIndex = 19
+        Me.btnAddCourse.Text = "ADD COURSE"
+        Me.btnAddCourse.UseVisualStyleBackColor = True
         '
-        'courseTitle
+        'txtAddCourse
         '
-        Me.courseTitle.HeaderText = "Desciption"
-        Me.courseTitle.MinimumWidth = 6
-        Me.courseTitle.Name = "courseTitle"
+        Me.txtAddCourse.Location = New System.Drawing.Point(155, 63)
+        Me.txtAddCourse.Multiline = True
+        Me.txtAddCourse.Name = "txtAddCourse"
+        Me.txtAddCourse.Size = New System.Drawing.Size(366, 30)
+        Me.txtAddCourse.TabIndex = 18
         '
-        'courseCode
+        'Label1
         '
-        Me.courseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.courseCode.HeaderText = "Course Code"
-        Me.courseCode.MinimumWidth = 6
-        Me.courseCode.Name = "courseCode"
-        Me.courseCode.Width = 115
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(30, 77)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(75, 16)
+        Me.Label1.TabIndex = 17
+        Me.Label1.Text = "Description"
         '
-        'colEdit
+        'Label2
         '
-        Me.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colEdit.HeaderText = "Edit"
-        Me.colEdit.MinimumWidth = 6
-        Me.colEdit.Name = "colEdit"
-        Me.colEdit.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colEdit.Width = 59
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(30, 104)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(92, 16)
+        Me.Label2.TabIndex = 22
+        Me.Label2.Text = "Course Code: "
         '
-        'colDelete
+        'txtsddcourseCode
         '
-        Me.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colDelete.HeaderText = "Delete"
-        Me.colDelete.MinimumWidth = 6
-        Me.colDelete.Name = "colDelete"
-        Me.colDelete.Width = 53
+        Me.txtsddcourseCode.Location = New System.Drawing.Point(156, 101)
+        Me.txtsddcourseCode.Multiline = True
+        Me.txtsddcourseCode.Name = "txtsddcourseCode"
+        Me.txtsddcourseCode.Size = New System.Drawing.Size(365, 31)
+        Me.txtsddcourseCode.TabIndex = 21
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(714, 14)
+        Me.Button1.Location = New System.Drawing.Point(33, 153)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(97, 23)
-        Me.Button1.TabIndex = 16
-        Me.Button1.Text = "ADD NEW"
+        Me.Button1.Size = New System.Drawing.Size(140, 31)
+        Me.Button1.TabIndex = 24
+        Me.Button1.Text = "Back"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'FormCourse
+        'btnEdit
+        '
+        Me.btnEdit.Location = New System.Drawing.Point(368, 153)
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Size = New System.Drawing.Size(140, 31)
+        Me.btnEdit.TabIndex = 25
+        Me.btnEdit.Text = "UPDATE"
+        Me.btnEdit.UseVisualStyleBackColor = True
+        '
+        'Formcourse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(836, 356)
+        Me.ClientSize = New System.Drawing.Size(617, 226)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.btnAddCourse)
+        Me.Controls.Add(Me.txtAddCourse)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.txtsddcourseCode)
+        Me.Controls.Add(Me.Label3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Name = "FormCourse"
+        Me.Name = "Formcourse"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents courseID As DataGridViewTextBoxColumn
-    Friend WithEvents courseTitle As DataGridViewTextBoxColumn
-    Friend WithEvents courseCode As DataGridViewTextBoxColumn
-    Friend WithEvents colEdit As DataGridViewImageColumn
-    Friend WithEvents colDelete As DataGridViewImageColumn
+    Friend WithEvents Label3 As Label
+    Friend WithEvents btnAddCourse As Button
+    Friend WithEvents txtAddCourse As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtsddcourseCode As TextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnEdit As Button
 End Class

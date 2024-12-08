@@ -131,10 +131,10 @@
     <Compile Include="AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddingCourse.Designer.vb">
-      <DependentUpon>AddingCourse.vb</DependentUpon>
+    <Compile Include="Formcourse.Designer.vb">
+      <DependentUpon>Formcourse.vb</DependentUpon>
     </Compile>
-    <Compile Include="AddingCourse.vb">
+    <Compile Include="Formcourse.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="bin.Designer.vb">
@@ -151,10 +151,10 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCourse.Designer.vb">
-      <DependentUpon>FormCourse.vb</DependentUpon>
+    <Compile Include="FormCourseList.Designer.vb">
+      <DependentUpon>FormCourseList.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormCourse.vb">
+    <Compile Include="FormCourseList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminDashboard.Designer.vb">
@@ -163,10 +163,22 @@
     <Compile Include="AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditQuestionList.Designer.vb">
-      <DependentUpon>FormEditQuestionList.vb</DependentUpon>
+    <Compile Include="FormQuestionList.Designer.vb">
+      <DependentUpon>FormQuestionList.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormEditQuestionList.vb">
+    <Compile Include="FormQuestionList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExam.Designer.vb">
+      <DependentUpon>FormExam.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormExam.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExamList.Designer.vb">
+      <DependentUpon>FormExamList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormExamList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formFeeDetail.Designer.vb">
@@ -191,6 +203,24 @@
       <DependentUpon>formRegister.vb</DependentUpon>
     </Compile>
     <Compile Include="formRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSection.Designer.vb">
+      <DependentUpon>FormSection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSectionList.Designer.vb">
+      <DependentUpon>FormSectionList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSectionList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserList.Designer.vb">
+      <DependentUpon>FormUserList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -244,8 +274,8 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddingCourse.resx">
-      <DependentUpon>AddingCourse.vb</DependentUpon>
+    <EmbeddedResource Include="Formcourse.resx">
+      <DependentUpon>Formcourse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bin.resx">
       <DependentUpon>bin.vb</DependentUpon>
@@ -253,14 +283,20 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCourse.resx">
-      <DependentUpon>FormCourse.vb</DependentUpon>
+    <EmbeddedResource Include="FormCourseList.resx">
+      <DependentUpon>FormCourseList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditQuestionList.resx">
-      <DependentUpon>FormEditQuestionList.vb</DependentUpon>
+    <EmbeddedResource Include="FormQuestionList.resx">
+      <DependentUpon>FormQuestionList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExam.resx">
+      <DependentUpon>FormExam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExamList.resx">
+      <DependentUpon>FormExamList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formFeeDetail.resx">
       <DependentUpon>formFeeDetail.vb</DependentUpon>
@@ -273,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formRegister.resx">
       <DependentUpon>formRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSection.resx">
+      <DependentUpon>FormSection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSectionList.resx">
+      <DependentUpon>FormSectionList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserList.resx">
+      <DependentUpon>FormUserList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -314,6 +359,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Login.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reject.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -1,67 +1,71 @@
 ﻿Imports MySql.Data.MySqlClient
-Imports MySql.Data
-Public Class FormCourse
+Imports Mysqlx.Cursor
+
+Public Class Formcourse
+
 
     Public Sub insertCourse()
-        Dim insert As String = "INSERT INTO tb_course VALUES (null, @courseTitle, @courseCode)"
-        Using cmd As New MySqlCommand(insert, conn)
-            'cmd.Parameters.AddWithValue("@courseTitle", txtAddCourse.Text)
-            'cmd.Parameters.AddWithValue("@courseCode", txtsddcourseCode.Text)
-
-            cmd.ExecuteNonQuery()
-            MsgBox("Course Added Successfully", MsgBoxStyle.Information, "Success")
-
-            ' Clear the textboxes
-            DataGridView1.Rows.Clear()
-            'txtAddCourse.Clear()
-            'txtsddcourseCode.Clear()
-            fetchCourse()
-        End Using
-    End Sub
-
-    Public Sub fetchCourse()
         Try
-            DataGridView1.Rows.Clear()
 
-            If OPENDB() Then
-                Dim fetch As String = "SELECT * FROM tb_course"
-                Using cmd As New MySqlCommand(fetch, conn)
-                    Using dtreader As MySqlDataReader = cmd.ExecuteReader
+            Dim insert As String = "INSERT INTO tb_course VALUES (null, @courseTitle, @courseCode)"
+            Using cmd As New MySqlCommand(insert, conn)
+                cmd.Parameters.AddWithValue("@courseTitle", txtAddCourse.Text)
+                cmd.Parameters.AddWithValue("@courseCode", txtsddcourseCode.Text)
 
-                        While dtreader.Read
-                            Dim courseID As Integer = dtreader.GetInt32("courseID")
-                            Dim courseTitle As String = dtreader.GetString("courseTitle")
-                            Dim courseCode As String = dtreader.GetString("courseCode")
+                cmd.ExecuteNonQuery()
+                MsgBox("Course Added Successfully", MsgBoxStyle.Information, "Success")
 
-                            DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
-                        End While
-
-                        'MsgBox("Course Fetched Successfully", MsgBoxStyle.Information, "Success")
-                    End Using
-                End Using
-            End If
+                txtAddCourse.Clear()
+                txtsddcourseCode.Clear()
+                'fetchCourse()
+            End Using
         Catch ex As Exception
-            MsgBox("SELECT COURSE: " & ex.Message)
+            MsgBox("INSERT COURSE: " & ex.Message)
         End Try
     End Sub
 
 
+    Public Sub updateCourse()
+        Try
+            If OPENDB() Then
+                Dim upsec As String = "UPDATE tb_course SET courseTitle=@courseTitle, CourseCode=@CourseCode WHERE courseID = @courseID"
+                Using cmd As New MySqlCommand(upsec, conn)
+                    cmd.Parameters.AddWithValue("@courseTitle", txtAddCourse.Text)
+                    cmd.Parameters.AddWithValue("@CourseCode", txtsddcourseCode.Text)
+                    cmd.Parameters.AddWithValue("@courseID", FormCourseList.DataGridView1.CurrentRow.Cells(0).Value.ToString)
+                    cmd.ExecuteNonQuery()
+                End Using
 
-    Private Sub FormCourse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        OPENDB()
-        fetchCourse()
+                txtAddCourse.Clear()
+                txtsddcourseCode.Clear()
+                MsgBox("Section Updated")
+            End If
+        Catch ex As Exception
+            MsgBox("Update Section: " & ex.Message)
+        End Try
     End Sub
 
-    Private Sub FormCourse_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        closeConnection()
-    End Sub
-
-    Private Sub btnAddCourse_Click(sender As Object, e As EventArgs)
-        'insertCourse()
+    Private Sub btnAddCourse_Click(sender As Object, e As EventArgs) Handles btnAddCourse.Click
+        If MsgBox("Are you sure you want to add this course?", MsgBoxStyle.YesNo, "Add Course") = MsgBoxResult.Yes Then
+            insertCourse()
+            With FormCourseList
+                .fetchCourse()
+            End With
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim addingCourse As New AddingCourse()
-        addingCourse.Show()
+        Me.Dispose()
+        Me.Close()
+    End Sub
+
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        If MsgBox("Are you sure you want to update this course?", MsgBoxStyle.YesNo, "Update Course") = MsgBoxResult.Yes Then
+            updateCourse()
+            With FormCourseList
+
+                .fetchCourse()
+            End With
+        End If
     End Sub
 End Class

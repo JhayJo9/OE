@@ -26,8 +26,8 @@ Partial Class AdminDashboard
         Me.btnAddQuestion = New System.Windows.Forms.Button()
         Me.btnUser = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.btnSection = New System.Windows.Forms.Button()
+        Me.btnExam = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
@@ -49,7 +49,7 @@ Partial Class AdminDashboard
         '
         'btnAddQuestion
         '
-        Me.btnAddQuestion.Location = New System.Drawing.Point(12, 154)
+        Me.btnAddQuestion.Location = New System.Drawing.Point(12, 226)
         Me.btnAddQuestion.Name = "btnAddQuestion"
         Me.btnAddQuestion.Size = New System.Drawing.Size(96, 30)
         Me.btnAddQuestion.TabIndex = 3
@@ -58,7 +58,7 @@ Partial Class AdminDashboard
         '
         'btnUser
         '
-        Me.btnUser.Location = New System.Drawing.Point(12, 190)
+        Me.btnUser.Location = New System.Drawing.Point(12, 262)
         Me.btnUser.Name = "btnUser"
         Me.btnUser.Size = New System.Drawing.Size(96, 30)
         Me.btnUser.TabIndex = 4
@@ -67,34 +67,34 @@ Partial Class AdminDashboard
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(12, 226)
+        Me.Button6.Location = New System.Drawing.Point(12, 298)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(96, 30)
         Me.Button6.TabIndex = 5
         Me.Button6.Text = "Statistics"
         Me.Button6.UseVisualStyleBackColor = True
         '
-        'Button7
+        'btnSection
         '
-        Me.Button7.Location = New System.Drawing.Point(12, 265)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(96, 30)
-        Me.Button7.TabIndex = 6
-        Me.Button7.Text = "Button7"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.btnSection.Location = New System.Drawing.Point(12, 154)
+        Me.btnSection.Name = "btnSection"
+        Me.btnSection.Size = New System.Drawing.Size(96, 30)
+        Me.btnSection.TabIndex = 6
+        Me.btnSection.Text = "Section"
+        Me.btnSection.UseVisualStyleBackColor = True
         '
-        'Button8
+        'btnExam
         '
-        Me.Button8.Location = New System.Drawing.Point(12, 301)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(96, 30)
-        Me.Button8.TabIndex = 7
-        Me.Button8.Text = "Button8"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.btnExam.Location = New System.Drawing.Point(12, 190)
+        Me.btnExam.Name = "btnExam"
+        Me.btnExam.Size = New System.Drawing.Size(96, 30)
+        Me.btnExam.TabIndex = 7
+        Me.btnExam.Text = "Exam"
+        Me.btnExam.UseVisualStyleBackColor = True
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(12, 337)
+        Me.Button9.Location = New System.Drawing.Point(12, 373)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(96, 30)
         Me.Button9.TabIndex = 8
@@ -103,7 +103,7 @@ Partial Class AdminDashboard
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(12, 373)
+        Me.Button10.Location = New System.Drawing.Point(12, 409)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(96, 30)
         Me.Button10.TabIndex = 9
@@ -132,9 +132,13 @@ Partial Class AdminDashboard
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.Button10)
         Me.Panel1.Controls.Add(Me.Button11)
+        Me.Panel1.Controls.Add(Me.Button9)
         Me.Panel1.Controls.Add(Me.btnExit)
+        Me.Panel1.Controls.Add(Me.btnExam)
         Me.Panel1.Controls.Add(Me.btnAddCourse)
+        Me.Panel1.Controls.Add(Me.btnSection)
         Me.Panel1.Controls.Add(Me.btnAddQuestion)
         Me.Panel1.Controls.Add(Me.btnUser)
         Me.Panel1.Controls.Add(Me.Button6)
@@ -168,10 +172,6 @@ Partial Class AdminDashboard
         Me.ClientSize = New System.Drawing.Size(1107, 543)
         Me.ControlBox = False
         Me.Controls.Add(Me.panell)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "AdminDashboard"
@@ -185,8 +185,8 @@ Partial Class AdminDashboard
     Friend WithEvents btnAddQuestion As Button
     Friend WithEvents btnUser As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
+    Friend WithEvents btnSection As Button
+    Friend WithEvents btnExam As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button

@@ -30,16 +30,18 @@ Partial Class FormQuestion
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cmbCourse = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.btnInsert = New System.Windows.Forms.Button()
+        Me.cmbCorrectAnswer = New System.Windows.Forms.ComboBox()
+        Me.txtQuestion = New System.Windows.Forms.TextBox()
+        Me.txtA = New System.Windows.Forms.TextBox()
+        Me.txtB = New System.Windows.Forms.TextBox()
+        Me.txtC = New System.Windows.Forms.TextBox()
+        Me.txtD = New System.Windows.Forms.TextBox()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.lblcoursecode = New System.Windows.Forms.Label()
+        Me.cmbAssessmentType = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -108,63 +110,64 @@ Partial Class FormQuestion
         'cmbCourse
         '
         Me.cmbCourse.FormattingEnabled = True
-        Me.cmbCourse.Location = New System.Drawing.Point(149, 60)
+        Me.cmbCourse.Location = New System.Drawing.Point(192, 60)
         Me.cmbCourse.Name = "cmbCourse"
         Me.cmbCourse.Size = New System.Drawing.Size(223, 24)
         Me.cmbCourse.TabIndex = 9
         '
-        'ComboBox2
+        'cmbCorrectAnswer
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(149, 323)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(638, 24)
-        Me.ComboBox2.TabIndex = 10
+        Me.cmbCorrectAnswer.FormattingEnabled = True
+        Me.cmbCorrectAnswer.Items.AddRange(New Object() {"A", "B", "C", "D"})
+        Me.cmbCorrectAnswer.Location = New System.Drawing.Point(149, 323)
+        Me.cmbCorrectAnswer.Name = "cmbCorrectAnswer"
+        Me.cmbCorrectAnswer.Size = New System.Drawing.Size(195, 24)
+        Me.cmbCorrectAnswer.TabIndex = 10
         '
-        'TextBox1
+        'txtQuestion
         '
-        Me.TextBox1.Location = New System.Drawing.Point(149, 107)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(638, 72)
-        Me.TextBox1.TabIndex = 12
+        Me.txtQuestion.Location = New System.Drawing.Point(149, 107)
+        Me.txtQuestion.Multiline = True
+        Me.txtQuestion.Name = "txtQuestion"
+        Me.txtQuestion.Size = New System.Drawing.Size(638, 72)
+        Me.txtQuestion.TabIndex = 12
         '
-        'TextBox2
+        'txtA
         '
-        Me.TextBox2.Location = New System.Drawing.Point(149, 185)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(638, 22)
-        Me.TextBox2.TabIndex = 13
+        Me.txtA.Location = New System.Drawing.Point(149, 185)
+        Me.txtA.Name = "txtA"
+        Me.txtA.Size = New System.Drawing.Size(638, 22)
+        Me.txtA.TabIndex = 13
         '
-        'TextBox3
+        'txtB
         '
-        Me.TextBox3.Location = New System.Drawing.Point(149, 221)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(638, 22)
-        Me.TextBox3.TabIndex = 14
+        Me.txtB.Location = New System.Drawing.Point(149, 221)
+        Me.txtB.Name = "txtB"
+        Me.txtB.Size = New System.Drawing.Size(638, 22)
+        Me.txtB.TabIndex = 14
         '
-        'TextBox4
+        'txtC
         '
-        Me.TextBox4.Location = New System.Drawing.Point(149, 252)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(638, 22)
-        Me.TextBox4.TabIndex = 15
+        Me.txtC.Location = New System.Drawing.Point(149, 252)
+        Me.txtC.Name = "txtC"
+        Me.txtC.Size = New System.Drawing.Size(638, 22)
+        Me.txtC.TabIndex = 15
         '
-        'TextBox5
+        'txtD
         '
-        Me.TextBox5.Location = New System.Drawing.Point(149, 288)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(638, 22)
-        Me.TextBox5.TabIndex = 16
+        Me.txtD.Location = New System.Drawing.Point(149, 288)
+        Me.txtD.Name = "txtD"
+        Me.txtD.Size = New System.Drawing.Size(638, 22)
+        Me.txtD.TabIndex = 16
         '
-        'btnInsert
+        'btnSave
         '
-        Me.btnInsert.Location = New System.Drawing.Point(175, 396)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(99, 40)
-        Me.btnInsert.TabIndex = 17
-        Me.btnInsert.Text = "INSERT"
-        Me.btnInsert.UseVisualStyleBackColor = True
+        Me.btnSave.Location = New System.Drawing.Point(175, 396)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(99, 40)
+        Me.btnSave.TabIndex = 17
+        Me.btnSave.Text = "Save"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnNext
         '
@@ -172,12 +175,12 @@ Partial Class FormQuestion
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(99, 40)
         Me.btnNext.TabIndex = 18
-        Me.btnNext.Text = "NEXT"
+        Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(449, 396)
+        Me.btnBack.Location = New System.Drawing.Point(55, 396)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(94, 42)
         Me.btnBack.TabIndex = 20
@@ -187,27 +190,48 @@ Partial Class FormQuestion
         'lblcoursecode
         '
         Me.lblcoursecode.AutoSize = True
-        Me.lblcoursecode.Location = New System.Drawing.Point(398, 68)
+        Me.lblcoursecode.Location = New System.Drawing.Point(593, 68)
         Me.lblcoursecode.Name = "lblcoursecode"
         Me.lblcoursecode.Size = New System.Drawing.Size(48, 16)
         Me.lblcoursecode.TabIndex = 21
         Me.lblcoursecode.Text = "Label2"
         '
+        'cmbAssessmentType
+        '
+        Me.cmbAssessmentType.FormattingEnabled = True
+        Me.cmbAssessmentType.Items.AddRange(New Object() {"Short Quiz", "Long Quz"})
+        Me.cmbAssessmentType.Location = New System.Drawing.Point(192, 30)
+        Me.cmbAssessmentType.Name = "cmbAssessmentType"
+        Me.cmbAssessmentType.Size = New System.Drawing.Size(223, 24)
+        Me.cmbAssessmentType.TabIndex = 22
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(33, 33)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(153, 16)
+        Me.Label2.TabIndex = 23
+        Me.Label2.Text = "Select Assessmenr Typ:"
+        '
         'FormQuestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(872, 545)
+        Me.ClientSize = New System.Drawing.Size(872, 467)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.cmbAssessmentType)
         Me.Controls.Add(Me.lblcoursecode)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnNext)
-        Me.Controls.Add(Me.btnInsert)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.btnSave)
+        Me.Controls.Add(Me.txtD)
+        Me.Controls.Add(Me.txtC)
+        Me.Controls.Add(Me.txtB)
+        Me.Controls.Add(Me.txtA)
+        Me.Controls.Add(Me.txtQuestion)
+        Me.Controls.Add(Me.cmbCorrectAnswer)
         Me.Controls.Add(Me.cmbCourse)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
@@ -216,8 +240,9 @@ Partial Class FormQuestion
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormQuestion"
-        Me.Text = "A."
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -231,14 +256,16 @@ Partial Class FormQuestion
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents cmbCourse As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
-    Friend WithEvents btnInsert As Button
+    Friend WithEvents cmbCorrectAnswer As ComboBox
+    Friend WithEvents txtQuestion As TextBox
+    Friend WithEvents txtA As TextBox
+    Friend WithEvents txtB As TextBox
+    Friend WithEvents txtC As TextBox
+    Friend WithEvents txtD As TextBox
+    Friend WithEvents btnSave As Button
     Friend WithEvents btnNext As Button
     Friend WithEvents btnBack As Button
     Friend WithEvents lblcoursecode As Label
+    Friend WithEvents cmbAssessmentType As ComboBox
+    Friend WithEvents Label2 As Label
 End Class
