@@ -24,11 +24,11 @@ Partial Class AdminDashboard
     Private Sub InitializeComponent()
         Me.btnAddCourse = New System.Windows.Forms.Button()
         Me.btnAddQuestion = New System.Windows.Forms.Button()
-        Me.btnUser = New System.Windows.Forms.Button()
+        Me.btnRegisterStudents = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.btnSection = New System.Windows.Forms.Button()
         Me.btnExam = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
+        Me.btnAssginStudent = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
@@ -40,90 +40,90 @@ Partial Class AdminDashboard
         '
         'btnAddCourse
         '
-        Me.btnAddCourse.Location = New System.Drawing.Point(12, 118)
+        Me.btnAddCourse.Location = New System.Drawing.Point(50, 132)
         Me.btnAddCourse.Name = "btnAddCourse"
-        Me.btnAddCourse.Size = New System.Drawing.Size(96, 30)
+        Me.btnAddCourse.Size = New System.Drawing.Size(146, 37)
         Me.btnAddCourse.TabIndex = 2
         Me.btnAddCourse.Text = "Course"
         Me.btnAddCourse.UseVisualStyleBackColor = True
         '
         'btnAddQuestion
         '
-        Me.btnAddQuestion.Location = New System.Drawing.Point(12, 226)
+        Me.btnAddQuestion.Location = New System.Drawing.Point(50, 240)
         Me.btnAddQuestion.Name = "btnAddQuestion"
-        Me.btnAddQuestion.Size = New System.Drawing.Size(96, 30)
+        Me.btnAddQuestion.Size = New System.Drawing.Size(146, 37)
         Me.btnAddQuestion.TabIndex = 3
         Me.btnAddQuestion.Text = "Question"
         Me.btnAddQuestion.UseVisualStyleBackColor = True
         '
-        'btnUser
+        'btnRegisterStudents
         '
-        Me.btnUser.Location = New System.Drawing.Point(12, 262)
-        Me.btnUser.Name = "btnUser"
-        Me.btnUser.Size = New System.Drawing.Size(96, 30)
-        Me.btnUser.TabIndex = 4
-        Me.btnUser.Text = "Users"
-        Me.btnUser.UseVisualStyleBackColor = True
+        Me.btnRegisterStudents.Location = New System.Drawing.Point(50, 325)
+        Me.btnRegisterStudents.Name = "btnRegisterStudents"
+        Me.btnRegisterStudents.Size = New System.Drawing.Size(146, 37)
+        Me.btnRegisterStudents.TabIndex = 4
+        Me.btnRegisterStudents.Text = "Register Students"
+        Me.btnRegisterStudents.UseVisualStyleBackColor = True
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(12, 298)
+        Me.Button6.Location = New System.Drawing.Point(50, 368)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(96, 30)
+        Me.Button6.Size = New System.Drawing.Size(146, 37)
         Me.Button6.TabIndex = 5
         Me.Button6.Text = "Statistics"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'btnSection
         '
-        Me.btnSection.Location = New System.Drawing.Point(12, 154)
+        Me.btnSection.Location = New System.Drawing.Point(50, 168)
         Me.btnSection.Name = "btnSection"
-        Me.btnSection.Size = New System.Drawing.Size(96, 30)
+        Me.btnSection.Size = New System.Drawing.Size(146, 37)
         Me.btnSection.TabIndex = 6
         Me.btnSection.Text = "Section"
         Me.btnSection.UseVisualStyleBackColor = True
         '
         'btnExam
         '
-        Me.btnExam.Location = New System.Drawing.Point(12, 190)
+        Me.btnExam.Location = New System.Drawing.Point(50, 204)
         Me.btnExam.Name = "btnExam"
-        Me.btnExam.Size = New System.Drawing.Size(96, 30)
+        Me.btnExam.Size = New System.Drawing.Size(146, 37)
         Me.btnExam.TabIndex = 7
         Me.btnExam.Text = "Exam"
         Me.btnExam.UseVisualStyleBackColor = True
         '
-        'Button9
+        'btnAssginStudent
         '
-        Me.Button9.Location = New System.Drawing.Point(12, 373)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(96, 30)
-        Me.Button9.TabIndex = 8
-        Me.Button9.Text = "Button9"
-        Me.Button9.UseVisualStyleBackColor = True
+        Me.btnAssginStudent.Location = New System.Drawing.Point(50, 276)
+        Me.btnAssginStudent.Name = "btnAssginStudent"
+        Me.btnAssginStudent.Size = New System.Drawing.Size(146, 37)
+        Me.btnAssginStudent.TabIndex = 8
+        Me.btnAssginStudent.Text = "Assign Studens"
+        Me.btnAssginStudent.UseVisualStyleBackColor = True
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(12, 409)
+        Me.Button10.Location = New System.Drawing.Point(50, 423)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(96, 30)
+        Me.Button10.Size = New System.Drawing.Size(146, 37)
         Me.Button10.TabIndex = 9
         Me.Button10.Text = "Button10"
         Me.Button10.UseVisualStyleBackColor = True
         '
         'Button11
         '
-        Me.Button11.Location = New System.Drawing.Point(12, 82)
+        Me.Button11.Location = New System.Drawing.Point(50, 96)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(96, 30)
+        Me.Button11.Size = New System.Drawing.Size(146, 37)
         Me.Button11.TabIndex = 10
         Me.Button11.Text = "Dashboard"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'btnExit
         '
-        Me.btnExit.Location = New System.Drawing.Point(22, 456)
+        Me.btnExit.Location = New System.Drawing.Point(50, 466)
         Me.btnExit.Name = "btnExit"
-        Me.btnExit.Size = New System.Drawing.Size(96, 32)
+        Me.btnExit.Size = New System.Drawing.Size(146, 39)
         Me.btnExit.TabIndex = 11
         Me.btnExit.Text = "EXIT"
         Me.btnExit.UseVisualStyleBackColor = True
@@ -134,18 +134,18 @@ Partial Class AdminDashboard
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Button10)
         Me.Panel1.Controls.Add(Me.Button11)
-        Me.Panel1.Controls.Add(Me.Button9)
+        Me.Panel1.Controls.Add(Me.btnAssginStudent)
         Me.Panel1.Controls.Add(Me.btnExit)
         Me.Panel1.Controls.Add(Me.btnExam)
         Me.Panel1.Controls.Add(Me.btnAddCourse)
         Me.Panel1.Controls.Add(Me.btnSection)
         Me.Panel1.Controls.Add(Me.btnAddQuestion)
-        Me.Panel1.Controls.Add(Me.btnUser)
+        Me.Panel1.Controls.Add(Me.btnRegisterStudents)
         Me.Panel1.Controls.Add(Me.Button6)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(230, 543)
+        Me.Panel1.Size = New System.Drawing.Size(241, 659)
         Me.Panel1.TabIndex = 14
         '
         'Label1
@@ -160,16 +160,16 @@ Partial Class AdminDashboard
         'panell
         '
         Me.panell.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panell.Location = New System.Drawing.Point(230, 0)
+        Me.panell.Location = New System.Drawing.Point(241, 0)
         Me.panell.Name = "panell"
-        Me.panell.Size = New System.Drawing.Size(877, 543)
+        Me.panell.Size = New System.Drawing.Size(1194, 659)
         Me.panell.TabIndex = 15
         '
         'AdminDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1107, 543)
+        Me.ClientSize = New System.Drawing.Size(1435, 659)
         Me.ControlBox = False
         Me.Controls.Add(Me.panell)
         Me.Controls.Add(Me.Panel1)
@@ -183,11 +183,11 @@ Partial Class AdminDashboard
     End Sub
     Friend WithEvents btnAddCourse As Button
     Friend WithEvents btnAddQuestion As Button
-    Friend WithEvents btnUser As Button
+    Friend WithEvents btnRegisterStudents As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents btnSection As Button
     Friend WithEvents btnExam As Button
-    Friend WithEvents Button9 As Button
+    Friend WithEvents btnAssginStudent As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents btnExit As Button

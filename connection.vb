@@ -18,7 +18,7 @@ Module connection
 
             If conn.State = ConnectionState.Closed Then
 
-                strConn = "server=127.0.0.1;user=Yohan;password=Yohan;port=3307;database=exam;sslmode=none"
+                strConn = "server=127.0.0.1;user=Yohan;password=Yohan;port=3307;database=exam;sslmode=none;Convert Zero Datetime=True"
                 conn.ConnectionString = strConn
 
                 conn.Open()

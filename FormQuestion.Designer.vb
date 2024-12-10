@@ -42,6 +42,7 @@ Partial Class FormQuestion
         Me.lblcoursecode = New System.Windows.Forms.Label()
         Me.cmbAssessmentType = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.timer = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'Label1
@@ -199,7 +200,7 @@ Partial Class FormQuestion
         'cmbAssessmentType
         '
         Me.cmbAssessmentType.FormattingEnabled = True
-        Me.cmbAssessmentType.Items.AddRange(New Object() {"Short Quiz", "Long Quz"})
+        Me.cmbAssessmentType.Items.AddRange(New Object() {"Short Quiz 1", "Short Quiz 2", "Short Quiz 3", "Short Quiz 4", "Long Quiz 1", "Long Quiz 2", "Long Quiz 3", "Long Quiz 4", " Examination ( Term )"})
         Me.cmbAssessmentType.Location = New System.Drawing.Point(192, 30)
         Me.cmbAssessmentType.Name = "cmbAssessmentType"
         Me.cmbAssessmentType.Size = New System.Drawing.Size(223, 24)
@@ -214,12 +215,23 @@ Partial Class FormQuestion
         Me.Label2.TabIndex = 23
         Me.Label2.Text = "Select Assessmenr Typ:"
         '
+        'timer
+        '
+        Me.timer.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.timer.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.timer.Location = New System.Drawing.Point(382, 323)
+        Me.timer.Name = "timer"
+        Me.timer.ShowUpDown = True
+        Me.timer.Size = New System.Drawing.Size(98, 28)
+        Me.timer.TabIndex = 24
+        '
         'FormQuestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(872, 467)
         Me.ControlBox = False
+        Me.Controls.Add(Me.timer)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.cmbAssessmentType)
         Me.Controls.Add(Me.lblcoursecode)
@@ -268,4 +280,5 @@ Partial Class FormQuestion
     Friend WithEvents lblcoursecode As Label
     Friend WithEvents cmbAssessmentType As ComboBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents timer As DateTimePicker
 End Class

@@ -4,15 +4,33 @@ Public Class FormQuestionList
 
     Public Sub fetchQuestion()
         Try
+
+            DataGridView1.Rows.Clear()
+
             If OPENDB() Then
-                Dim qu As String = "SELECT * FROM tb_questionanswer"
+                Dim qu As String = "
+                        SELECT 
+                            q.QuestionID, 
+                            q.Question, 
+                            q.OptionA, 
+                            q.OptionB, 
+                            q.OptionC, 
+                            q.OptionD, 
+                            q.CorrectAnswer, 
+                            q.AssessmentType, 
+                            c.CourseCode 
+                        FROM 
+                            tb_questionanswer q
+                        INNER JOIN 
+                            tb_coursequestion cq ON q.QuestionID = cq.QuestionID
+                        INNER JOIN 
+                            tb_course c ON c.CourseID = cq.CourseID"
                 Using cmd As New MySqlCommand(qu, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
 
                         While dtreader.Read
 
                             Dim questionID As Integer = dtreader.GetInt32("questionID")
-                            Dim courseID As Integer = dtreader.GetInt32("courseID")
                             Dim question As String = dtreader.GetString("Question")
                             Dim optionA As String = dtreader.GetString("OptionA")
                             Dim optionB As String = dtreader.GetString("OptionB")
@@ -21,8 +39,10 @@ Public Class FormQuestionList
                             Dim correctAnswer As String = dtreader.GetString("CorrectAnswer")
                             'Dim dateCreated As Date = dtreader.GetDateTime("dateEdited")
                             Dim assessmentType As String = dtreader.GetString("AssessmentType")
+                            Dim courseCode As String = dtreader.GetString("courseCode")
 
-                            DataGridView1.Rows.Add(questionID, courseID, question, optionA, optionB, optionC, optionD, correctAnswer, "wala", assessmentType)
+
+                            DataGridView1.Rows.Add(questionID, question, optionA, optionB, optionC, optionD, correctAnswer, assessmentType, courseCode)
                         End While
                     End Using
                 End Using
@@ -33,8 +53,53 @@ Public Class FormQuestionList
     End Sub
 
 
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        Dim colName As String = DataGridView1.Columns(e.ColumnIndex).Name
+
+
+        If colName = "colView" Then
+
+            With FormQuestion
+
+                .txtQuestion.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString
+                .txtA.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString
+                .txtB.Text = DataGridView1.CurrentRow.Cells(3).Value.ToString
+                .txtC.Text = DataGridView1.CurrentRow.Cells(4).Value.ToString
+                .txtD.Text = DataGridView1.CurrentRow.Cells(5).Value.ToString
+                .cmbCorrectAnswer.Text = DataGridView1.CurrentRow.Cells(6).Value.ToString
+                .cmbAssessmentType.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
+                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(8).Value.ToString
+                .cmbAssessmentType.Enabled = False
+                .cmbCorrectAnswer.Enabled = False
+                .cmbCourse.Enabled = False
+                .txtQuestion.Enabled = False
+                .txtA.Enabled = False
+                .txtB.Enabled = False
+                .txtC.Enabled = False
+                .txtD.Enabled = False
+                .cmbCorrectAnswer.Enabled = False
+                .btnSave.Visible = False
+                .btnNext.Visible = False
+                .ShowDialog()
+            End With
+        ElseIf colName = "colEdit" Then
+            With FormQuestion
+                .txtQuestion.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString
+                .txtA.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString
+                .txtB.Text = DataGridView1.CurrentRow.Cells(3).Value.ToString
+                .txtC.Text = DataGridView1.CurrentRow.Cells(4).Value.ToString
+                .txtD.Text = DataGridView1.CurrentRow.Cells(5).Value.ToString
+                .cmbCorrectAnswer.Text = DataGridView1.CurrentRow.Cells(6).Value.ToString
+                .cmbAssessmentType.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
+                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(8).Value.ToString
+                .btnSave.Text = "Update"
+                .btnNext.Visible = False
+                .ShowDialog()
+            End With
+
+        End If
     End Sub
 
 

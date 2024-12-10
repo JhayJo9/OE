@@ -68,4 +68,8 @@ Public Class Formcourse
             End With
         End If
     End Sub
+
+    Private Sub Formcourse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

@@ -23,12 +23,12 @@ Partial Class FormSectionList
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.btnAddNew = New System.Windows.Forms.Button()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSection = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCourseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnAddNew = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -43,48 +43,13 @@ Partial Class FormSectionList
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.colSection, Me.colCourseCode, Me.colEdit, Me.colDelete})
         Me.DataGridView1.Location = New System.Drawing.Point(21, 56)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowHeadersWidth = 51
         Me.DataGridView1.RowTemplate.Height = 24
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(757, 351)
         Me.DataGridView1.TabIndex = 0
-        '
-        'ID
-        '
-        Me.ID.HeaderText = "ID"
-        Me.ID.MinimumWidth = 6
-        Me.ID.Name = "ID"
-        '
-        'colSection
-        '
-        Me.colSection.HeaderText = "Section"
-        Me.colSection.MinimumWidth = 6
-        Me.colSection.Name = "colSection"
-        '
-        'colCourseCode
-        '
-        Me.colCourseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colCourseCode.HeaderText = "Course Code"
-        Me.colCourseCode.MinimumWidth = 6
-        Me.colCourseCode.Name = "colCourseCode"
-        Me.colCourseCode.Width = 115
-        '
-        'colEdit
-        '
-        Me.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colEdit.HeaderText = "Edit"
-        Me.colEdit.MinimumWidth = 6
-        Me.colEdit.Name = "colEdit"
-        Me.colEdit.Width = 36
-        '
-        'colDelete
-        '
-        Me.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colDelete.HeaderText = "Delete"
-        Me.colDelete.MinimumWidth = 6
-        Me.colDelete.Name = "colDelete"
-        Me.colDelete.Width = 53
         '
         'btnAddNew
         '
@@ -95,6 +60,49 @@ Partial Class FormSectionList
         Me.btnAddNew.TabIndex = 1
         Me.btnAddNew.Text = "Add new"
         Me.btnAddNew.UseVisualStyleBackColor = True
+        '
+        'ID
+        '
+        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.ID.HeaderText = "ID"
+        Me.ID.MinimumWidth = 6
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Width = 49
+        '
+        'colSection
+        '
+        Me.colSection.HeaderText = "Section"
+        Me.colSection.MinimumWidth = 6
+        Me.colSection.Name = "colSection"
+        Me.colSection.ReadOnly = True
+        '
+        'colCourseCode
+        '
+        Me.colCourseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.colCourseCode.HeaderText = "Course Code"
+        Me.colCourseCode.MinimumWidth = 6
+        Me.colCourseCode.Name = "colCourseCode"
+        Me.colCourseCode.ReadOnly = True
+        Me.colCourseCode.Width = 115
+        '
+        'colEdit
+        '
+        Me.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.colEdit.HeaderText = "Edit"
+        Me.colEdit.MinimumWidth = 6
+        Me.colEdit.Name = "colEdit"
+        Me.colEdit.ReadOnly = True
+        Me.colEdit.Width = 36
+        '
+        'colDelete
+        '
+        Me.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.colDelete.HeaderText = "Delete"
+        Me.colDelete.MinimumWidth = 6
+        Me.colDelete.Name = "colDelete"
+        Me.colDelete.ReadOnly = True
+        Me.colDelete.Width = 53
         '
         'FormSectionList
         '

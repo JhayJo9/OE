@@ -23,10 +23,10 @@
         End With
     End Sub
 
-    Private Sub btnAddQuestionList_Click(sender As Object, e As EventArgs) Handles btnUser.Click
-        With users
+    Private Sub btnAddQuestionList_Click(sender As Object, e As EventArgs) Handles btnRegisterStudents.Click
+        With FormRegistrationStudentList
             .TopLevel = False
-            panell.Controls.Add(users)
+            panell.Controls.Add(FormRegistrationStudentList)
             .BringToFront()
             .Show()
         End With
@@ -48,5 +48,29 @@
             .BringToFront()
             .Show()
         End With
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub AdminDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        With adminMain
+            .TopLevel = False
+            panell.Controls.Add(adminMain)
+            .BringToFront()
+            .Show()
+        End With
+
+    End Sub
+
+    Private Sub btnAssginStudent_Click(sender As Object, e As EventArgs) Handles btnAssginStudent.Click
+        With FormAssignedStudentsList
+            .TopLevel = False
+            panell.Controls.Add(FormAssignedStudentsList)
+            .BringToFront()
+            .Show()
+        End With
+
     End Sub
 End Class

@@ -23,8 +23,8 @@ Partial Class FormQuestionList
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.btnAddnew = New System.Windows.Forms.Button()
         Me.questionID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.courseId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Question = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.questionA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.optionB = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -32,10 +32,10 @@ Partial Class FormQuestionList
         Me.optionD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CorrectAnswer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colAssessmentType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateEdit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colCourseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnAddnew = New System.Windows.Forms.Button()
+        Me.colView = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -46,7 +46,7 @@ Partial Class FormQuestionList
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.courseId, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colAssessmentType, Me.dateEdit, Me.colEdit, Me.colDelete})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colAssessmentType, Me.colCourseCode, Me.colEdit, Me.colDelete, Me.colView})
         Me.DataGridView1.Location = New System.Drawing.Point(18, 43)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -57,6 +57,16 @@ Partial Class FormQuestionList
         Me.DataGridView1.Size = New System.Drawing.Size(960, 325)
         Me.DataGridView1.TabIndex = 1
         '
+        'btnAddnew
+        '
+        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddnew.Location = New System.Drawing.Point(903, 14)
+        Me.btnAddnew.Name = "btnAddnew"
+        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddnew.TabIndex = 2
+        Me.btnAddnew.Text = "Add New"
+        Me.btnAddnew.UseVisualStyleBackColor = True
+        '
         'questionID
         '
         Me.questionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -66,22 +76,13 @@ Partial Class FormQuestionList
         Me.questionID.ReadOnly = True
         Me.questionID.Width = 102
         '
-        'courseId
-        '
-        Me.courseId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.courseId.HeaderText = "CourseID"
-        Me.courseId.MinimumWidth = 6
-        Me.courseId.Name = "courseId"
-        Me.courseId.ReadOnly = True
-        Me.courseId.Width = 92
-        '
         'Question
         '
-        Me.Question.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.Question.HeaderText = "Question"
         Me.Question.MinimumWidth = 6
         Me.Question.Name = "Question"
         Me.Question.ReadOnly = True
+        Me.Question.Width = 165
         '
         'questionA
         '
@@ -137,14 +138,14 @@ Partial Class FormQuestionList
         Me.colAssessmentType.ReadOnly = True
         Me.colAssessmentType.Width = 133
         '
-        'dateEdit
+        'colCourseCode
         '
-        Me.dateEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.dateEdit.HeaderText = "Date Edit"
-        Me.dateEdit.MinimumWidth = 6
-        Me.dateEdit.Name = "dateEdit"
-        Me.dateEdit.ReadOnly = True
-        Me.dateEdit.Width = 84
+        Me.colCourseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.colCourseCode.HeaderText = "Course Code"
+        Me.colCourseCode.MinimumWidth = 6
+        Me.colCourseCode.Name = "colCourseCode"
+        Me.colCourseCode.ReadOnly = True
+        Me.colCourseCode.Width = 106
         '
         'colEdit
         '
@@ -164,15 +165,16 @@ Partial Class FormQuestionList
         Me.colDelete.ReadOnly = True
         Me.colDelete.Width = 53
         '
-        'btnAddnew
+        'colView
         '
-        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddnew.Location = New System.Drawing.Point(903, 14)
-        Me.btnAddnew.Name = "btnAddnew"
-        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
-        Me.btnAddnew.TabIndex = 2
-        Me.btnAddnew.Text = "Add New"
-        Me.btnAddnew.UseVisualStyleBackColor = True
+        Me.colView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.colView.HeaderText = "View"
+        Me.colView.MinimumWidth = 6
+        Me.colView.Name = "colView"
+        Me.colView.ReadOnly = True
+        Me.colView.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.colView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.colView.Width = 65
         '
         'FormQuestionList
         '
@@ -192,7 +194,6 @@ Partial Class FormQuestionList
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents btnAddnew As Button
     Friend WithEvents questionID As DataGridViewTextBoxColumn
-    Friend WithEvents courseId As DataGridViewTextBoxColumn
     Friend WithEvents Question As DataGridViewTextBoxColumn
     Friend WithEvents questionA As DataGridViewTextBoxColumn
     Friend WithEvents optionB As DataGridViewTextBoxColumn
@@ -200,7 +201,8 @@ Partial Class FormQuestionList
     Friend WithEvents optionD As DataGridViewTextBoxColumn
     Friend WithEvents CorrectAnswer As DataGridViewTextBoxColumn
     Friend WithEvents colAssessmentType As DataGridViewTextBoxColumn
-    Friend WithEvents dateEdit As DataGridViewTextBoxColumn
+    Friend WithEvents colCourseCode As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
+    Friend WithEvents colView As DataGridViewImageColumn
 End Class

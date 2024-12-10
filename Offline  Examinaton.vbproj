@@ -131,6 +131,24 @@
     <Compile Include="AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="adminMain.Designer.vb">
+      <DependentUpon>adminMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="adminMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssignedStudents.Designer.vb">
+      <DependentUpon>FormAssignedStudents.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssignedStudents.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssignedStudentsList.Designer.vb">
+      <DependentUpon>FormAssignedStudentsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssignedStudentsList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formcourse.Designer.vb">
       <DependentUpon>Formcourse.vb</DependentUpon>
     </Compile>
@@ -205,6 +223,18 @@
     <Compile Include="formRegister.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormRegistrationStudent.Designer.vb">
+      <DependentUpon>FormRegistrationStudent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrationStudent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrationStudentList.Designer.vb">
+      <DependentUpon>FormRegistrationStudentList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrationStudentList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSection.Designer.vb">
       <DependentUpon>FormSection.vb</DependentUpon>
     </Compile>
@@ -274,6 +304,15 @@
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="adminMain.resx">
+      <DependentUpon>adminMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssignedStudents.resx">
+      <DependentUpon>FormAssignedStudents.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssignedStudentsList.resx">
+      <DependentUpon>FormAssignedStudentsList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formcourse.resx">
       <DependentUpon>Formcourse.vb</DependentUpon>
     </EmbeddedResource>
@@ -309,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formRegister.resx">
       <DependentUpon>formRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrationStudent.resx">
+      <DependentUpon>FormRegistrationStudent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrationStudentList.resx">
+      <DependentUpon>FormRegistrationStudentList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSection.resx">
       <DependentUpon>FormSection.vb</DependentUpon>
