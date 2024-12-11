@@ -137,10 +137,10 @@
     <Compile Include="adminMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAssignedStudents.Designer.vb">
-      <DependentUpon>FormAssignedStudents.vb</DependentUpon>
+    <Compile Include="Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormAssignedStudents.vb">
+    <Compile Include="Form2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAssignedStudentsList.Designer.vb">
@@ -307,8 +307,8 @@
     <EmbeddedResource Include="adminMain.resx">
       <DependentUpon>adminMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAssignedStudents.resx">
-      <DependentUpon>FormAssignedStudents.vb</DependentUpon>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssignedStudentsList.resx">
       <DependentUpon>FormAssignedStudentsList.vb</DependentUpon>

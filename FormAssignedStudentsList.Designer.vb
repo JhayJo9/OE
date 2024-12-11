@@ -30,7 +30,7 @@ Partial Class FormAssignedStudentsList
         Me.colAssignedAsesseType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnAddnew = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -90,11 +90,11 @@ Partial Class FormAssignedStudentsList
         'colAssignedAsesseType
         '
         Me.colAssignedAsesseType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colAssignedAsesseType.HeaderText = "Assigned Assessment type"
+        Me.colAssignedAsesseType.HeaderText = "Assigned Assess. type"
         Me.colAssignedAsesseType.MinimumWidth = 6
         Me.colAssignedAsesseType.Name = "colAssignedAsesseType"
         Me.colAssignedAsesseType.ReadOnly = True
-        Me.colAssignedAsesseType.Width = 128
+        Me.colAssignedAsesseType.Width = 135
         '
         'colEdit
         '
@@ -114,15 +114,15 @@ Partial Class FormAssignedStudentsList
         Me.colDelete.ReadOnly = True
         Me.colDelete.Width = 53
         '
-        'btnAddnew
+        'Button2
         '
-        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddnew.Location = New System.Drawing.Point(890, 23)
-        Me.btnAddnew.Name = "btnAddnew"
-        Me.btnAddnew.Size = New System.Drawing.Size(85, 28)
-        Me.btnAddnew.TabIndex = 1
-        Me.btnAddnew.Text = "Add new"
-        Me.btnAddnew.UseVisualStyleBackColor = True
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Location = New System.Drawing.Point(900, 28)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'FormAssignedStudentsList
         '
@@ -130,7 +130,7 @@ Partial Class FormAssignedStudentsList
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(989, 546)
         Me.ControlBox = False
-        Me.Controls.Add(Me.btnAddnew)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DataGridView1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormAssignedStudentsList"
@@ -148,5 +148,5 @@ Partial Class FormAssignedStudentsList
     Friend WithEvents colAssignedAsesseType As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
-    Friend WithEvents btnAddnew As Button
+    Friend WithEvents Button2 As Button
 End Class

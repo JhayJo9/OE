@@ -9,7 +9,7 @@ Public Class FormRegistrationStudent
     Public Sub insertData()
 
         Try
-            Dim query As String = "INSERT into tb_users values (null, @Firstname, @LastName, @MiddleName, @DateOfBirth, @Gender, @Email, @ContactNumber, @role)"
+            Dim query As String = "INSERT into tb_users values (null,null, @Firstname, @LastName, @MiddleName, @DateOfBirth, @Gender, @Email, @ContactNumber, @role)"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstname.Text)
                 cmd.Parameters.AddWithValue("@LastName", txtLastname.Text)
@@ -109,6 +109,11 @@ Public Class FormRegistrationStudent
         Return result.ToString()
     End Function
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+        insertData()
+        GenerateUsernamePassword()
+    End Sub
+
+    Private Sub FormRegistrationStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

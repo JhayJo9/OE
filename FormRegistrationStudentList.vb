@@ -19,7 +19,7 @@ Public Class FormRegistrationStudentList
                         Using dtreader As MySqlDataReader = cmd.ExecuteReader
 
                             While dtreader.Read
-                                Dim studentID As Integer = dtreader.GetInt32("studentID")
+                                Dim studentID As Integer = dtreader.GetInt32("studentNo")
                                 Dim Lastname As String = dtreader.GetString("Lastname")
                                 Dim Firstname As String = dtreader.GetString("Firstname")
                                 Dim Middlename As String = dtreader.GetString("Middlename")

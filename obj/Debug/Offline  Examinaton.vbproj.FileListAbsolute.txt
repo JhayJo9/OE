@@ -113,6 +113,6 @@ C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQ
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormUserList.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.adminMain.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormAssignedStudentsList.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormAssignedStudents.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormRegistrationStudent.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormRegistrationStudentList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Form2.resources

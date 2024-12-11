@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formregistrationstudentlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formregistrationstudentlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formregistrationstudentlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formregistrationstudentlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formregistrationstudent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formregistrationstudent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formregistrationstudent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formregistrationstudent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\admindashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:admindashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formexamlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formexamlist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\admindashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:admindashboard.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formassignedstudentslist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formassignedstudentslist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\formassignedstudentslist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:formassignedstudentslist.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\form2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:form2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|c:\\users\\penal\\downloads\\offline  examinaton\\form2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{DB9563DB-A309-4077-A47D-CACF4C50F6D4}|Offline  Examinaton.vbproj|solutionrelative:form2.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +42,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Form2.vb",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\Form2.vb",
+              "RelativeDocumentMoniker": "Form2.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\Form2.vb",
+              "RelativeToolTip": "Form2.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T14:26:46.49Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -54,53 +80,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminDashboard.vb",
-              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\AdminDashboard.vb",
-              "RelativeDocumentMoniker": "AdminDashboard.vb",
-              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\AdminDashboard.vb",
-              "RelativeToolTip": "AdminDashboard.vb",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAhwB8AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-12-10T16:20:28.065Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminDashboard.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\AdminDashboard.vb",
-              "RelativeDocumentMoniker": "AdminDashboard.vb",
-              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\AdminDashboard.vb [Design]",
-              "RelativeToolTip": "AdminDashboard.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-12-10T16:20:26.044Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormRegistrationStudentList.vb",
-              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb",
-              "RelativeDocumentMoniker": "FormRegistrationStudentList.vb",
-              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb",
-              "RelativeToolTip": "FormRegistrationStudentList.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-12-10T16:15:37.078Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormRegistrationStudentList.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb",
-              "RelativeDocumentMoniker": "FormRegistrationStudentList.vb",
-              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb [Design]",
-              "RelativeToolTip": "FormRegistrationStudentList.vb [Design]",
+              "Title": "FormRegistrationStudent.vb",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudent.vb",
+              "RelativeDocumentMoniker": "FormRegistrationStudent.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudent.vb",
+              "RelativeToolTip": "FormRegistrationStudent.vb",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowFMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-12-10T16:15:34.579Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-11T15:08:41.334Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -111,7 +100,68 @@
               "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudent.vb [Design]",
               "RelativeToolTip": "FormRegistrationStudent.vb [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-12-10T16:15:32.846Z",
+              "WhenOpened": "2024-12-11T15:08:34.069Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormRegistrationStudentList.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb",
+              "RelativeDocumentMoniker": "FormRegistrationStudentList.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormRegistrationStudentList.vb [Design]",
+              "RelativeToolTip": "FormRegistrationStudentList.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T15:08:30.304Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormExamList.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormExamList.vb",
+              "RelativeDocumentMoniker": "FormExamList.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormExamList.vb [Design]",
+              "RelativeToolTip": "FormExamList.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T14:55:51.686Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormAssignedStudentsList.vb",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormAssignedStudentsList.vb",
+              "RelativeDocumentMoniker": "FormAssignedStudentsList.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormAssignedStudentsList.vb",
+              "RelativeToolTip": "FormAssignedStudentsList.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T14:26:32.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Form2.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\Form2.vb",
+              "RelativeDocumentMoniker": "Form2.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\Form2.vb [Design]",
+              "RelativeToolTip": "Form2.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T14:26:02.068Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormAssignedStudentsList.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormAssignedStudentsList.vb",
+              "RelativeDocumentMoniker": "FormAssignedStudentsList.vb",
+              "ToolTip": "C:\\Users\\penal\\Downloads\\Offline  Examinaton\\FormAssignedStudentsList.vb [Design]",
+              "RelativeToolTip": "FormAssignedStudentsList.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-12-11T14:18:15.025Z",
               "EditorCaption": " [Design]"
             }
           ]

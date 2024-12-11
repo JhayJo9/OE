@@ -58,7 +58,7 @@ Partial Class AdminDashboard
         '
         'btnRegisterStudents
         '
-        Me.btnRegisterStudents.Location = New System.Drawing.Point(50, 325)
+        Me.btnRegisterStudents.Location = New System.Drawing.Point(50, 312)
         Me.btnRegisterStudents.Name = "btnRegisterStudents"
         Me.btnRegisterStudents.Size = New System.Drawing.Size(146, 37)
         Me.btnRegisterStudents.TabIndex = 4
@@ -67,7 +67,7 @@ Partial Class AdminDashboard
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(50, 368)
+        Me.Button6.Location = New System.Drawing.Point(50, 347)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(146, 37)
         Me.Button6.TabIndex = 5
