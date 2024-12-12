@@ -73,4 +73,8 @@
         End With
 
     End Sub
+
+    Private Sub panell_Paint(sender As Object, e As PaintEventArgs) Handles panell.Paint
+
+    End Sub
 End Class
