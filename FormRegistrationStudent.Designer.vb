@@ -44,8 +44,6 @@ Partial Class FormRegistrationStudent
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtStudentNo = New System.Windows.Forms.TextBox()
         Me.txtdateOfbirth = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cmbCourseCode = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbSectionCode = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
@@ -224,8 +222,6 @@ Partial Class FormRegistrationStudent
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.txtStudentNo)
         Me.GroupBox1.Controls.Add(Me.txtdateOfbirth)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.cmbCourseCode)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.cmbSectionCode)
         Me.GroupBox1.Controls.Add(Me.Label9)
@@ -303,27 +299,10 @@ Partial Class FormRegistrationStudent
         Me.txtdateOfbirth.TabIndex = 4
         Me.txtdateOfbirth.Visible = False
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(436, 101)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(94, 17)
-        Me.Label2.TabIndex = 36
-        Me.Label2.Text = "Course Code:"
-        '
-        'cmbCourseCode
-        '
-        Me.cmbCourseCode.FormattingEnabled = True
-        Me.cmbCourseCode.Location = New System.Drawing.Point(537, 93)
-        Me.cmbCourseCode.Name = "cmbCourseCode"
-        Me.cmbCourseCode.Size = New System.Drawing.Size(204, 25)
-        Me.cmbCourseCode.TabIndex = 35
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(436, 57)
+        Me.Label1.Location = New System.Drawing.Point(431, 91)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(96, 17)
         Me.Label1.TabIndex = 34
@@ -332,7 +311,7 @@ Partial Class FormRegistrationStudent
         'cmbSectionCode
         '
         Me.cmbSectionCode.FormattingEnabled = True
-        Me.cmbSectionCode.Location = New System.Drawing.Point(537, 49)
+        Me.cmbSectionCode.Location = New System.Drawing.Point(532, 83)
         Me.cmbSectionCode.Name = "cmbSectionCode"
         Me.cmbSectionCode.Size = New System.Drawing.Size(204, 25)
         Me.cmbSectionCode.TabIndex = 33
@@ -372,8 +351,6 @@ Partial Class FormRegistrationStudent
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
     Friend WithEvents cmbSectionCode As ComboBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents cmbCourseCode As ComboBox
     Friend WithEvents txtdateOfbirth As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents txtStudentNo As TextBox

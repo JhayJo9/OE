@@ -4,7 +4,7 @@ Imports MySql.Data
 Imports System.Diagnostics.Eventing
 
 Public Class FormRegistrationStudent
-    Public Function ValidateTexboxes() As Boolean
+    Public Function ValidateInputs() As Boolean
         If txtFirstname.Text.Trim() = "" Then
             MessageBox.Show("Please enter Firstname", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtFirstname.Focus()
@@ -33,30 +33,30 @@ Public Class FormRegistrationStudent
         Return True
     End Function
 
-    Public Sub fetchCourse()
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
 
-        End If
-        Try
-            conn.Open()
-            If OPENDB() Then
+    Public Sub ClearControls()
+        txtStudentNo.Clear()
+        txtFirstname.Clear()
+        txtLastname.Clear()
+        txtMiddlename.Clear()
+        txtEmail.Clear()
+        txtContactNo.Clear()
+        chbGender.SelectedIndex = -1
+        cmbSectionCode.SelectedIndex = -1
+        dtDateOfBirth.Value = DateTime.Now
+    End Sub
 
-                Dim fetch As String = "SELECT courseCode FROM tb_course"
-                Dim cmd As New MySqlCommand(fetch, conn)
-                Dim readerCourse As MySqlDataReader = cmd.ExecuteReader()
-
-                While readerCourse.Read()
-                    Dim courseCode As String = readerCourse.GetString("courseCode")
-
-                    cmbCourseCode.Items.Add(courseCode)
-                End While
-
-                readerCourse.Close()
-            End If
-        Catch ex As Exception
-            MsgBox("SELECT COURSE: " & ex.Message)
-        End Try
+    Public Sub SetControlsState(enabled As Boolean)
+        txtFirstname.Enabled = enabled
+        txtLastname.Enabled = enabled
+        txtMiddlename.Enabled = enabled
+        txtEmail.Enabled = enabled
+        txtContactNo.Enabled = enabled
+        chbGender.Enabled = enabled
+        cmbSectionCode.Enabled = enabled
+        dtDateOfBirth.Enabled = enabled
+        btnRegister.Enabled = enabled
+        btnClear.Enabled = enabled
     End Sub
 
     Public Sub fetchSection()
@@ -66,24 +66,22 @@ Public Class FormRegistrationStudent
         Try
             conn.Open()
             If OPENDB() Then
-                Dim st As String = "SELECT * FROM tb_section"
+                Dim st As String = "SELECT section FROM tb_section"
                 Dim cmd As New MySqlCommand(st, conn)
                 Dim readerSection As MySqlDataReader = cmd.ExecuteReader()
                 While readerSection.Read()
                     Dim section As String = readerSection.GetString("section")
                     cmbSectionCode.Items.Add(section)
                 End While
-
-                readerSection.Close()
             End If
         Catch ex As Exception
             MsgBox("Fetch Section " & ex.Message)
         End Try
     End Sub
 
-    Public Sub insertData()
+    Public Sub InsertStudent()
 
-        If Not ValidateTexboxes() Then
+        If Not ValidateInputs() Then
             Return
         End If
 
@@ -92,10 +90,11 @@ Public Class FormRegistrationStudent
         Dim newStudentNumber As Integer
 
         Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
             End If
 
+            conn.Open()
             Dim query As String = "SELECT MAX(CAST(SUBSTRING(studentNo, 5) AS UNSIGNED)) AS lastNumber FROM tb_student WHERE studentNo LIKE @YearPrefix"
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@YearPrefix", currentYear & "%")
@@ -113,16 +112,18 @@ Public Class FormRegistrationStudent
             End If
         End Try
 
+
+
         newStudentNumber = lastStudentNumber + 1
         Dim rs As String = currentYear & newStudentNumber.ToString("D4")
 
-
         Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
             End If
-            Dim query As String = "INSERT INTO tb_student (studentNo, Firstname, Lastname, Middlename, DateOfBirth, Gender, Email, ContactNumber, CourseCode, SectionCode) " &
-                              "VALUES (@studentNo, @Firstname, @Lastname, @Middlename, @DateOfBirth, @Gender, @Email, @ContactNumber, @CourseCode, @SectionCode)"
+            conn.Open()
+            Dim query As String = "INSERT INTO tb_student (studentNo, Firstname, Lastname, Middlename, DateOfBirth, Gender, Email, ContactNumber) " &
+                          "VALUES (@studentNo, @Firstname, @Lastname, @Middlename, @DateOfBirth, @Gender, @Email, @ContactNumber)"
 
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@studentNo", rs)
@@ -133,35 +134,56 @@ Public Class FormRegistrationStudent
             cmd.Parameters.AddWithValue("@Gender", chbGender.Text)
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text)
             cmd.Parameters.AddWithValue("@ContactNumber", txtContactNo.Text)
-            cmd.Parameters.AddWithValue("@CourseCode", cmbCourseCode.Text)
-            cmd.Parameters.AddWithValue("@SectionCode", cmbSectionCode.Text)
 
             cmd.ExecuteNonQuery()
-            MsgBox("Successfully Registered")
+            'MsgBox("Successfully Registered")
+            ' After successfully inserting a student
 
-            FormRegistrationStudentList.fetchStudentList()
+            'FormRegistrationStudentList.FetchStudentList()
 
         Catch ex As MySqlException When ex.Number = 1062 ' Duplicate entry error code
             MsgBox("Duplicate entry detected: " & ex.Message)
+            ' Handle the duplicate error, possibly by retrying with a new student number
         Catch ex As Exception
             MsgBox("Error inserting data: " & ex.Message)
         Finally
-
             If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
                 conn.Close()
             End If
         End Try
-    End Sub
 
-    Public Sub Update_Data()
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
         Try
+
+            Dim maxxID As Integer = 0
+
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
             conn.Open()
+            Dim d As String = "select max(studentID) as StudIDMAX from tb_student"
+            Dim cmdd As New MySqlCommand(d, conn)
+            Dim rede As MySqlDataReader = cmdd.ExecuteReader
+
+            If rede.Read Then
+                maxxID = rede.GetInt32("StudIDMAX")
+            End If
+
+            AssignSectionToStudent(maxxID, cmbSectionCode.SelectedItem.ToString())
+
+            MsgBox("Successfully Registered")
+        Catch ex As Exception
+            MsgBox("Max ID: " & ex.Message)
+        End Try
+    End Sub
+    Public Sub UpdateStudent()
+        'If conn.State = ConnectionState.Open Then
+        '    conn.Close()
+        'End If
+        Try
+            'conn.Open()
             If OPENDB() Then
                 Dim up As String = "UPDATE tb_student SET Lastname = @Lastname, Firstname = @Firstname, Middlename = @Middlename, DateOfBirth = @DateOfBirth, Gender=@Gender, Email = @Email, ContactNumber = @ContactNumber, 
-                        CourseCode = @CourseCode, SectionCode = @SectionCode WHERE studentNo = @studentNo"
+                     SectionCode = @SectionCode WHERE studentNo = @studentNo"
                 Dim cmd As New MySqlCommand(up, conn)
                 cmd.Parameters.AddWithValue("@studentNo", txtStudentNo.Text)
                 cmd.Parameters.AddWithValue("@Lastname", txtLastname.Text)
@@ -171,10 +193,14 @@ Public Class FormRegistrationStudent
                 cmd.Parameters.AddWithValue("@Gender", chbGender.Text)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text)
                 cmd.Parameters.AddWithValue("@ContactNumber", txtContactNo.Text)
-                cmd.Parameters.AddWithValue("@CourseCode", cmbCourseCode.Text)
+                'cmd.Parameters.AddWithValue("@CourseCode", cmbCourseCode.Text)
                 cmd.Parameters.AddWithValue("@SectionCode", cmbSectionCode.Text)
                 cmd.ExecuteNonQuery()
                 MsgBox("Successfully Updated")
+                ' Find the main form and refresh it
+                With FormRegistrationStudentList
+                    .fetchStudentList()
+                End With
             End If
         Catch ex As Exception
             MsgBox("Error Updating: " & ex.Message)
@@ -192,16 +218,61 @@ Public Class FormRegistrationStudent
         Return s
     End Function
 
+    Public Sub AssignSectionToStudent(studentID As String, sectionCode As String)
+
+        MsgBox(studentID)
+        Try
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+            conn.Open()
+
+            ' Get sectionID using sectionCode
+            Dim sectionID As Integer
+            Dim getSectionIDQuery As String = "SELECT sectionID FROM tb_section WHERE section = @sectionCode"
+            Dim cmdGetSectionID As New MySqlCommand(getSectionIDQuery, conn)
+            cmdGetSectionID.Parameters.AddWithValue("@sectionCode", sectionCode)
+            Dim reader As MySqlDataReader = cmdGetSectionID.ExecuteReader()
+            If reader.Read() Then
+                sectionID = Convert.ToInt32(reader("sectionID"))
+
+                MsgBox("Section ID: " & sectionID)
+            Else
+                MsgBox("Section not found")
+                Return
+            End If
+            reader.Close()
+
+            ' Insert into tb_assignedsection
+            Dim insertQuery As String = "INSERT INTO tb_assignedsection VALUES (null, @studentID, @sectionID)"
+            Dim cmdInsert As New MySqlCommand(insertQuery, conn)
+            cmdInsert.Parameters.AddWithValue("@studentID", CStr(studentID))
+            cmdInsert.Parameters.AddWithValue("@sectionID", CStr(sectionID))
+            cmdInsert.ExecuteNonQuery()
+
+            MsgBox("StudID: " & studentID & " SectionID: " & sectionID)
+
+            MsgBox("Section assigned to student successfully")
+
+        Catch ex As Exception
+            MsgBox("Error assigning section to student: " & ex.Message)
+        Finally
+            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        End Try
+    End Sub
     Public Sub GenerateUsernamePassword()
         Dim username As String = getFirstName(txtFirstname.Text)
         Dim password As String = GenerateRandomString(12)
         Dim userID As Integer = 0
 
-        If conn.State = ConnectionState.Closed Then
-            conn.Open()
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
         End If
 
         Try
+            conn.Open()
             If OPENDB() Then
                 Dim query As String = "SELECT MAX(studentNo) as studentNo FROM tb_student"
                 Using cmd As New MySqlCommand(query, conn)
@@ -220,9 +291,10 @@ Public Class FormRegistrationStudent
         End Try
 
         Try
-            If conn.State = ConnectionState.Closed Then
-                conn.Open()
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
             End If
+            conn.Open()
             If OPENDB() Then
                 Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null,@userID, @username, @password, @role)"
                 Using cmd As New MySqlCommand(query, conn)
@@ -262,136 +334,22 @@ Public Class FormRegistrationStudent
         Next
         Return result.ToString()
     End Function
-
-    Public Sub FetchDate_For_View(studentNo As Integer)
-        'isFormOpen = True
-        Try
-            If OPENDB() Then
-                Dim query As String = "SELECT 
-                                        studentNo,
-                                        FirstName,
-                                        LastName,
-                                        MiddleName,
-                                        Gender,
-                                        DateOfBirth,
-                                        Email,
-                                        ContactNumber,
-                                        CourseCode,
-                                        SectionCode
-                                   FROM tb_student
-                                   WHERE studentNo = @studentNo"
-                Dim cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@studentNo", studentNo)
-
-                Dim dtreader As MySqlDataReader = cmd.ExecuteReader()
-                If dtreader.Read() Then
-                    ' Populate FormRegistrationStudent
-
-                    txtStudentNo.Text = dtreader.GetString("studentNo")
-                    txtFirstname.Text = dtreader.GetString("FirstName")
-                    txtLastname.Text = dtreader.GetString("LastName")
-                    txtMiddlename.Text = dtreader.GetString("MiddleName")
-                    chbGender.Text = dtreader.GetString("Gender")
-                    dtDateOfBirth.Value = DateTime.Parse(dtreader.GetDateTime("DateOfBirth")).ToString("yyyy-MM-dd")
-                    txtEmail.Text = dtreader.GetString("Email")
-                    txtContactNo.Text = dtreader.GetString("ContactNumber")
-                    cmbCourseCode.Text = dtreader.GetString("CourseCode")
-                    cmbSectionCode.Text = dtreader.GetString("SectionCode")
-
-                    ' Disable fields
-                    txtFirstname.Enabled = False
-                    txtLastname.Enabled = False
-                    txtMiddlename.Enabled = False
-                    chbGender.Enabled = False
-                    dtDateOfBirth.Enabled = False
-                    txtEmail.Enabled = False
-                    txtContactNo.Enabled = False
-                    cmbCourseCode.Enabled = False
-                    cmbSectionCode.Enabled = False
-
-                    btnClear.Enabled = False
-                    btnRegister.Enabled = False
-
-
-
-                Else
-                    MsgBox("No details found for the selected student.")
-                End If
-                dtreader.Close()
-            End If
-        Catch ex As Exception
-            MsgBox("Error fetching student details: " & ex.Message)
-            'Finally
-            '    isFormOpen = False
-        End Try
-    End Sub
-
-    Public Sub FetchDate_For_Edit(studentNo As Integer)
-        'isFormOpen = True
-        Try
-            If OPENDB() Then
-                Dim query As String = "SELECT 
-                                        studentNo,
-                                        FirstName,
-                                        LastName,
-                                        MiddleName,
-                                        Gender,
-                                        DateOfBirth,
-                                        Email,
-                                        ContactNumber,
-                                        CourseCode,
-                                        SectionCode
-                                   FROM tb_student
-                                   WHERE studentNo = @studentNo"
-                Dim cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@studentNo", studentNo)
-
-                Dim dtreader As MySqlDataReader = cmd.ExecuteReader()
-                If dtreader.Read() Then
-                    ' Populate FormRegistrationStudent
-
-                    btnRegister.Text = "UPDATE"
-                    txtStudentNo.Text = dtreader.GetString("studentNo")
-                    txtFirstname.Text = dtreader.GetString("FirstName")
-                    txtLastname.Text = dtreader.GetString("LastName")
-                    txtMiddlename.Text = dtreader.GetString("MiddleName")
-                    chbGender.Text = dtreader.GetString("Gender")
-                    dtDateOfBirth.Value = DateTime.Parse(dtreader.GetDateTime("DateOfBirth")).ToString("yyyy-MM-dd")
-                    txtEmail.Text = dtreader.GetString("Email")
-                    txtContactNo.Text = dtreader.GetString("ContactNumber")
-                    cmbCourseCode.Text = dtreader.GetString("CourseCode")
-                    cmbSectionCode.Text = dtreader.GetString("SectionCode")
-
-                    btnClear.Enabled = True
-                    btnRegister.Enabled = True
-
-
-                Else
-                    MsgBox("No details found for the selected student.")
-                End If
-                dtreader.Close()
-            End If
-        Catch ex As Exception
-            MsgBox("Error fetching student details: " & ex.Message)
-        Finally
-            'isFormOpen = False
-        End Try
-    End Sub
-
     Private Sub FormRegistrationStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If btnRegister.Text = "REGISTER" Then
-            fetchCourse()
             fetchSection()
         End If
         OPENDB()
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        If btnRegister.Text = "REGISTER" Then
-            insertData()
-            'GenerateUsernamePassword()
-        ElseIf btnRegister.Text = "UPDATE" Then
-            Update_Data()
+        If ValidateInputs() Then
+            If btnRegister.Text = "REGISTER" Then
+                InsertStudent()
+            ElseIf btnRegister.Text = "UPDATE" Then
+                If MsgBox("Are you sure you want to update this student?", MsgBoxStyle.YesNo, "Update Student") = MsgBoxResult.Yes Then
+                    UpdateStudent()
+                End If
+            End If
         End If
     End Sub
 
@@ -399,15 +357,7 @@ Public Class FormRegistrationStudent
         e.Handled = True
     End Sub
 
-    Private Sub cmbCourseCode_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbCourseCode.KeyPress
-        e.Handled = True
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
-    End Sub
-
-    Private Sub cmbSectionCode_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSectionCode.SelectedIndexChanged
-
     End Sub
 End Class

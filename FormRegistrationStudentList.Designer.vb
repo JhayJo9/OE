@@ -36,17 +36,20 @@ Partial Class FormRegistrationStudentList
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colView = New System.Windows.Forms.DataGridViewImageColumn()
         Me.dgwRegistrationList = New System.Windows.Forms.DataGridView()
-        Me.btnAddnew = New System.Windows.Forms.Button()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.studentNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colLastname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ff = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Firstnamef = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gg = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colGender = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.f = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EDITT = New System.Windows.Forms.DataGridViewImageColumn()
         Me.DELETEE = New System.Windows.Forms.DataGridViewImageColumn()
         Me.VIEWW = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.btnAddnew = New System.Windows.Forms.Button()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgwRegistrationList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -185,7 +188,7 @@ Partial Class FormRegistrationStudentList
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgwRegistrationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgwRegistrationList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.studentNo, Me.colLastname, Me.colGender, Me.colEmail, Me.f, Me.Column1, Me.EDITT, Me.DELETEE, Me.VIEWW})
+        Me.dgwRegistrationList.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.studentNo, Me.ff, Me.Firstnamef, Me.Column2, Me.gg, Me.colGender, Me.colEmail, Me.Column3, Me.Column1, Me.EDITT, Me.DELETEE, Me.VIEWW})
         Me.dgwRegistrationList.Location = New System.Drawing.Point(18, 48)
         Me.dgwRegistrationList.Name = "dgwRegistrationList"
         Me.dgwRegistrationList.ReadOnly = True
@@ -196,44 +199,48 @@ Partial Class FormRegistrationStudentList
         Me.dgwRegistrationList.Size = New System.Drawing.Size(1014, 491)
         Me.dgwRegistrationList.TabIndex = 2
         '
-        'btnAddnew
-        '
-        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddnew.Location = New System.Drawing.Point(957, 19)
-        Me.btnAddnew.Name = "btnAddnew"
-        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
-        Me.btnAddnew.TabIndex = 3
-        Me.btnAddnew.Text = "Add new"
-        Me.btnAddnew.UseVisualStyleBackColor = True
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSearch.Location = New System.Drawing.Point(763, 20)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(179, 22)
-        Me.txtSearch.TabIndex = 4
-        '
         'studentNo
         '
-        Me.studentNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.studentNo.HeaderText = "Student Number"
         Me.studentNo.MinimumWidth = 6
         Me.studentNo.Name = "studentNo"
         Me.studentNo.ReadOnly = True
         Me.studentNo.Width = 121
         '
-        'colLastname
+        'ff
         '
-        Me.colLastname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.colLastname.HeaderText = "Student Name"
-        Me.colLastname.MinimumWidth = 6
-        Me.colLastname.Name = "colLastname"
-        Me.colLastname.ReadOnly = True
+        Me.ff.HeaderText = "Lastname"
+        Me.ff.MinimumWidth = 6
+        Me.ff.Name = "ff"
+        Me.ff.ReadOnly = True
+        Me.ff.Width = 125
+        '
+        'Firstnamef
+        '
+        Me.Firstnamef.HeaderText = "Firstname"
+        Me.Firstnamef.MinimumWidth = 6
+        Me.Firstnamef.Name = "Firstnamef"
+        Me.Firstnamef.ReadOnly = True
+        Me.Firstnamef.Width = 125
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Middlename"
+        Me.Column2.MinimumWidth = 6
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 125
+        '
+        'gg
+        '
+        Me.gg.HeaderText = "Date of Birth"
+        Me.gg.MinimumWidth = 6
+        Me.gg.Name = "gg"
+        Me.gg.ReadOnly = True
+        Me.gg.Width = 125
         '
         'colGender
         '
-        Me.colGender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.colGender.HeaderText = "Gender"
         Me.colGender.MinimumWidth = 6
         Me.colGender.Name = "colGender"
@@ -242,25 +249,22 @@ Partial Class FormRegistrationStudentList
         '
         'colEmail
         '
-        Me.colEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.colEmail.HeaderText = "Email"
         Me.colEmail.MinimumWidth = 6
         Me.colEmail.Name = "colEmail"
         Me.colEmail.ReadOnly = True
         Me.colEmail.Width = 70
         '
-        'f
+        'Column3
         '
-        Me.f.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.f.HeaderText = "Course Code"
-        Me.f.MinimumWidth = 6
-        Me.f.Name = "f"
-        Me.f.ReadOnly = True
-        Me.f.Width = 106
+        Me.Column3.HeaderText = "Contact No."
+        Me.Column3.MinimumWidth = 6
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        Me.Column3.Width = 125
         '
         'Column1
         '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.Column1.HeaderText = "Section Code"
         Me.Column1.MinimumWidth = 6
         Me.Column1.Name = "Column1"
@@ -295,6 +299,24 @@ Partial Class FormRegistrationStudentList
         Me.VIEWW.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.VIEWW.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.VIEWW.Width = 65
+        '
+        'btnAddnew
+        '
+        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddnew.Location = New System.Drawing.Point(957, 19)
+        Me.btnAddnew.Name = "btnAddnew"
+        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddnew.TabIndex = 3
+        Me.btnAddnew.Text = "Add new"
+        Me.btnAddnew.UseVisualStyleBackColor = True
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSearch.Location = New System.Drawing.Point(763, 20)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(179, 22)
+        Me.txtSearch.TabIndex = 4
         '
         'FormRegistrationStudentList
         '
@@ -332,10 +354,13 @@ Partial Class FormRegistrationStudentList
     Friend WithEvents btnAddnew As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents studentNo As DataGridViewTextBoxColumn
-    Friend WithEvents colLastname As DataGridViewTextBoxColumn
+    Friend WithEvents ff As DataGridViewTextBoxColumn
+    Friend WithEvents Firstnamef As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents gg As DataGridViewTextBoxColumn
     Friend WithEvents colGender As DataGridViewTextBoxColumn
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
-    Friend WithEvents f As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents EDITT As DataGridViewImageColumn
     Friend WithEvents DELETEE As DataGridViewImageColumn

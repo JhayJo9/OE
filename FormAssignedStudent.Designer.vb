@@ -28,10 +28,12 @@ Partial Class FormAssignedStudent
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnBack = New System.Windows.Forms.Button()
         Me.cmbCourseCode = New System.Windows.Forms.ComboBox()
         Me.txtSectionCode = New System.Windows.Forms.TextBox()
+        Me.lblStudentId = New System.Windows.Forms.Label()
+        Me.txtStudentID = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'cmbAssessmentType
@@ -86,23 +88,23 @@ Partial Class FormAssignedStudent
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Section Code"
         '
-        'Button1
+        'btnSave
         '
-        Me.Button1.Location = New System.Drawing.Point(74, 239)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 9
-        Me.Button1.Text = "SAVE"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnSave.Location = New System.Drawing.Point(74, 239)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(99, 23)
+        Me.btnSave.TabIndex = 9
+        Me.btnSave.Text = "SAVE"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnBack
         '
-        Me.Button2.Location = New System.Drawing.Point(179, 239)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 10
-        Me.Button2.Text = "BACK"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnBack.Location = New System.Drawing.Point(179, 239)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(75, 23)
+        Me.btnBack.TabIndex = 10
+        Me.btnBack.Text = "BACK"
+        Me.btnBack.UseVisualStyleBackColor = True
         '
         'cmbCourseCode
         '
@@ -114,20 +116,41 @@ Partial Class FormAssignedStudent
         '
         'txtSectionCode
         '
+        Me.txtSectionCode.Enabled = False
         Me.txtSectionCode.Location = New System.Drawing.Point(416, 130)
         Me.txtSectionCode.Name = "txtSectionCode"
         Me.txtSectionCode.Size = New System.Drawing.Size(228, 22)
         Me.txtSectionCode.TabIndex = 12
+        '
+        'lblStudentId
+        '
+        Me.lblStudentId.AutoSize = True
+        Me.lblStudentId.Location = New System.Drawing.Point(306, 54)
+        Me.lblStudentId.Name = "lblStudentId"
+        Me.lblStudentId.Size = New System.Drawing.Size(71, 16)
+        Me.lblStudentId.TabIndex = 13
+        Me.lblStudentId.Text = "Student ID "
+        '
+        'txtStudentID
+        '
+        Me.txtStudentID.Enabled = False
+        Me.txtStudentID.Location = New System.Drawing.Point(309, 78)
+        Me.txtStudentID.Name = "txtStudentID"
+        Me.txtStudentID.Size = New System.Drawing.Size(228, 22)
+        Me.txtStudentID.TabIndex = 14
         '
         'FormAssignedStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.txtStudentID)
+        Me.Controls.Add(Me.lblStudentId)
         Me.Controls.Add(Me.txtSectionCode)
         Me.Controls.Add(Me.cmbCourseCode)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnBack)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -135,7 +158,7 @@ Partial Class FormAssignedStudent
         Me.Controls.Add(Me.cmbStudentName)
         Me.Controls.Add(Me.cmbAssessmentType)
         Me.Name = "FormAssignedStudent"
-        Me.Text = "FormAssignedStudent"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -147,8 +170,10 @@ Partial Class FormAssignedStudent
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents cmbCourseCode As ComboBox
-    Friend WithEvents txtSectionCode As TextBox
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnBack As Button
+    Friend WithEvents lblStudentId As Label
+    Public WithEvents txtStudentID As TextBox
+    Public WithEvents cmbCourseCode As ComboBox
+    Public WithEvents txtSectionCode As TextBox
 End Class
