@@ -1,8 +1,11 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports MySql.Data
 Imports System.Data.SqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports System.Security.Cryptography.X509Certificates
 
 Public Class FormAssignedStudent
+
 
     Private connnn As MySqlConnection
     Public connectionString As String = "server=localhost;user=Yohan;password=Yohan;port=3307;database=exam;sslmode=none;Convert Zero Datetime=True"
@@ -208,6 +211,9 @@ Public Class FormAssignedStudent
     Private Sub FormAssignedStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Fetch_Student()
         Fetch_AsessementType()
+
+        ' will activate the cmbStudentName_SelectedIndexChanged event
+        cmbStudentName_SelectedIndexChanged(cmbStudentName, EventArgs.Empty)
         'Fetch_Course()
     End Sub
 
@@ -218,6 +224,10 @@ Public Class FormAssignedStudent
 
 
     Private Sub cmbStudentName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStudentName.SelectedIndexChanged
+        FetchSectionID()
+    End Sub
+
+    Public Sub FetchSectionID()
         cmbCourseCode.Text = ""
 
         If cmbStudentName.SelectedIndex <> -1 Then
@@ -231,13 +241,12 @@ Public Class FormAssignedStudent
                 'Fetch_SectionCode(studentid)
                 FetchSectionCode(studentid)
 
+
             Else
                 MsgBox("Student not found in dictionary.")
             End If
         End If
     End Sub
-
-
 
     Public Sub Update_Data()
 
@@ -302,6 +311,10 @@ Public Class FormAssignedStudent
         Finally
             conn.Close()
         End Try
+    End Sub
+
+    Private Sub txtSectionCode_TextChanged(sender As Object, e As EventArgs) Handles txtSectionCode.TextChanged
+
     End Sub
 
     ' FIX REGISTRRATION OF STUDENT AND ASSGINED STUDENT TO COURSE THEN CRUD 

@@ -34,6 +34,7 @@ Partial Class StudentDashboard
         Me.btnAddQuestion = New System.Windows.Forms.Button()
         Me.btnRegisterStudents = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.panelStudent = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,11 +61,11 @@ Partial Class StudentDashboard
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 13)
+        Me.Label1.Location = New System.Drawing.Point(58, 41)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(124, 16)
+        Me.Label1.Size = New System.Drawing.Size(131, 16)
         Me.Label1.TabIndex = 12
-        Me.Label1.Text = "Admin's dashboard"
+        Me.Label1.Text = "Student's dashboard"
         '
         'Button10
         '
@@ -156,12 +157,21 @@ Partial Class StudentDashboard
         Me.Button6.Text = "Statistics"
         Me.Button6.UseVisualStyleBackColor = True
         '
+        'panelStudent
+        '
+        Me.panelStudent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.panelStudent.Location = New System.Drawing.Point(241, 0)
+        Me.panelStudent.Name = "panelStudent"
+        Me.panelStudent.Size = New System.Drawing.Size(1178, 614)
+        Me.panelStudent.TabIndex = 16
+        '
         'StudentDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1419, 614)
         Me.ControlBox = False
+        Me.Controls.Add(Me.panelStudent)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "StudentDashboard"
@@ -184,4 +194,5 @@ Partial Class StudentDashboard
     Friend WithEvents btnAddQuestion As Button
     Friend WithEvents btnRegisterStudents As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents panelStudent As Panel
 End Class

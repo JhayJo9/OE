@@ -24,12 +24,13 @@ Partial Class FormAssignedStudentsList
     Private Sub InitializeComponent()
         Me.dgvAssignedStudents = New System.Windows.Forms.DataGridView()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colStudentNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colStudentName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colAssignedcourse = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colAssignedAsesseType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colView = New System.Windows.Forms.DataGridViewImageColumn()
@@ -46,7 +47,7 @@ Partial Class FormAssignedStudentsList
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvAssignedStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvAssignedStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvAssignedStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.colStudentNo, Me.colStudentName, Me.colAssignedcourse, Me.colAssignedAsesseType, Me.Column1, Me.colEdit, Me.colDelete, Me.colView})
+        Me.dgvAssignedStudents.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.colStudentNo, Me.colStudentName, Me.colAssignedcourse, Me.Column1, Me.Column3, Me.colEdit, Me.colDelete, Me.colView})
         Me.dgvAssignedStudents.Location = New System.Drawing.Point(16, 57)
         Me.dgvAssignedStudents.Name = "dgvAssignedStudents"
         Me.dgvAssignedStudents.ReadOnly = True
@@ -65,6 +66,16 @@ Partial Class FormAssignedStudentsList
         Me.Button2.TabIndex = 2
         Me.Button2.Text = "Button2"
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(13, 28)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(305, 18)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "ASSIGNED STUDENT TO QUESTIONS"
         '
         'Column2
         '
@@ -101,21 +112,19 @@ Partial Class FormAssignedStudentsList
         Me.colAssignedcourse.ReadOnly = True
         Me.colAssignedcourse.Width = 115
         '
-        'colAssignedAsesseType
-        '
-        Me.colAssignedAsesseType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colAssignedAsesseType.HeaderText = "Assigned Assess. type"
-        Me.colAssignedAsesseType.MinimumWidth = 6
-        Me.colAssignedAsesseType.Name = "colAssignedAsesseType"
-        Me.colAssignedAsesseType.ReadOnly = True
-        Me.colAssignedAsesseType.Width = 173
-        '
         'Column1
         '
         Me.Column1.HeaderText = "Section Code"
         Me.Column1.MinimumWidth = 6
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Assigned Assess.Type"
+        Me.Column3.MinimumWidth = 6
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
         '
         'colEdit
         '
@@ -152,6 +161,7 @@ Partial Class FormAssignedStudentsList
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(989, 546)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.dgvAssignedStudents)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -159,17 +169,19 @@ Partial Class FormAssignedStudentsList
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dgvAssignedStudents, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents dgvAssignedStudents As DataGridView
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label1 As Label
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents colStudentNo As DataGridViewTextBoxColumn
     Friend WithEvents colStudentName As DataGridViewTextBoxColumn
     Friend WithEvents colAssignedcourse As DataGridViewTextBoxColumn
-    Friend WithEvents colAssignedAsesseType As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
     Friend WithEvents colView As DataGridViewImageColumn

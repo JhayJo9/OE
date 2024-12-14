@@ -16,8 +16,7 @@ Public Class FormQuestionList
                             q.OptionB, 
                             q.OptionC, 
                             q.OptionD, 
-                            q.CorrectAnswer, 
-                            q.AssessmentType, 
+                            q.CorrectAnswer,
                             c.CourseCode 
                         FROM 
                             tb_questionanswer q
@@ -38,11 +37,11 @@ Public Class FormQuestionList
                             Dim optionD As String = dtreader.GetString("OptionD")
                             Dim correctAnswer As String = dtreader.GetString("CorrectAnswer")
                             'Dim dateCreated As Date = dtreader.GetDateTime("dateEdited")
-                            Dim assessmentType As String = dtreader.GetString("AssessmentType")
+                            'Dim assessmentType As String = dtreader.GetString("AssessmentType")
                             Dim courseCode As String = dtreader.GetString("courseCode")
 
 
-                            DataGridView1.Rows.Add(questionID, question, optionA, optionB, optionC, optionD, correctAnswer, assessmentType, courseCode)
+                            DataGridView1.Rows.Add(questionID, question, optionA, optionB, optionC, optionD, correctAnswer, courseCode)
                         End While
                     End Using
                 End Using
@@ -69,8 +68,7 @@ Public Class FormQuestionList
                 .txtC.Text = DataGridView1.CurrentRow.Cells(4).Value.ToString
                 .txtD.Text = DataGridView1.CurrentRow.Cells(5).Value.ToString
                 .cmbCorrectAnswer.Text = DataGridView1.CurrentRow.Cells(6).Value.ToString
-                .cmbAssessmentType.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
-                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(8).Value.ToString
+                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
                 .cmbAssessmentType.Enabled = False
                 .cmbCorrectAnswer.Enabled = False
                 .cmbCourse.Enabled = False
@@ -92,8 +90,8 @@ Public Class FormQuestionList
                 .txtC.Text = DataGridView1.CurrentRow.Cells(4).Value.ToString
                 .txtD.Text = DataGridView1.CurrentRow.Cells(5).Value.ToString
                 .cmbCorrectAnswer.Text = DataGridView1.CurrentRow.Cells(6).Value.ToString
-                .cmbAssessmentType.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
-                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(8).Value.ToString
+
+                .cmbCourse.Text = DataGridView1.CurrentRow.Cells(7).Value.ToString
                 .btnSave.Text = "Update"
                 .btnNext.Visible = False
                 .ShowDialog()

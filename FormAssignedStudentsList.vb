@@ -113,20 +113,22 @@ SELECT
                 Try
                     Using frm As New FormAssignedStudent
                         frm.btnSave.Text = "UPDATE"
-
-                        ' Set the form fields
                         With frm
                             .txtStudentID.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(1).Value.ToString()
                             .cmbStudentName.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
+
+                            ' First fetch the section data
+                            '.FetchSectionID(True)
+
+                            ' Then set the values
                             .cmbCourseCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(3).Value.ToString()
                             .cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
                             .txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
 
-                            .cmbStudentName.Enabled = False ' Disable the student name field
+                            .cmbStudentName.Enabled = False
 
-                            ' Show the form and wait for result
                             If .ShowDialog() = DialogResult.OK Then
-                                Fetch_Data() ' Refresh the data grid
+                                Fetch_Data()
                             End If
                         End With
                     End Using
