@@ -9,108 +9,6 @@ Public Class FormRegistrationStudentList
         connnn = New MySqlConnection(connnnectionString)
     End Sub
 
-    Private Sub SetupDataGridViewProperties()
-        With dgwRegistrationList
-            ' Basic Properties
-            .AllowUserToAddRows = False
-            .AllowUserToDeleteRows = False
-            .AllowUserToOrderColumns = True
-            .AllowUserToResizeRows = False
-            .MultiSelect = False
-            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
-            .ReadOnly = True
-            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            .RowHeadersVisible = False
-
-            ' Appearance
-            .BackgroundColor = Color.White
-            .BorderStyle = BorderStyle.Fixed3D
-            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 76)
-            .ColumnHeadersDefaultCellStyle.ForeColor = Color.White
-            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold)
-            .ColumnHeadersHeight = 40
-            .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            .DefaultCellStyle.Font = New Font("Segoe UI", 9.75F)
-            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(128, 128, 255)
-            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249)
-
-            ' Set up columns with specific properties
-            .Columns.Clear()
-
-            ' Add Data Columns
-            .Columns.Add("StudentNo", "Student No.")
-            .Columns.Add("LastName", "Last Name")
-            .Columns.Add("FirstName", "First Name")
-            .Columns.Add("MiddleName", "Middle Name")
-            .Columns.Add("DateOfBirth", "Date of Birth")
-            .Columns.Add("Gender", "Gender")
-            .Columns.Add("Email", "Email")
-            .Columns.Add("ContactNo", "Contact No.")
-            .Columns.Add("SectionCode", "Section")
-
-            ' Configure column properties
-            For Each col As DataGridViewColumn In .Columns
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-                Select Case col.Name
-                    Case "StudentNo"
-                        col.Width = 80
-                    Case "LastName", "FirstName", "MiddleName"
-                        col.Width = 120
-                    Case "DateOfBirth"
-                        col.Width = 100
-                    Case "Gender"
-                        col.Width = 80
-                    Case "Email"
-                        col.Width = 150
-                    Case "ContactNo"
-                        col.Width = 100
-                    Case "SectionCode"
-                        col.Width = 80
-                End Select
-            Next
-
-            ' Add Button Columns
-            Dim viewBtn As New DataGridViewButtonColumn()
-            With viewBtn
-                .HeaderText = "View"
-                .Name = "ViewButton"
-                .Text = "View"
-                .UseColumnTextForButtonValue = True
-                .FlatStyle = FlatStyle.Flat
-                .DefaultCellStyle.BackColor = Color.FromArgb(51, 122, 183)
-                .DefaultCellStyle.ForeColor = Color.White
-                .Width = 60
-            End With
-            .Columns.Add(viewBtn)
-
-            Dim editBtn As New DataGridViewButtonColumn()
-            With editBtn
-                .HeaderText = "Edit"
-                .Name = "EditButton"
-                .Text = "Edit"
-                .UseColumnTextForButtonValue = True
-                .FlatStyle = FlatStyle.Flat
-                .DefaultCellStyle.BackColor = Color.FromArgb(92, 184, 92)
-                .DefaultCellStyle.ForeColor = Color.White
-                .Width = 60
-            End With
-            .Columns.Add(editBtn)
-
-            Dim deleteBtn As New DataGridViewButtonColumn()
-            With deleteBtn
-                .HeaderText = "Delete"
-                .Name = "DeleteButton"
-                .Text = "Delete"
-                .UseColumnTextForButtonValue = True
-                .FlatStyle = FlatStyle.Flat
-                .DefaultCellStyle.BackColor = Color.FromArgb(217, 83, 79)
-                .DefaultCellStyle.ForeColor = Color.White
-                .Width = 60
-            End With
-            .Columns.Add(deleteBtn)
-        End With
-    End Sub
-
     Private Function OPENDB() As Boolean
         Try
             If connnn Is Nothing Then
@@ -284,6 +182,7 @@ Public Class FormRegistrationStudentList
             Select Case dgwRegistrationList.Columns(e.ColumnIndex).HeaderText
                 Case "View"
                     ShowStudentDetails(studentNo, True)
+                    MsgBox("VIEW CLICKED")
                 Case "Edit"
                     ShowStudentDetails(studentNo, False)
                 Case "Delete"
@@ -298,27 +197,33 @@ Public Class FormRegistrationStudentList
         Try
             If OPENDB() Then
                 Using cmd As New MySqlCommand("SELECT 
-                                        s.studentNo,
-                                        s.Lastname,
-                                        s.Firstname,
-                                        s.MiddleName,
-                                        s.DateOfBirth,
-                                        s.Gender,
-                                        s.Email,
-                                        s.ContactNumber,
-                                        sec.section
-                                    FROM 
-                                        tb_student s
-                                    JOIN 
-                                        tb_assignedsection asg ON s.studentID = asg.studentID
-                                    JOIN 
-                                        tb_section sec ON asg.sectionID = sec.sectionID
-                                    WHERE 
-                                        s.studentID = @studentID", connnn)
-                    cmd.Parameters.AddWithValue("@studentID", studentNo)
+                                    s.studentNo,
+                                    s.Lastname,
+                                    s.Firstname,
+                                    s.MiddleName,
+                                    s.DateOfBirth,
+                                    s.Gender,
+                                    s.Email,
+                                    s.ContactNumber,
+                                    sec.section
+                                FROM 
+                                    tb_student s
+                                JOIN 
+                                    tb_assignedsection asg ON s.studentID = asg.studentID
+                                JOIN 
+                                    tb_section sec ON asg.sectionID = sec.sectionID
+                                WHERE 
+                                    s.studentNo = @studentNo", connnn)  ' Changed from studentID to studentNo
+                    cmd.Parameters.AddWithValue("@studentNo", studentNo)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
                         If reader.Read() Then
-                            With FormRegistrationStudent
+                            ' Create a new instance of FormRegistrationStudent
+                            Dim studentForm As New FormRegistrationStudent()
+
+                            Debug.WriteLine("Student data found")
+                            Debug.WriteLine($"Student No: {reader("studentNo")}")
+                            ' Set the form properties
+                            With studentForm
                                 .txtStudentNo.Text = reader("studentNo").ToString()
                                 .txtFirstname.Text = reader("FirstName").ToString()
                                 .txtLastname.Text = reader("LastName").ToString()
@@ -327,25 +232,27 @@ Public Class FormRegistrationStudentList
                                 .dtDateOfBirth.Value = Convert.ToDateTime(reader("DateOfBirth"))
                                 .txtEmail.Text = reader("Email").ToString()
                                 .txtContactNo.Text = reader("ContactNumber").ToString()
-                                .cmbSectionCode.Text = reader("Section").ToString()
+                                .cmbSectionCode.Text = reader("section").ToString()
 
                                 .SetControlsState(Not isViewOnly)
+
                                 .btnRegister.Text = If(isViewOnly, "CLOSE", "UPDATE")
                                 .ShowDialog()
                             End With
+                        Else
+                            MessageBox.Show("No student found with the given student number.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         End If
                     End Using
                 End Using
             End If
         Catch ex As Exception
-            MsgBox("Error loading student details: " & ex.Message)
+            MessageBox.Show("Error loading student details: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If connnn IsNot Nothing AndAlso connnn.State = ConnectionState.Open Then
                 connnn.Close()
             End If
         End Try
     End Sub
-
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddnew.Click
         With FormRegistrationStudent
             .ClearControls()

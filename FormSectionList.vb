@@ -1,30 +1,43 @@
 ﻿Imports MySql.Data
 Imports MySql.Data.MySqlClient
+Imports Org.BouncyCastle.Asn1.Cms
 
 Public Class FormSectionList
 
+    'Dim scheduleTime As TimeSpan = dtpTimer.Value.TimeOfDay
     Public Sub fetchSection()
         Try
-
             DataGridView1.Rows.Clear()
             If OPENDB() Then
                 Dim st As String = "SELECT * FROM tb_section"
                 Using cmd As New MySqlCommand(st, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
-
                         While dtreader.Read
-                            ' Dim lv As  = lvSection.Items.Add(dtreader("id").ToString)
                             Dim id As Integer = dtreader.GetInt32("sectionID")
                             Dim section As String = dtreader.GetString("section")
                             Dim courseCode As String = dtreader.GetString("courseCode")
 
-                            DataGridView1.Rows.Add(id, section, courseCode)
+                            ' Handle the date more safely
+                            Dim shed As DateTime = dtreader.GetDateTime("scheduleDate")
+                            ' Alternative TimeSpan handling
+                            Dim scheduleTime As String
+                            If Not dtreader.IsDBNull(dtreader.GetOrdinal("scheduleTime")) Then
+                                Dim timeSpan As TimeSpan = dtreader.GetTimeSpan("scheduleTime")
+                                scheduleTime = timeSpan.ToString("hh\:mm\:ss")
+                            Else
+                                scheduleTime = "00:00:00"
+                            End If
+
+                            Dim room As String = dtreader.GetString("location")
+
+                            ' Add to DataGridView
+                            DataGridView1.Rows.Add(id, section, courseCode, shed.ToString("yyyy-MM-dd"), scheduleTime, room)
                         End While
                     End Using
                 End Using
             End If
         Catch ex As Exception
-            MsgBox("Fetch Section " & ex.Message)
+            MsgBox("Fetch Section: " & ex.Message)
         End Try
     End Sub
 
@@ -46,6 +59,8 @@ Public Class FormSectionList
 
 
     Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
+
+
         With FormSection
             .ShowDialog()
         End With
@@ -65,10 +80,27 @@ Public Class FormSectionList
             End If
         ElseIf colName = "colEdit" Then
             With FormSection
+                .btnAddSection.Text = "UPDATE"
                 .txtSection.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString
                 .cmbCourse.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString
-                .btnAddSection.Enabled = False
-                .btnEdit.Enabled = True
+                .dobSection.Value = DataGridView1.CurrentRow.Cells(3).Value
+
+                ' Fix for the time value
+                Dim scheduleTime As String = DataGridView1.CurrentRow.Cells(4).Value.ToString()
+                If Not String.IsNullOrEmpty(scheduleTime) Then
+                    ' Combine today's date with the time value
+                    Dim timeOnly As TimeSpan
+                    If TimeSpan.TryParse(scheduleTime, timeOnly) Then
+                        .dtpTimer.Value = DateTime.Today.Add(timeOnly)
+                    End If
+                Else
+                    ' Set to current time if no value
+                    .dtpTimer.Value = DateTime.Now
+                End If
+
+                .txtRm.Text = DataGridView1.CurrentRow.Cells(5).Value.ToString()
+
+                .btnAddSection.Enabled = True
                 .ShowDialog()
             End With
         End If

@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data
 Imports MySql.Data.MySqlClient
-Public Class FormSection
 
+Public Class FormSection
 
     Public Sub fetchCourse()
         Try
@@ -10,7 +10,6 @@ Public Class FormSection
                 Using cmd As New MySqlCommand(course, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
                         While dtreader.Read
-                            'Dim courseName As String = dtreader.GetString("courseName")
                             Dim courseCode As String = dtreader.GetString("courseCode")
                             cmbCourse.Items.Add(courseCode)
                         End While
@@ -25,16 +24,19 @@ Public Class FormSection
     Public Sub updateSection()
         Try
             If OPENDB() Then
-                Dim upsec As String = "UPDATE tb_section SET section=@section, courseCode=@courseCode WHERE sectionID = @sectionID"
+                Dim upsec As String = "UPDATE tb_section SET section=@section, courseCode=@courseCode, scheduleDate=@scheduleDate,scheduleTime=@scheduleTime, location=@location  WHERE sectionID = @sectionID"
                 Using cmd As New MySqlCommand(upsec, conn)
                     cmd.Parameters.AddWithValue("@section", txtSection.Text)
                     cmd.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
                     cmd.Parameters.AddWithValue("@sectionID", FormSectionList.DataGridView1.CurrentRow.Cells(0).Value.ToString)
+                    cmd.Parameters.AddWithValue("@scheduleDate", dobSection.Value.ToString("yyyy-MM-dd"))
+                    cmd.Parameters.AddWithValue("@scheduleTime", dtpTimer.Value.ToString("hh\\:mm\\:ss"))
+                    cmd.Parameters.AddWithValue("@location", txtRm.Text)
                     cmd.ExecuteNonQuery()
                 End Using
 
                 txtSection.Clear()
-                cmbCourse.SelectedIndex = -1
+                'cmbCourse.SelectedIndex = -1
                 MsgBox("Section Updated")
             End If
         Catch ex As Exception
@@ -45,12 +47,30 @@ Public Class FormSection
     Public Sub insertSectionAndCourse()
         Try
             If OPENDB() Then
-                Dim stt As String = "INSERT INTO tb_section VALUES (null, @section, @courseCode)"
+                '' Fetch the courseID based on courseCode
+                'Dim courseID As Integer
+                'Dim getCourseIDQuery As String = "SELECT courseID FROM tb_course WHERE courseCode = @courseCode"
+                'Using cmdGetCourseID As New MySqlCommand(getCourseIDQuery, conn)
+                '    cmdGetCourseID.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
+                '    Using reader As MySqlDataReader = cmdGetCourseID.ExecuteReader()
+                '        If reader.Read() Then
+                '            courseID = Convert.ToInt32(reader("courseID"))
+                '        Else
+                '            MsgBox("Course not found")
+                '            Return
+                '        End If
+                '    End Using
+                'End Using
+
+                ' Insert into tb_section
+                Dim stt As String = "INSERT INTO tb_section (section, CourseCode, scheduleDate,scheduleTime, location) VALUES (@section, @CourseCode,@scheduleDate ,@scheduleTime, @location)"
                 Using cmd As New MySqlCommand(stt, conn)
                     cmd.Parameters.AddWithValue("@section", txtSection.Text)
-                    cmd.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
-
-                    cmd.ExecuteNonQuery() ' execute the query
+                    cmd.Parameters.AddWithValue("@CourseCode", cmbCourse.Text)
+                    cmd.Parameters.AddWithValue("@scheduleDate", dobSection.Value.ToString("yyyy-MM-dd"))
+                    cmd.Parameters.AddWithValue("@scheduleTime", dtpTimer.Value.ToString("hh:mm:ss tt"))
+                    cmd.Parameters.AddWithValue("@location", txtRm.Text)
+                    cmd.ExecuteNonQuery()
                 End Using
 
                 MsgBox("Section Added")
@@ -66,10 +86,13 @@ Public Class FormSection
 
     Private Sub FormSection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         fetchCourse()
+
+        ' In your form load or designer
+        dtpTimer.Format = DateTimePickerFormat.Custom
+        dtpTimer.CustomFormat = "hh:mm:ss tt"
     End Sub
 
     Private Sub btnAddSection_Click(sender As Object, e As EventArgs) Handles btnAddSection.Click
-
         If txtSection.Text = "" Or cmbCourse.SelectedIndex = -1 Then
             MsgBox("Please fill up all fields")
             Exit Sub
@@ -83,16 +106,20 @@ Public Class FormSection
             txtSection.Clear()
             cmbCourse.SelectedIndex = -1
         End If
+
+
+        If btnAddSection.Text = "UPDATE" Then
+            updateSection()
+            With FormSectionList
+                .fetchSection()
+            End With
+            'ElseIf btnAddSection.Text = "SAVE" Then
+            '    insertSectionAndCourse()
+        End If
+
     End Sub
 
     Private Sub cmbCourse_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbCourse.KeyPress
         e.Handled = True
-    End Sub
-
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        updateSection()
-        With FormSectionList
-            .fetchSection()
-        End With
     End Sub
 End Class

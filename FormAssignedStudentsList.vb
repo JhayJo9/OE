@@ -28,22 +28,25 @@ Public Class FormAssignedStudentsList
             conn.Open()
             dgvAssignedStudents.Rows.Clear()
 
-            Dim query As String = "SELECT
-                                 s.studentID,
-                                 s.studentNo,
-                                 concat(LastName, ', ', FirstName, ' ', MiddleName) AS StudentName,
-                                 c.CourseCode,
-                                 ss.section AS SectionCode,
-                                 assess.AssessmentType
-                             FROM tb_student s
-                             LEFT JOIN tb_assignedstudents assi
-                                 ON s.studentID = assi.studentID
-                             LEFT JOIN tb_course c
-                                 ON c.courseID = assi.courseID
-                             LEFT JOIN tb_assessmenttype assess
-                                 ON assess.assessTypeID = assi.assessTypeID
-                             LEFT JOIN tb_section ss
-                                 ON ss.sectionID = assi.sectionID"
+            Dim query As String = "
+SELECT
+                                s.studentID,
+                                s.studentNo,
+                                CONCAT(s.LastName, ', ', s.FirstName, ' ', s.MiddleName) AS StudentName,
+                                c.CourseCode,
+                                ss.section AS SectionCode,
+                                assess.AssessmentType
+                            FROM tb_student s
+                            INNER JOIN tb_assignedstudents assi
+                                ON s.studentID = assi.studentID
+                            INNER JOIN tb_course c
+                                ON c.courseID = assi.courseID
+                            INNER JOIN tb_assessmenttype assess
+                                ON assess.assessTypeID = assi.assessTypeID
+                            INNER JOIN tb_section ss
+                                ON ss.sectionID = assi.sectionID
+                            INNER JOIN tb_assignedsection asg
+                                ON s.studentID = asg.studentID;"
             Using cmd As New MySqlCommand(query, conn)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     While reader.Read()
@@ -118,6 +121,8 @@ Public Class FormAssignedStudentsList
                             .cmbCourseCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(3).Value.ToString()
                             .cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
                             .txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
+
+                            .cmbStudentName.Enabled = False ' Disable the student name field
 
                             ' Show the form and wait for result
                             If .ShowDialog() = DialogResult.OK Then

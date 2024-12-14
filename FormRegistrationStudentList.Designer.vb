@@ -35,6 +35,8 @@ Partial Class FormRegistrationStudentList
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colView = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.btnAddnew = New System.Windows.Forms.Button()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgwRegistrationList = New System.Windows.Forms.DataGridView()
         Me.studentNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ff = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -48,8 +50,6 @@ Partial Class FormRegistrationStudentList
         Me.EDITT = New System.Windows.Forms.DataGridViewImageColumn()
         Me.DELETEE = New System.Windows.Forms.DataGridViewImageColumn()
         Me.VIEWW = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.btnAddnew = New System.Windows.Forms.Button()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgwRegistrationList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -181,6 +181,24 @@ Partial Class FormRegistrationStudentList
         Me.colView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.colView.Width = 125
         '
+        'btnAddnew
+        '
+        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddnew.Location = New System.Drawing.Point(957, 19)
+        Me.btnAddnew.Name = "btnAddnew"
+        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddnew.TabIndex = 3
+        Me.btnAddnew.Text = "Add new"
+        Me.btnAddnew.UseVisualStyleBackColor = True
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSearch.Location = New System.Drawing.Point(763, 20)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(179, 22)
+        Me.txtSearch.TabIndex = 4
+        '
         'dgwRegistrationList
         '
         Me.dgwRegistrationList.AllowUserToAddRows = False
@@ -205,6 +223,7 @@ Partial Class FormRegistrationStudentList
         Me.studentNo.MinimumWidth = 6
         Me.studentNo.Name = "studentNo"
         Me.studentNo.ReadOnly = True
+        Me.studentNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.studentNo.Width = 121
         '
         'ff
@@ -300,24 +319,6 @@ Partial Class FormRegistrationStudentList
         Me.VIEWW.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.VIEWW.Width = 65
         '
-        'btnAddnew
-        '
-        Me.btnAddnew.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddnew.Location = New System.Drawing.Point(957, 19)
-        Me.btnAddnew.Name = "btnAddnew"
-        Me.btnAddnew.Size = New System.Drawing.Size(75, 23)
-        Me.btnAddnew.TabIndex = 3
-        Me.btnAddnew.Text = "Add new"
-        Me.btnAddnew.UseVisualStyleBackColor = True
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSearch.Location = New System.Drawing.Point(763, 20)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(179, 22)
-        Me.txtSearch.TabIndex = 4
-        '
         'FormRegistrationStudentList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -350,9 +351,9 @@ Partial Class FormRegistrationStudentList
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
     Friend WithEvents colView As DataGridViewImageColumn
-    Friend WithEvents dgwRegistrationList As DataGridView
     Friend WithEvents btnAddnew As Button
     Friend WithEvents txtSearch As TextBox
+    Friend WithEvents dgwRegistrationList As DataGridView
     Friend WithEvents studentNo As DataGridViewTextBoxColumn
     Friend WithEvents ff As DataGridViewTextBoxColumn
     Friend WithEvents Firstnamef As DataGridViewTextBoxColumn

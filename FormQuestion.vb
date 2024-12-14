@@ -5,7 +5,7 @@ Public Class FormQuestion
     Public Sub fetchAssessmentType()
         Try
             If OPENDB() Then
-                Dim Astype As String = "SELECT AssessmentType from tb_questionanswer"
+                Dim Astype As String = "SELECT assessTypeID, AssessmentType from tb_assessmenttype"
                 Using cmd As New MySqlCommand(Astype, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
                         While dtreader.Read
@@ -46,13 +46,44 @@ Public Class FormQuestion
         End Try
     End Sub
 
+
     Public Sub insertQuestions()
         Try
             If OPENDB() Then
+                ' Fetch the courseID based on courseCode
+                Dim courseID As Integer
+                Dim getCourseIDQuery As String = "SELECT courseID FROM tb_course WHERE courseCode = @courseCode"
+                Using cmdGetCourseID As New MySqlCommand(getCourseIDQuery, conn)
+                    cmdGetCourseID.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
+                    Using reader As MySqlDataReader = cmdGetCourseID.ExecuteReader()
+                        If reader.Read() Then
+                            courseID = Convert.ToInt32(reader("courseID"))
+                        Else
+                            MsgBox("Course not found")
+                            Return
+                        End If
+                    End Using
+                End Using
+
+                ' Fetch the assessTypeID based on AssessmentType
+                Dim assessTypeID As Integer
+                Dim getAssessTypeIDQuery As String = "SELECT assessTypeID FROM tb_assessmenttype WHERE AssessmentType = @AssessmentType"
+                Using cmdGetAssessTypeID As New MySqlCommand(getAssessTypeIDQuery, conn)
+                    cmdGetAssessTypeID.Parameters.AddWithValue("@AssessmentType", cmbAssessmentType.Text)
+                    Using reader As MySqlDataReader = cmdGetAssessTypeID.ExecuteReader()
+                        If reader.Read() Then
+                            assessTypeID = Convert.ToInt32(reader("assessTypeID"))
+                        Else
+                            MsgBox("Assessment Type not found")
+                            Return
+                        End If
+                    End Using
+                End Using
+
                 ' Insert into tb_questionanswer
                 Dim qu As String = "
-                INSERT INTO tb_questionanswer 
-                VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentType)"
+            INSERT INTO tb_questionanswer 
+            VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
                 Using cmd As New MySqlCommand(qu, conn)
                     ' Add parameters for the question
                     cmd.Parameters.AddWithValue("@question", txtQuestion.Text)
@@ -61,7 +92,7 @@ Public Class FormQuestion
                     cmd.Parameters.AddWithValue("@optionC", txtC.Text)
                     cmd.Parameters.AddWithValue("@optionD", txtD.Text)
                     cmd.Parameters.AddWithValue("@correctAnswer", cmbCorrectAnswer.Text)
-                    cmd.Parameters.AddWithValue("@assessmentType", cmbAssessmentType.Text)
+                    cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
 
                     ' Execute the insert
                     cmd.ExecuteNonQuery()
@@ -69,11 +100,11 @@ Public Class FormQuestion
 
                 ' Insert into tb_coursequestion using LAST_INSERT_ID()
                 Dim qu2 As String = "
-                INSERT INTO tb_coursequestion (courseID, questionID)
-                VALUES (@courseID, LAST_INSERT_ID())"
+            INSERT INTO tb_coursequestion (courseID, questionID)
+            VALUES (@courseID, LAST_INSERT_ID())"
                 Using cmd2 As New MySqlCommand(qu2, conn)
                     ' Add parameter for courseID
-                    cmd2.Parameters.AddWithValue("@courseID", cmbCourse.SelectedIndex + 1) ' Replace 1 with the actual course ID
+                    cmd2.Parameters.AddWithValue("@courseID", courseID)
                     ' Execute the insert
                     cmd2.ExecuteNonQuery()
                 End Using
@@ -162,10 +193,12 @@ Public Class FormQuestion
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' Fetch assignedID based on your application's logic
+        Dim assignedID As Integer = GetAssignedID() ' Replace with actual logic to fetch assignedID
 
         If btnSave.Text = "Save" Then
             If MsgBox("Are you sure you want to add this question?", MsgBoxStyle.YesNo, "Add Question") = MsgBoxResult.Yes Then
-                insertQuestions()
+                insertQuestions(assignedID)
                 With FormQuestionList
                     .fetchQuestion()
                 End With
@@ -177,11 +210,13 @@ Public Class FormQuestion
                     .fetchQuestion()
                 End With
             End If
-
         End If
     End Sub
 
-    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
-
-    End Sub
+    ' Example method to get assignedID, replace with your actual logic
+    Private Function GetAssignedID() As Integer
+        ' Logic to fetch assignedID
+        ' For example, it might be based on a selected value from a combo box or other UI component
+        Return Convert.ToInt32(cmbAssignedID.SelectedValue) ' Adjust as needed
+    End Function
 End Class

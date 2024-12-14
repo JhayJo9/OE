@@ -391,6 +391,9 @@
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StudentDashboard.resx">
+      <DependentUpon>StudentDashboard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="users.resx">
       <DependentUpon>users.vb</DependentUpon>
     </EmbeddedResource>

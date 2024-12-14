@@ -50,6 +50,7 @@ Partial Class FormAssignedStudent
         Me.cmbStudentName.Location = New System.Drawing.Point(59, 129)
         Me.cmbStudentName.Name = "cmbStudentName"
         Me.cmbStudentName.Size = New System.Drawing.Size(321, 24)
+        Me.cmbStudentName.Sorted = True
         Me.cmbStudentName.TabIndex = 2
         '
         'Label1

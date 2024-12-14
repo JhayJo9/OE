@@ -33,7 +33,6 @@ Public Class FormRegistrationStudent
         Return True
     End Function
 
-
     Public Sub ClearControls()
         txtStudentNo.Clear()
         txtFirstname.Clear()
@@ -206,6 +205,7 @@ Public Class FormRegistrationStudent
             MsgBox("Error Updating: " & ex.Message)
         End Try
     End Sub
+
     Public Function getFirstName(name As String) As String
         Dim chars As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         Dim rnd As New Random()
@@ -262,6 +262,7 @@ Public Class FormRegistrationStudent
             End If
         End Try
     End Sub
+
     Public Sub GenerateUsernamePassword()
         Dim username As String = getFirstName(txtFirstname.Text)
         Dim password As String = GenerateRandomString(12)

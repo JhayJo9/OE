@@ -41,7 +41,7 @@ Public Class FormAssignedStudent
                         Dim lastName As String = readerstudent.GetString("LastName")
                         Dim firstName As String = readerstudent.GetString("FirstName")
                         Dim middleName As String = readerstudent.GetString("MiddleName")
-                        Dim displayName As String = $"{lastName}, {firstName} {middleName} ({studentID})".Trim()
+                        Dim displayName As String = studentNo & ": " & lastName & ", " & firstName
 
                         ' Check if the key already exists before adding
                         If Not studentDictionary.ContainsKey(displayName) Then
@@ -85,20 +85,29 @@ Public Class FormAssignedStudent
     End Sub
 
     Private Sub FetchSectionCode(studentID As Integer)
-        Dim query As String = "SELECT sec.section FROM tb_student s " &
-                          "JOIN tb_assignedstudents asg ON s.studentID = asg.studentID " &
-                          "JOIN tb_section sec ON asg.sectionID = sec.sectionID " &
-                          "WHERE s.studentID = @studentID"
+        Dim query As String = "SELECT 
+                                s.studentID,
+                                sec.section,
+                                sec.sectionID  
+                            FROM 
+                                tb_student s
+                            JOIN 
+                                tb_assignedsection asg ON s.studentID = asg.studentID
+                            JOIN 
+                                tb_section sec ON asg.sectionID = sec.sectionID
+                            WHERE 
+                                s.studentID = @studentID;"
         Try
-            Using connection As New MySqlConnection(connectionString) ' Use the correct connection type
-                Using command As New MySqlCommand(query, connection) ' Use the correct command type
-                    command.Parameters.AddWithValue("@studentID", studentID)
+            Using connection As New MySqlConnection(connectionString)
+                Using command As New MySqlCommand(query, connection)
+                    command.Parameters.AddWithValue("@studentID", CInt(studentID))
                     connection.Open()
                     Using reader As MySqlDataReader = command.ExecuteReader()
                         If reader.Read() Then
                             Dim sectionCode As String = reader("section").ToString()
+                            ' Set the sectionID here
+                            SectionID = reader.GetInt32("sectionID")
                             txtSectionCode.Text = sectionCode
-                            'MessageBox.Show("Section Code: " & sectionCode)
 
                             Fetch_Course(sectionCode)
                         Else
@@ -165,20 +174,31 @@ Public Class FormAssignedStudent
 
 
     Public Sub insert_Data()
+        If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 Then
+            MessageBox.Show("One or more required IDs are not set. Please ensure all fields are selected.")
+            Return
+        End If
+
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
         Try
             conn.Open()
-            'Dim courseCode As String = cmbCourseCode.SelectedItem
-            'Dim sectionCode As String = txtSectionCode.Text
+            MsgBox("STUDENT ID: " & studentid & " COURSE ID: " & CourseID & " SECTION ID: " & SectionID & " ASSESSMENT TYPE ID: " & assessTypeID)
 
-            'MsgBox(studentid & courseCode & sectionCode)
             Dim insert As String = "INSERT INTO tb_assignedstudents VALUES(null, @studentID, @courseCode, @sectionCode, @assessTypeID)"
             Dim cmd As New MySqlCommand(insert, conn)
-            cmd.Parameters.AddWithValue("@studentID", studentid)
-            cmd.Parameters.AddWithValue("@courseCode", CourseID)
-            cmd.Parameters.AddWithValue("@sectionCode", SectionID)
-            cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+            cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
+            cmd.Parameters.AddWithValue("@courseCode", CInt(CourseID))
+            cmd.Parameters.AddWithValue("@sectionCode", CInt(SectionID))
+            cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
             cmd.ExecuteNonQuery()
             MsgBox("Student Assigned Successfully")
+
+            With FormAssignedStudentsList
+                .Fetch_Data()
+            End With
+
             conn.Close()
         Catch ex As Exception
             MsgBox("INSERT DATA: " & ex.Message)
@@ -226,6 +246,7 @@ Public Class FormAssignedStudent
         End If
         Try
             conn.Open()
+            MsgBox("STUDENT ID: " & studentid & " COURSE ID: " & CourseID & " SECTION ID: " & SectionID & " ASSESSMENT TYPE ID: " & assessTypeID)
             Dim ud As String = "UPDATE tb_assignedstudents SET courseID = @courseID, sectionID = @sectionID, assessTypeID = @assessTypeID WHERE studentID = @studentID"
             Dim cmd As New MySqlCommand(ud, conn)
             cmd.Parameters.AddWithValue("@courseID", CourseID)
@@ -265,7 +286,23 @@ Public Class FormAssignedStudent
     End Sub
 
 
-
+    Private Sub cmbAssessmentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAssessmentType.SelectedIndexChanged
+        If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+        Try
+            conn.Open()
+            Dim query As String = "SELECT assessTypeID FROM tb_assessmenttype WHERE AssessmentType = @type"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@type", cmbAssessmentType.SelectedItem.ToString())
+                assessTypeID = Convert.ToInt32(cmd.ExecuteScalar())
+            End Using
+        Catch ex As Exception
+            MsgBox("Error getting assessment type ID: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
 
     ' FIX REGISTRRATION OF STUDENT AND ASSGINED STUDENT TO COURSE THEN CRUD 
 End Class

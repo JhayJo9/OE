@@ -27,6 +27,9 @@ Partial Class FormSectionList
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSection = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCourseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -40,7 +43,7 @@ Partial Class FormSectionList
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.colSection, Me.colCourseCode, Me.colEdit, Me.colDelete})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.colSection, Me.colCourseCode, Me.Column1, Me.Column3, Me.Column2, Me.colEdit, Me.colDelete})
         Me.DataGridView1.Location = New System.Drawing.Point(21, 56)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -79,12 +82,31 @@ Partial Class FormSectionList
         '
         'colCourseCode
         '
-        Me.colCourseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.colCourseCode.HeaderText = "Course Code"
         Me.colCourseCode.MinimumWidth = 6
         Me.colCourseCode.Name = "colCourseCode"
         Me.colCourseCode.ReadOnly = True
-        Me.colCourseCode.Width = 115
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Schedule Date"
+        Me.Column1.MinimumWidth = 6
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Schedule Time"
+        Me.Column3.MinimumWidth = 6
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Location"
+        Me.Column2.MinimumWidth = 6
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
         '
         'colEdit
         '
@@ -126,6 +148,9 @@ Partial Class FormSectionList
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents colSection As DataGridViewTextBoxColumn
     Friend WithEvents colCourseCode As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
 End Class
