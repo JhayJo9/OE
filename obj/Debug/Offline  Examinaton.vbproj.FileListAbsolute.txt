@@ -99,7 +99,23 @@ C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.exe
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.xml
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline  Examinaton.pdb
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.verifyStudent.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.formDashboard.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourse.resources
-C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormEditQuestionList.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestion.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.AdminDashboard.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.bin.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.users.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormCourseList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormSectionList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormSection.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExam.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExamList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormQuestionList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormUserList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.adminMain.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormAssignedStudentsList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormRegistrationStudent.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormRegistrationStudentList.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Form2.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Form3.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormAssignedStudent.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.StudentDashboard.resources

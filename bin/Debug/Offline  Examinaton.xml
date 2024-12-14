@@ -42,5 +42,10 @@ Offline  Examinaton
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.reject">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

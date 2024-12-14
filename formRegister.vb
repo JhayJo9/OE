@@ -17,10 +17,7 @@ Public Class formRegister
     Public Sub insertData()
 
         Try
-
-
-
-            Dim query As String = "INSERT into tb_student values (null, @Firstname, @LastName, @MiddleName, @DateOfBirth, @Gender, @Email, @ContactNumber)"
+            Dim query As String = "INSERT into tb_users values (null, @Firstname, @LastName, @MiddleName, @DateOfBirth, @Gender, @Email, @ContactNumber, @role)"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstname.Text)
                 cmd.Parameters.AddWithValue("@LastName", txtLastname.Text)
@@ -29,13 +26,13 @@ Public Class formRegister
                 cmd.Parameters.AddWithValue("@Gender", chbGender.Text)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text)
                 cmd.Parameters.AddWithValue("@ContactNumber", txtContactNo.Text)
-
+                cmd.Parameters.AddWithValue("@role", "Student")
                 cmd.ExecuteNonQuery()
 
                 MsgBox("Successfully Registered")
             End Using
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("REGISTRATION " & ex.Message)
         End Try
 
     End Sub
@@ -55,15 +52,15 @@ Public Class formRegister
     Public Sub GenerateUsernamePassword()
         Dim username As String = getFirstName(txtFirstname.Text)
         Dim password As String = GenerateRandomString(12)
-        Dim studentID As Integer = 0
+        Dim userID As Integer = 0
         Try
             If OPENDB() Then
 
-                Dim query As String = "SELECT MAX(studentID) as studentID FROM tb_student"
+                Dim query As String = "SELECT MAX(userID) as userID FROM tb_users"
                 Using cmd As New MySqlCommand(query, conn)
                     Dim reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
-                        studentID = reader.GetInt32("studentID")
+                        userID = reader.GetInt32("userID")
                         'MsgBox(studentID)
                     End If
 
@@ -82,11 +79,12 @@ Public Class formRegister
 
 
 
-                Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null,@studentID, @username, @password)"
+                Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null,@userID, @username, @password, @role)"
                 Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@studentID", studentID)
+                    cmd.Parameters.AddWithValue("@userID", userID)
                     cmd.Parameters.AddWithValue("@username", username)
                     cmd.Parameters.AddWithValue("@password", password)
+                    cmd.Parameters.AddWithValue("@role", "Student")
                     cmd.ExecuteNonQuery()
                 End Using
 
@@ -124,5 +122,9 @@ Public Class formRegister
 
     Private Sub formRegister_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         closeConnection()
+    End Sub
+
+    Private Sub Label9_Click(sender As Object, e As EventArgs) Handles Label9.Click
+
     End Sub
 End Class
