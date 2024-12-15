@@ -122,3 +122,4 @@ C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.Stude
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExamListForStudent.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormExamSession.resources
 C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormStudentResults.resources
+C:\Users\penal\Downloads\Offline  Examinaton\obj\Debug\Offline__Examinaton.FormEditAssignedStudent.resources

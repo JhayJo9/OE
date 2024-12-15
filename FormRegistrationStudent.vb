@@ -55,7 +55,6 @@ Public Class FormRegistrationStudent
         cmbSectionCode.Enabled = enabled
         dtDateOfBirth.Enabled = enabled
         btnRegister.Enabled = enabled
-        btnClear.Enabled = enabled
     End Sub
 
     Public Sub fetchSection()
@@ -270,7 +269,7 @@ Public Class FormRegistrationStudent
         Try
             If OPENDB() Then
                 ' First, get the latest studentID from tb_student
-                Dim queryStudentID As String = "SELECT MAX(studentNo) as studentNo FROM tb_student"
+                Dim queryStudentID As String = "SELECT MAX(studentID) as studentID , MAX(studentNo) as studentNo FROM tb_student"
                 Using cmd As New MySqlCommand(queryStudentID, conn)
                     Dim reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
@@ -309,16 +308,10 @@ Public Class FormRegistrationStudent
                 passwordClone = password
 
                 MessageBox.Show("Your Student ID/Username: " & usernameClone & vbCrLf & "Generated Password: " & passwordClone)
-
-                Dim verify As New verifyStudent()
-                verify.Show()
-
-                Dim formm As New Form1()
-                formm.Close()
             End If
 
         Catch ex As Exception
-            MessageBox.Show(ex.Message, "Error in GenerateUsernamePassword")
+            MessageBox.Show("Error in GenerateUsernamePassword" & ex.Message)
         Finally
             conn.Close()
         End Try

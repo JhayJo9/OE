@@ -22,6 +22,16 @@ Offline  Examinaton
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.edit">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.edit1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Offline__Examinaton.My.Resources.Resources.Fees">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

@@ -47,22 +47,6 @@ Public Class FormSection
     Public Sub insertSectionAndCourse()
         Try
             If OPENDB() Then
-                '' Fetch the courseID based on courseCode
-                'Dim courseID As Integer
-                'Dim getCourseIDQuery As String = "SELECT courseID FROM tb_course WHERE courseCode = @courseCode"
-                'Using cmdGetCourseID As New MySqlCommand(getCourseIDQuery, conn)
-                '    cmdGetCourseID.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
-                '    Using reader As MySqlDataReader = cmdGetCourseID.ExecuteReader()
-                '        If reader.Read() Then
-                '            courseID = Convert.ToInt32(reader("courseID"))
-                '        Else
-                '            MsgBox("Course not found")
-                '            Return
-                '        End If
-                '    End Using
-                'End Using
-
-                ' Insert into tb_section
                 Dim stt As String = "INSERT INTO tb_section (section, CourseCode, scheduleDate,scheduleTime, location) VALUES (@section, @CourseCode,@scheduleDate ,@scheduleTime, @location)"
                 Using cmd As New MySqlCommand(stt, conn)
                     cmd.Parameters.AddWithValue("@section", txtSection.Text)

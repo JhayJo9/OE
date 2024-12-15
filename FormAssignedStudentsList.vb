@@ -29,7 +29,7 @@ Public Class FormAssignedStudentsList
             dgvAssignedStudents.Rows.Clear()
 
             Dim query As String = "
-SELECT
+                                SELECT
                                 s.studentID,
                                 s.studentNo,
                                 CONCAT(s.LastName, ', ', s.FirstName, ' ', s.MiddleName) AS StudentName,
@@ -55,8 +55,8 @@ SELECT
                         reader.GetString("studentNo"),
                         If(reader.IsDBNull(reader.GetOrdinal("StudentName")), String.Empty, reader.GetString("StudentName")),
                         If(reader.IsDBNull(reader.GetOrdinal("CourseCode")), String.Empty, reader.GetString("CourseCode")),
-                        If(reader.IsDBNull(reader.GetOrdinal("AssessmentType")), String.Empty, reader.GetString("AssessmentType")),
-                        If(reader.IsDBNull(reader.GetOrdinal("SectionCode")), String.Empty, reader.GetString("SectionCode"))
+                        If(reader.IsDBNull(reader.GetOrdinal("AssessmentType")), String.Empty, reader.GetString("SectionCode")),
+                        If(reader.IsDBNull(reader.GetOrdinal("SectionCode")), String.Empty, reader.GetString("AssessmentType"))
                     )
                     End While
                 End Using
@@ -107,34 +107,20 @@ SELECT
         If e.RowIndex < 0 Then Return ' Ignore header clicks
 
         Dim colName As String = dgvAssignedStudents.Columns(e.ColumnIndex).Name
-
         Select Case colName
             Case "colEdit"
                 Try
-                    Using frm As New FormAssignedStudent
-                        frm.btnSave.Text = "UPDATE"
-                        With frm
-                            .txtStudentID.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(1).Value.ToString()
-                            .cmbStudentName.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
+                    Using frm As New FormEditAssignedStudent
+                        ' Get the studentID from the grid
+                        Dim studentID As Integer = Convert.ToInt32(dgvAssignedStudents.Rows(e.RowIndex).Cells(0).Value)
+                        frm.StudentID = studentID
 
-                            ' First fetch the section data
-                            '.FetchSectionID(True)
-
-                            ' Then set the values
-                            .cmbCourseCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(3).Value.ToString()
-                            .cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
-                            .txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
-
-                            .cmbStudentName.Enabled = False
-
-                            If .ShowDialog() = DialogResult.OK Then
-                                Fetch_Data()
-                            End If
-                        End With
+                        If frm.ShowDialog() = DialogResult.OK Then
+                            Fetch_Data()  ' Refresh the grid
+                        End If
                     End Using
-
                 Catch ex As Exception
-                    MessageBox.Show("Error editing record: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Error editing record: " & ex.Message)
                 End Try
 
             Case "colDelete"
@@ -145,12 +131,31 @@ SELECT
                                  "Confirm Delete",
                                  MessageBoxButtons.YesNo,
                                  MessageBoxIcon.Question) = DialogResult.Yes Then
-
                     If Delete_Record(studentID) Then
                         MessageBox.Show("Record deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Fetch_Data()
                     End If
                 End If
+            Case "ColView"
+                Try
+                    Using frm As New FormAssignedStudent
+                        frm.txtSectionCode.Enabled = False
+                        frm.txtStudentID.Enabled = False
+                        frm.cmbAssessmentType.Enabled = False
+                        frm.cmbCourseCode.Enabled = False
+
+                        ' Get the studentID from the grid
+                        Dim studentID As Integer = Convert.ToInt32(dgvAssignedStudents.Rows(e.RowIndex).Cells(1).Value)
+                        frm.txtStudentID.Text = studentID.ToString()
+                        frm.cmbStudentName.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
+                        frm.cmbCourseCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(3).Value.ToString()
+                        frm.txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
+                        frm.cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error opening form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                End Try
         End Select
     End Sub
 End Class

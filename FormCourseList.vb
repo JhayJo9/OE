@@ -1,9 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports MySql.Data
 Public Class FormCourseList
-
-
-
     Public Sub fetchCourse()
         Try
             DataGridView1.Rows.Clear()
@@ -20,8 +17,6 @@ Public Class FormCourseList
 
                             DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
                         End While
-
-                        'MsgBox("Course Fetched Successfully", MsgBoxStyle.Information, "Success")
                     End Using
                 End Using
             End If
@@ -38,7 +33,7 @@ Public Class FormCourseList
                     cmd.Parameters.AddWithValue("@courseID", DataGridView1.CurrentRow.Cells(0).Value.ToString)
                     cmd.ExecuteNonQuery()
                 End Using
-                MsgBox("Course Deleted")
+                MessageBox.Show("Record deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MsgBox("Delete Course: " & ex.Message)
@@ -56,6 +51,7 @@ Public Class FormCourseList
 
     Private Sub btnAddnew_Click(sender As Object, e As EventArgs) Handles btnAddnew.Click
         With Formcourse
+
             .ShowDialog()
         End With
     End Sub
@@ -64,16 +60,20 @@ Public Class FormCourseList
         Dim colName As String = DataGridView1.Columns(e.ColumnIndex).Name
 
         If colName = "colDelete" Then
-            If MsgBox("Delete course?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                deleteCourse()
-                fetchCourse()
+
+            If MessageBox.Show("Are you sure you want to delete this course?: " & DataGridView1.CurrentRow.Cells(1).Value.ToString, "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                Try
+                    deleteCourse()
+                    fetchCourse()
+                Catch ex As Exception
+                    MessageBox.Show("Error deleting record: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
             End If
         ElseIf colName = "colEdit" Then
             With Formcourse
+                .btnAddCourse.Text = "UPDATE"
                 .txtAddCourse.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString
                 .txtsddcourseCode.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString
-                .btnAddCourse.Enabled = False
-                .btnEdit.Enabled = True
                 .ShowDialog()
             End With
         End If

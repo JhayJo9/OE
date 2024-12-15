@@ -193,6 +193,12 @@
     <Compile Include="AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEditAssignedStudent.Designer.vb">
+      <DependentUpon>FormEditAssignedStudent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditAssignedStudent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormExamListForStudent.Designer.vb">
       <DependentUpon>FormExamListForStudent.vb</DependentUpon>
     </Compile>
@@ -358,6 +364,9 @@
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEditAssignedStudent.resx">
+      <DependentUpon>FormEditAssignedStudent.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExamListForStudent.resx">
       <DependentUpon>FormExamListForStudent.vb</DependentUpon>
     </EmbeddedResource>
@@ -449,6 +458,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

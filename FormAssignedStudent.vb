@@ -88,7 +88,7 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
-    Private Sub FetchSectionCode(studentID As Integer)
+    Public Sub FetchSectionCode(studentID As Integer)
         Dim query As String = "SELECT 
                                 s.studentID,
                                 sec.section,
@@ -144,7 +144,7 @@ Public Class FormAssignedStudent
             conn.Open()
 
             ' Query to fetch course codes matching the section code parameter
-            Dim fetch As String = "SELECT courseID, CourseCode FROM tb_course WHERE CourseCode LIKE @prefix"
+            Dim fetch As String = "SELECT courseID, CourseCode FROM tb_course WHERE CourseCode LIKE @prefix "
 
             Using cmd As New MySqlCommand(fetch, conn)
                 ' Add parameter to prevent SQL injection
@@ -235,33 +235,33 @@ Public Class FormAssignedStudent
             conn.Close()
         End Try
     End Sub
+
     Public Sub insert_Data()
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 Then
             MessageBox.Show("One or more required IDs are not set. Please ensure all fields are selected.")
             Return
         End If
 
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
         Try
-            conn.Open()
-            MsgBox("STUDENT ID: " & studentid & " COURSE ID: " & CourseID & " SECTION ID: " & SectionID & " ASSESSMENT TYPE ID: " & assessTypeID)
+            Using conn As New MySqlConnection(connectionString)
+                conn.Open()
+                MsgBox("STUDENT ID: " & studentid & " COURSE ID: " & CourseID & " SECTION ID: " & SectionID & " ASSESSMENT TYPE ID: " & assessTypeID)
 
-            Dim insert As String = "INSERT INTO tb_assignedstudents VALUES(null, @studentID, @courseCode, @sectionCode, @assessTypeID)"
-            Dim cmd As New MySqlCommand(insert, conn)
-            cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
-            cmd.Parameters.AddWithValue("@courseCode", CInt(CourseID))
-            cmd.Parameters.AddWithValue("@sectionCode", CInt(SectionID))
-            cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
-            cmd.ExecuteNonQuery()
-            MsgBox("Student Assigned Successfully")
+                Dim insert As String = "INSERT INTO tb_assignedstudents VALUES(null, @studentID, @courseID, @sectionID, @assessTypeID)"
+                Dim cmd As New MySqlCommand(insert, conn)
+                cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
+                cmd.Parameters.AddWithValue("@courseID", CInt(CourseID))
+                cmd.Parameters.AddWithValue("@sectionID", CInt(SectionID))
+                cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
 
-            With FormAssignedStudentsList
-                .Fetch_Data()
-            End With
 
-            conn.Close()
+                cmd.ExecuteNonQuery()
+                MsgBox("Student Assigned Successfully")
+
+                With FormAssignedStudentsList
+                    .Fetch_Data()
+                End With
+            End Using
         Catch ex As Exception
             MsgBox("INSERT DATA: " & ex.Message)
         End Try
@@ -358,6 +358,7 @@ Public Class FormAssignedStudent
         Try
             If btnSave.Text = "SAVE" Then
                 Assign_Questions_To_Student()
+                insert_Data()
             ElseIf btnSave.Text = "UPDATE" Then
                 Update_Data()
             End If

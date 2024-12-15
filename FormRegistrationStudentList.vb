@@ -25,7 +25,7 @@ Public Class FormRegistrationStudentList
     End Function
 
     Private Sub FormRegistrationStudentList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        InitializeGridView()
+        'InitializeGridView()
         'SetupDataGridViewProperties()
         fetchStudentList()
     End Sub

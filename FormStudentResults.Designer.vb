@@ -34,6 +34,7 @@ Partial Class FormStudentResults
         Me.lblExamDateTitle = New System.Windows.Forms.Label()
         Me.lblExamDate = New System.Windows.Forms.Label()
         Me.lblScoreTitle = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.grpFilters.SuspendLayout()
         Me.pnlResults.SuspendLayout()
         Me.SuspendLayout()
@@ -41,7 +42,7 @@ Partial Class FormStudentResults
         'lblDateTime
         '
         Me.lblDateTime.AutoSize = True
-        Me.lblDateTime.Location = New System.Drawing.Point(87, 40)
+        Me.lblDateTime.Location = New System.Drawing.Point(87, 48)
         Me.lblDateTime.Name = "lblDateTime"
         Me.lblDateTime.Size = New System.Drawing.Size(48, 16)
         Me.lblDateTime.TabIndex = 0
@@ -150,12 +151,22 @@ Partial Class FormStudentResults
         Me.lblScoreTitle.TabIndex = 4
         Me.lblScoreTitle.Text = "Label2"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(28, 13)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(110, 16)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "EXAM RESULTS"
+        '
         'FormStudentResults
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(851, 493)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.pnlResults)
         Me.Controls.Add(Me.grpFilters)
         Me.Controls.Add(Me.lblUser)
@@ -184,4 +195,5 @@ Partial Class FormStudentResults
     Friend WithEvents lblExamDateTitle As Label
     Friend WithEvents lblExamDate As Label
     Friend WithEvents lblScoreTitle As Label
+    Friend WithEvents Label3 As Label
 End Class

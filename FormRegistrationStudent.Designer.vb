@@ -25,11 +25,9 @@ Partial Class FormRegistrationStudent
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.btnRegister = New System.Windows.Forms.Button()
-        Me.btnClear = New System.Windows.Forms.Button()
         Me.txtFirstname = New System.Windows.Forms.TextBox()
         Me.txtLastname = New System.Windows.Forms.TextBox()
         Me.txtMiddlename = New System.Windows.Forms.TextBox()
-        Me.chbGender = New System.Windows.Forms.CheckedListBox()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.txtContactNo = New System.Windows.Forms.TextBox()
         Me.dtDateOfBirth = New System.Windows.Forms.DateTimePicker()
@@ -40,12 +38,12 @@ Partial Class FormRegistrationStudent
         Me.Label9 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.txtStudentNo = New System.Windows.Forms.TextBox()
         Me.txtdateOfbirth = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbSectionCode = New System.Windows.Forms.ComboBox()
+        Me.chbGender = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -80,28 +78,13 @@ Partial Class FormRegistrationStudent
         Me.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRegister.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRegister.ForeColor = System.Drawing.Color.Black
-        Me.btnRegister.Location = New System.Drawing.Point(419, 287)
+        Me.btnRegister.Location = New System.Drawing.Point(554, 289)
         Me.btnRegister.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
         Me.btnRegister.Name = "btnRegister"
         Me.btnRegister.Size = New System.Drawing.Size(133, 31)
         Me.btnRegister.TabIndex = 8
         Me.btnRegister.Text = "REGISTER"
         Me.btnRegister.UseVisualStyleBackColor = False
-        '
-        'btnClear
-        '
-        Me.btnClear.BackColor = System.Drawing.Color.Orchid
-        Me.btnClear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClear.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.ForeColor = System.Drawing.Color.Black
-        Me.btnClear.Location = New System.Drawing.Point(572, 287)
-        Me.btnClear.Margin = New System.Windows.Forms.Padding(5, 4, 5, 4)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(133, 31)
-        Me.btnClear.TabIndex = 9
-        Me.btnClear.Text = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = False
         '
         'txtFirstname
         '
@@ -123,15 +106,6 @@ Partial Class FormRegistrationStudent
         Me.txtMiddlename.Name = "txtMiddlename"
         Me.txtMiddlename.Size = New System.Drawing.Size(206, 23)
         Me.txtMiddlename.TabIndex = 19
-        '
-        'chbGender
-        '
-        Me.chbGender.FormattingEnabled = True
-        Me.chbGender.Items.AddRange(New Object() {"Male", "Female"})
-        Me.chbGender.Location = New System.Drawing.Point(179, 214)
-        Me.chbGender.Name = "chbGender"
-        Me.chbGender.Size = New System.Drawing.Size(206, 40)
-        Me.chbGender.TabIndex = 21
         '
         'txtEmail
         '
@@ -218,7 +192,6 @@ Partial Class FormRegistrationStudent
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.DarkSeaGreen
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.txtStudentNo)
         Me.GroupBox1.Controls.Add(Me.txtdateOfbirth)
@@ -236,7 +209,6 @@ Partial Class FormRegistrationStudent
         Me.GroupBox1.Controls.Add(Me.txtMiddlename)
         Me.GroupBox1.Controls.Add(Me.txtLastname)
         Me.GroupBox1.Controls.Add(Me.txtFirstname)
-        Me.GroupBox1.Controls.Add(Me.btnClear)
         Me.GroupBox1.Controls.Add(Me.btnRegister)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -254,21 +226,12 @@ Partial Class FormRegistrationStudent
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(751, 281)
+        Me.Button1.Location = New System.Drawing.Point(434, 285)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(96, 37)
         Me.Button1.TabIndex = 40
         Me.Button1.Text = "BACK"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(496, 162)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(59, 17)
-        Me.Label11.TabIndex = 39
-        Me.Label11.Text = "Label11"
         '
         'Label10
         '
@@ -316,6 +279,15 @@ Partial Class FormRegistrationStudent
         Me.cmbSectionCode.Size = New System.Drawing.Size(204, 25)
         Me.cmbSectionCode.TabIndex = 33
         '
+        'chbGender
+        '
+        Me.chbGender.FormattingEnabled = True
+        Me.chbGender.Items.AddRange(New Object() {"Male", "Female"})
+        Me.chbGender.Location = New System.Drawing.Point(179, 214)
+        Me.chbGender.Name = "chbGender"
+        Me.chbGender.Size = New System.Drawing.Size(206, 40)
+        Me.chbGender.TabIndex = 21
+        '
         'FormRegistrationStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -335,11 +307,9 @@ Partial Class FormRegistrationStudent
     Friend WithEvents Label3 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents btnRegister As Button
-    Friend WithEvents btnClear As Button
     Friend WithEvents txtFirstname As TextBox
     Friend WithEvents txtLastname As TextBox
     Friend WithEvents txtMiddlename As TextBox
-    Friend WithEvents chbGender As CheckedListBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents txtContactNo As TextBox
     Friend WithEvents dtDateOfBirth As DateTimePicker
@@ -354,6 +324,6 @@ Partial Class FormRegistrationStudent
     Friend WithEvents txtdateOfbirth As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents txtStudentNo As TextBox
-    Friend WithEvents Label11 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents chbGender As CheckedListBox
 End Class

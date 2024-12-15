@@ -144,7 +144,7 @@ Partial Class FormAssignedStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(803, 328)
         Me.ControlBox = False
         Me.Controls.Add(Me.txtStudentID)
         Me.Controls.Add(Me.lblStudentId)
@@ -158,6 +158,7 @@ Partial Class FormAssignedStudent
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbStudentName)
         Me.Controls.Add(Me.cmbAssessmentType)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormAssignedStudent"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
