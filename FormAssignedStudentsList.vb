@@ -29,24 +29,26 @@ Public Class FormAssignedStudentsList
             dgvAssignedStudents.Rows.Clear()
 
             Dim query As String = "
-                                SELECT
-                                s.studentID,
-                                s.studentNo,
-                                CONCAT(s.LastName, ', ', s.FirstName, ' ', s.MiddleName) AS StudentName,
-                                c.CourseCode,
-                                ss.section AS SectionCode,
-                                assess.AssessmentType
-                            FROM tb_student s
-                            INNER JOIN tb_assignedstudents assi
-                                ON s.studentID = assi.studentID
-                            INNER JOIN tb_course c
-                                ON c.courseID = assi.courseID
-                            INNER JOIN tb_assessmenttype assess
-                                ON assess.assessTypeID = assi.assessTypeID
-                            INNER JOIN tb_section ss
-                                ON ss.sectionID = assi.sectionID
-                            INNER JOIN tb_assignedsection asg
-                                ON s.studentID = asg.studentID;"
+                            SELECT
+                            s.studentID,
+                            s.studentNo,
+                            CONCAT(s.LastName, ', ', s.FirstName, ' ', s.MiddleName) AS StudentName,
+                            c.CourseCode,
+                            ss.section AS SectionCode,
+                            assess.AssessmentType
+                        FROM tb_student s
+                        INNER JOIN tb_assignedstudents assi
+                            ON s.studentID = assi.studentID
+                        INNER JOIN tb_course c
+                            ON c.courseID = assi.courseID
+                        INNER JOIN tb_assessmenttype assess
+                            ON assess.assessTypeID = assi.assessTypeID
+                        INNER JOIN tb_section ss
+                            ON ss.sectionID = assi.sectionID
+                        INNER JOIN tb_assignedsection asg
+                            ON s.studentID = asg.studentID
+                        ORDER BY s.studentNo ASC
+                        ;"
             Using cmd As New MySqlCommand(query, conn)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     While reader.Read()
@@ -116,26 +118,45 @@ Public Class FormAssignedStudentsList
                         frm.StudentID = studentID
 
                         If frm.ShowDialog() = DialogResult.OK Then
+                            MessageBox.Show($"Record updated successfully",
+                                     "Success",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
                             Fetch_Data()  ' Refresh the grid
                         End If
                     End Using
                 Catch ex As Exception
-                    MessageBox.Show("Error editing record: " & ex.Message)
+                    MessageBox.Show("Error editing record: " & ex.Message,
+                              "Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error)
                 End Try
 
             Case "colDelete"
-                Dim studentID As Integer = Convert.ToInt32(dgvAssignedStudents.Rows(e.RowIndex).Cells(0).Value)
-                Dim studentName As String = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Try
+                    Dim studentID As Integer = Convert.ToInt32(dgvAssignedStudents.Rows(e.RowIndex).Cells(0).Value)
+                    Dim studentName As String = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
 
-                If MessageBox.Show($"Are you sure you want to delete the record for {studentName}?",
+                    If MessageBox.Show($"Are you sure you want to delete the record for {studentName}?",
                                  "Confirm Delete",
                                  MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Question) = DialogResult.Yes Then
-                    If Delete_Record(studentID) Then
-                        MessageBox.Show("Record deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Fetch_Data()
+                                 MessageBoxIcon.Warning) = DialogResult.Yes Then
+
+                        If Delete_Record(studentID) Then
+                            MessageBox.Show("Record deleted successfully",
+                                     "Success",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+                            Fetch_Data()
+                        End If
                     End If
-                End If
+                Catch ex As Exception
+                    MessageBox.Show("Error deleting record: " & ex.Message,
+                              "Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error)
+                End Try
+
             Case "ColView"
                 Try
                     Using frm As New FormAssignedStudent
@@ -153,8 +174,11 @@ Public Class FormAssignedStudentsList
                         frm.cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
                     End Using
                 Catch ex As Exception
-                    MessageBox.Show("Error opening form: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
+                    MessageBox.Show("Error viewing record: " & ex.Message & vbCrLf &
+                              "Please try again or contact system administrator.",
+                              "Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error)
                 End Try
         End Select
     End Sub

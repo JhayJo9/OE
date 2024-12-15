@@ -75,7 +75,7 @@ Partial Class FormStudentResults
         Me.cmbAssessType.FormattingEnabled = True
         Me.cmbAssessType.Location = New System.Drawing.Point(13, 116)
         Me.cmbAssessType.Name = "cmbAssessType"
-        Me.cmbAssessType.Size = New System.Drawing.Size(281, 24)
+        Me.cmbAssessType.Size = New System.Drawing.Size(306, 24)
         Me.cmbAssessType.TabIndex = 6
         '
         'Label2
@@ -92,7 +92,7 @@ Partial Class FormStudentResults
         Me.cmbCourse.FormattingEnabled = True
         Me.cmbCourse.Location = New System.Drawing.Point(13, 48)
         Me.cmbCourse.Name = "cmbCourse"
-        Me.cmbCourse.Size = New System.Drawing.Size(281, 24)
+        Me.cmbCourse.Size = New System.Drawing.Size(306, 24)
         Me.cmbCourse.TabIndex = 4
         '
         'Label1

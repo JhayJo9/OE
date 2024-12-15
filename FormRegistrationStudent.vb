@@ -296,7 +296,7 @@ Public Class FormRegistrationStudent
                 Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null, @userID, @username, @password, @role, @studentID)"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userID", userID)
-                    cmd.Parameters.AddWithValue("@username", studentID.ToString())  ' Using studentID as username
+                    cmd.Parameters.AddWithValue("@username", studentNo.ToString())  ' Using studentID as username
                     cmd.Parameters.AddWithValue("@password", password)
                     cmd.Parameters.AddWithValue("@role", "Student")
                     cmd.Parameters.AddWithValue("@studentID", studentID)

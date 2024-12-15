@@ -9,7 +9,7 @@ Public Class FormStudentResults
     Private Sub SetupForm()
         ' Setup labels
         lblDateTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-        lblUser.Text = "Current User's Login: " & _STUDENTD.ToString()
+        lblUser.Text = "Current User's Login: " & UserSession.StudentId.ToString()
 
         ' Setup ComboBoxes
         With cmbCourse
@@ -47,7 +47,7 @@ Public Class FormStudentResults
                     c.courseCode"
 
             Using cmd As New MySqlCommand(courseQuery, conn)
-                cmd.Parameters.AddWithValue("@studentID", _STUDENTD)
+                cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
 
                 cmbCourse.Items.Clear()
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
@@ -88,7 +88,7 @@ Public Class FormStudentResults
                     at.AssessmentType"
 
             Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@studentID", _STUDENTD)
+                cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
                 cmd.Parameters.AddWithValue("@courseID", courseID)
 
                 cmbAssessType.Items.Clear()
@@ -118,46 +118,72 @@ Public Class FormStudentResults
             conn.Open()
 
             Dim query As String = "
-            SELECT 
-                (SUM(CASE WHEN sa.selectedAnswer = q.CorrectAnswer THEN 1 ELSE 0 END) * 100.0 / COUNT(DISTINCT sa.questionID)) as ScorePercentage,
-                MAX(sa.submissionDateTime) as ExamDate
-            FROM 
-                tb_student_answers sa
-            INNER JOIN 
-                tb_questionanswer q ON q.questionID = sa.questionID
-            WHERE 
-                sa.studentID = @studentID
-                AND sa.courseID = @courseID
-                AND sa.assessTypeID = @assessTypeID"
+        SELECT 
+            SUM(CASE WHEN sa.selectedAnswer = q.CorrectAnswer THEN 1 ELSE 0 END) as CorrectAnswers,
+            COUNT(DISTINCT sa.questionID) as TotalQuestions,
+            MAX(sa.submissionDateTime) as ExamDate
+        FROM 
+            tb_student_answers sa
+        INNER JOIN 
+            tb_questionanswer q ON q.questionID = sa.questionID
+        WHERE 
+            sa.studentID = @studentID
+            AND sa.courseID = @courseID
+            AND sa.assessTypeID = @assessTypeID"
 
             Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@studentID", _STUDENTD)
+                cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
                 cmd.Parameters.AddWithValue("@courseID", courseID)
                 cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
 
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
-                        ' Display results
-                        lblScore.Text = reader.GetInt32("ScorePercentage").ToString("N2") & "%"
+                        ' Get the raw scores
+                        Dim correctAnswers As Integer = reader.GetInt32("CorrectAnswers")
+                        Dim totalQuestions As Integer = reader.GetInt32("TotalQuestions")
+
+                        ' Calculate percentage
+                        Dim percentageScore As Decimal = (correctAnswers * 100.0) / totalQuestions
+
+                        ' Display score as fraction and percentage
+                        lblScore.Text = $"{correctAnswers}/{totalQuestions} ({percentageScore:N2}%)"
                         lblExamDate.Text = CDate(reader("ExamDate")).ToString("yyyy-MM-dd HH:mm:ss")
 
-                        ' Color code score
-                        Dim score As Decimal = CDec(reader("ScorePercentage"))
-                        If score >= 75 Then
+                        ' Color code score based on 75% passing grade
+                        If percentageScore >= 75 Then
                             lblScore.ForeColor = Color.Green
-                        ElseIf score >= 50 Then
-                            lblScore.ForeColor = Color.Orange
+                            MessageBox.Show($"Score: {correctAnswers}/{totalQuestions}" & vbCrLf &
+                                     $"Percentage: {percentageScore:N2}%" & vbCrLf &
+                                     "Status: PASSED",
+                                     "Exam Result",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
                         Else
                             lblScore.ForeColor = Color.Red
+                            MessageBox.Show($"Score: {correctAnswers}/{totalQuestions}" & vbCrLf &
+                                     $"Percentage: {percentageScore:N2}%" & vbCrLf &
+                                     "Status: FAILED" & vbCrLf &
+                                     "Required to Pass: 75%",
+                                     "Exam Result",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Warning)
                         End If
 
                         pnlResults.Visible = True
+                    Else
+                        MessageBox.Show("No exam results found.",
+                                  "Information",
+                                  MessageBoxButtons.OK,
+                                  MessageBoxIcon.Information)
                     End If
                 End Using
             End Using
 
         Catch ex As Exception
-            MsgBox("Error loading results: " & ex.Message)
+            MessageBox.Show("Error loading results: " & ex.Message,
+                       "Error",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Error)
         End Try
     End Sub
 

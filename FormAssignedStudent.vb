@@ -138,7 +138,7 @@ Public Class FormAssignedStudent
             ElseIf secCode.Contains("BSIT") Then
                 trimSec = secCode.Substring(2, 1)
             End If
-            MsgBox(trimSec)
+            'MsgBox(trimSec)
             'Using conn As New MySqlConnection(Your_Connection_String)
             ' Open the connection
             conn.Open()
@@ -245,18 +245,26 @@ Public Class FormAssignedStudent
         Try
             Using conn As New MySqlConnection(connectionString)
                 conn.Open()
-                MsgBox("STUDENT ID: " & studentid & " COURSE ID: " & CourseID & " SECTION ID: " & SectionID & " ASSESSMENT TYPE ID: " & assessTypeID)
 
-                Dim insert As String = "INSERT INTO tb_assignedstudents VALUES(null, @studentID, @courseID, @sectionID, @assessTypeID)"
-                Dim cmd As New MySqlCommand(insert, conn)
-                cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
-                cmd.Parameters.AddWithValue("@courseID", CInt(CourseID))
-                cmd.Parameters.AddWithValue("@sectionID", CInt(SectionID))
-                cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
+                ' Insert into tb_assignedstudents
+                Dim insertAssigned As String = "INSERT INTO tb_assignedstudents (studentID, courseID, sectionID, assessTypeID) VALUES(@studentID, @courseID, @sectionID, @assessTypeID)"
+                Dim cmdAssigned As New MySqlCommand(insertAssigned, conn)
+                cmdAssigned.Parameters.AddWithValue("@studentID", CInt(studentid))
+                cmdAssigned.Parameters.AddWithValue("@courseID", CInt(CourseID))
+                cmdAssigned.Parameters.AddWithValue("@sectionID", CInt(SectionID))
+                cmdAssigned.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
+                cmdAssigned.ExecuteNonQuery()
 
+                ' Get the last inserted assesID
+                Dim assesID As Integer
+                Dim selectAssesID As String = "SELECT LAST_INSERT_ID()"
+                Dim cmdSelectAssesID As New MySqlCommand(selectAssesID, conn)
+                assesID = Convert.ToInt32(cmdSelectAssesID.ExecuteScalar())
 
-                cmd.ExecuteNonQuery()
-                MsgBox("Student Assigned Successfully")
+                ' Call method to assign questions
+                Assign_Questions_To_Student(assesID)
+
+                Debug.WriteLine("INSERT: Student Assigned Successfully")
 
                 With FormAssignedStudentsList
                     .Fetch_Data()
@@ -267,6 +275,30 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    Public Sub Assign_Questions_To_Student(assesID As Integer)
+        If questionIDs.Count = 0 Then
+            MessageBox.Show("No questions found. Please ensure questions are available.")
+            Return
+        End If
+
+        Try
+            Using conn As New MySqlConnection(connectionString)
+                conn.Open()
+
+                For Each questionID In questionIDs
+                    Dim insertQuestion As String = "INSERT INTO tb_question_assignment (questionID, assignedID) VALUES(@questionID, @assignedID)"
+                    Dim cmdQuestion As New MySqlCommand(insertQuestion, conn)
+                    cmdQuestion.Parameters.AddWithValue("@questionID", questionID)
+                    cmdQuestion.Parameters.AddWithValue("@assignedID", assesID)
+                    cmdQuestion.ExecuteNonQuery()
+                Next
+
+                Debug.WriteLine("Assign_Questions_To_Student: Questions Assigned Successfully to the Student")
+            End Using
+        Catch ex As Exception
+            MsgBox("ASSIGN QUESTIONS: " & ex.Message)
+        End Try
+    End Sub
     Private Sub FormAssignedStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Fetch_Student()
@@ -324,7 +356,7 @@ Public Class FormAssignedStudent
             cmd.ExecuteNonQuery()
             With FormAssignedStudentsList
                 .Fetch_Data()
-                MsgBox("fgdfg")
+                'MsgBox("fgdfg")
             End With
             MsgBox("Student Updated Successfully")
         Catch ex As Exception
@@ -348,7 +380,7 @@ Public Class FormAssignedStudent
         Debug.WriteLine("assessTypeID: " & assessTypeID)
         Debug.WriteLine("questionIDs count: " & questionIDs.Count)
 
-        MsgBox("VALUES: " & studentid & " " & CourseID & " " & SectionID & " " & assessTypeID & " " & questionIDs.Count)
+        'MsgBox("VALUES: " & studentid & " " & CourseID & " " & SectionID & " " & assessTypeID & " " & questionIDs.Count)
         ' Check if all required IDs are set and questions are available
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 OrElse questionIDs.Count = 0 Then
             MessageBox.Show("One or more required IDs are not set or no questions found. Please ensure all fields are selected and questions are available.")

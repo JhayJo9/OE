@@ -10,7 +10,6 @@ Public Class FormExamSession
     Private optionsC As New List(Of String)
     Private optionsD As New List(Of String)
 
-    ' Properties
     Public Property StudentID As Integer
     Public Property CourseID As Integer
     Public Property AssessTypeID As Integer
@@ -223,16 +222,28 @@ Public Class FormExamSession
             End If
             conn.Open()
 
+            Debug.WriteLine($"Saving answers for studentID: {UserSession.StudentId}, courseID: {CourseID}, assessTypeID: {AssessTypeID}, _STUDENTID: {UserSession.StudentId}")
+
+            ' Check if studentID exists in tb_student table
+            Dim checkStudentSql As String = "SELECT COUNT(1) FROM tb_student WHERE studentID = @studentID"
+            Using checkCmd As New MySqlCommand(checkStudentSql, conn)
+                checkCmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
+                Dim studentExists As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                If studentExists = 0 Then
+                    MsgBox("Error: studentID does not exist in tb_student table.")
+                    Return
+                End If
+            End Using
+
             For Each answer In studentAnswers
                 Dim sql As String = "INSERT INTO tb_student_answers 
-                                   (studentID, courseID, assessTypeID, questionID, 
-                                    selectedAnswer, submissionDateTime) 
-                                   VALUES 
-                                   (@studentID, @courseID, @assessTypeID, @questionID, 
-                                    @answer, @submitTime)"
-
+                               (studentID, courseID, assessTypeID, questionID, 
+                                selectedAnswer, submissionDateTime) 
+                               VALUES 
+                               (@studentID, @courseID, @assessTypeID, @questionID, 
+                                @answer, @submitTime)"
                 Using cmd As New MySqlCommand(sql, conn)
-                    cmd.Parameters.AddWithValue("@studentID", StudentID)
+                    cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
                     cmd.Parameters.AddWithValue("@courseID", CourseID)
                     cmd.Parameters.AddWithValue("@assessTypeID", AssessTypeID)
                     cmd.Parameters.AddWithValue("@questionID", answer.Key)
@@ -241,7 +252,6 @@ Public Class FormExamSession
                     cmd.ExecuteNonQuery()
                 End Using
             Next
-
             MsgBox("Exam submitted successfully!")
             Me.Close()
         Catch ex As Exception
@@ -250,10 +260,7 @@ Public Class FormExamSession
     End Sub
 
     Private Sub FormExamSession_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' First setup the form
         SetupForm()
-
-        ' Then fetch and display data
         Fetch_Data()
 
         ' Disable radio buttons until data is loaded
