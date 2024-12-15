@@ -264,66 +264,64 @@ Public Class FormRegistrationStudent
     End Sub
 
     Public Sub GenerateUsernamePassword()
-        Dim username As String = getFirstName(txtFirstname.Text)
-        Dim password As String = GenerateRandomString(12)
         Dim userID As Integer = 0
-
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
-
+        Dim studentID As Integer = 0
+        Dim studentNo As Integer = 0
         Try
-            conn.Open()
             If OPENDB() Then
-                Dim query As String = "SELECT MAX(studentNo) as studentNo FROM tb_student"
-                Using cmd As New MySqlCommand(query, conn)
+                ' First, get the latest studentID from tb_student
+                Dim queryStudentID As String = "SELECT MAX(studentNo) as studentNo FROM tb_student"
+                Using cmd As New MySqlCommand(queryStudentID, conn)
                     Dim reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
-                        userID = reader.GetInt32("studentNo")
+                        studentID = reader.GetInt32("studentID")
+                        studentNo = reader.GetInt32("studentNo")
                     End If
+                    reader.Close()
                 End Using
-            End If
-        Catch ex As Exception
-            MessageBox.Show("SELECTING MAX ID: " & ex.Message)
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-        End Try
 
-        Try
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            conn.Open()
-            If OPENDB() Then
-                Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null,@userID, @username, @password, @role)"
+                ' Then get the latest userID
+                Dim queryUserID As String = "SELECT MAX(userID) as userID FROM tb_users"
+                Using cmd As New MySqlCommand(queryUserID, conn)
+                    Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        userID = reader.GetInt32("userID")
+                    End If
+                    reader.Close()
+                End Using
+
+                ' Generate random password
+                Dim password As String = GenerateRandomString(12)
+
+                ' Insert into tb_generatedusernamepassword
+                Dim query As String = "INSERT INTO tb_generatedusernamepassword values(null, @userID, @username, @password, @role, @studentID)"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userID", userID)
-                    cmd.Parameters.AddWithValue("@username", username)
+                    cmd.Parameters.AddWithValue("@username", studentID.ToString())  ' Using studentID as username
                     cmd.Parameters.AddWithValue("@password", password)
                     cmd.Parameters.AddWithValue("@role", "Student")
+                    cmd.Parameters.AddWithValue("@studentID", studentID)
                     cmd.ExecuteNonQuery()
                 End Using
+
+                ' Store the credentials for later use
+                usernameClone = studentNo.ToString()
+                passwordClone = password
+
+                MessageBox.Show("Your Student ID/Username: " & usernameClone & vbCrLf & "Generated Password: " & passwordClone)
+
+                Dim verify As New verifyStudent()
+                verify.Show()
+
+                Dim formm As New Form1()
+                formm.Close()
             End If
+
         Catch ex As Exception
-            MessageBox.Show("INSERTING G-P: " & ex.Message)
+            MessageBox.Show(ex.Message, "Error in GenerateUsernamePassword")
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+            conn.Close()
         End Try
-
-        usernameClone = username
-        passwordClone = password
-
-        MessageBox.Show("Generated Username: " & usernameClone & vbCrLf & "Generated Password: " & passwordClone)
-
-        Dim verify As New verifyStudent()
-        verify.Show()
-
-        Dim formm As New Form1()
-        formm.Close()
     End Sub
 
     Private Function GenerateRandomString(length As Integer) As String
@@ -346,6 +344,8 @@ Public Class FormRegistrationStudent
         If ValidateInputs() Then
             If btnRegister.Text = "REGISTER" Then
                 InsertStudent()
+                GenerateUsernamePassword()
+                Me.Dispose()
             ElseIf btnRegister.Text = "UPDATE" Then
                 If MsgBox("Are you sure you want to update this student?", MsgBoxStyle.YesNo, "Update Student") = MsgBoxResult.Yes Then
                     UpdateStudent()

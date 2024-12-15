@@ -16,6 +16,7 @@ Public Class FormAssignedStudent
     Dim CourseID As Integer = 0
     Dim SectionID As Integer = 0
     Dim assessTypeID As Integer = 0
+    Dim questionIDs As New List(Of Integer)
     Public Sub Fetch_Student()
         txtSectionCode.Clear()
         txtStudentID.Clear()
@@ -175,7 +176,65 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    Public Sub Fetch_Questions()
+        questionIDs.Clear()
+        If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+        Try
+            conn.Open()
+            Dim query As String = "SELECT q.questionID FROM tb_questionanswer q 
+                               JOIN tb_coursequestion cq ON q.questionID = cq.questionID 
+                               WHERE cq.courseID = @courseID AND q.assessmentTypeID = @assessmentTypeID"
+            Dim cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@courseID", CourseID)
+            cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
+            Using reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.HasRows Then
+                    While reader.Read()
+                        questionIDs.Add(reader.GetInt32("questionID"))
+                        MsgBox(questionIDs.Count)
+                    End While
+                Else
+                    MsgBox("No questions found for the given CourseID and AssessmentTypeID.")
+                End If
+            End Using
 
+        Catch ex As Exception
+            MsgBox("FETCH QUESTIONS: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+    Public Sub Assign_Questions_To_Student()
+        If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 OrElse questionIDs.Count = 0 Then
+            MessageBox.Show("One or more required IDs are not set or no questions found. Please ensure all fields are selected and questions are available.")
+            Return
+        End If
+
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+        Try
+            conn.Open()
+            For Each questionID In questionIDs
+                Dim insert As String = "INSERT INTO tb_student_question_assignment (studentID, questionID, courseID, sectionID, assessTypeID) VALUES(@studentID, @questionID, @courseID, @sectionID, @assessTypeID)"
+                Dim cmd As New MySqlCommand(insert, conn)
+                cmd.Parameters.AddWithValue("@studentID", studentid)
+                cmd.Parameters.AddWithValue("@questionID", questionID)
+                cmd.Parameters.AddWithValue("@courseID", CourseID)
+                cmd.Parameters.AddWithValue("@sectionID", SectionID)
+                cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                cmd.ExecuteNonQuery()
+            Next
+            MsgBox("Questions Assigned Successfully to the Student")
+        Catch ex As Exception
+            MsgBox("ASSIGN QUESTIONS: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
     Public Sub insert_Data()
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 Then
             MessageBox.Show("One or more required IDs are not set. Please ensure all fields are selected.")
@@ -209,12 +268,10 @@ Public Class FormAssignedStudent
     End Sub
 
     Private Sub FormAssignedStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Fetch_Student()
         Fetch_AsessementType()
-
-        ' will activate the cmbStudentName_SelectedIndexChanged event
         cmbStudentName_SelectedIndexChanged(cmbStudentName, EventArgs.Empty)
-        'Fetch_Course()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnBack.Click
@@ -279,10 +336,28 @@ Public Class FormAssignedStudent
     End Sub
 
     ' In FormAssignedStudent's save button click event
+    ' In FormAssignedStudent's save button click event
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' Call Fetch_Questions to ensure questionIDs are populated
+        Fetch_Questions()
+
+        ' Debugging information
+        Debug.WriteLine("studentid: " & studentid)
+        Debug.WriteLine("CourseID: " & CourseID)
+        Debug.WriteLine("SectionID: " & SectionID)
+        Debug.WriteLine("assessTypeID: " & assessTypeID)
+        Debug.WriteLine("questionIDs count: " & questionIDs.Count)
+
+        MsgBox("VALUES: " & studentid & " " & CourseID & " " & SectionID & " " & assessTypeID & " " & questionIDs.Count)
+        ' Check if all required IDs are set and questions are available
+        If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 OrElse questionIDs.Count = 0 Then
+            MessageBox.Show("One or more required IDs are not set or no questions found. Please ensure all fields are selected and questions are available.")
+            Return
+        End If
+
         Try
             If btnSave.Text = "SAVE" Then
-                insert_Data()
+                Assign_Questions_To_Student()
             ElseIf btnSave.Text = "UPDATE" Then
                 Update_Data()
             End If

@@ -32,6 +32,7 @@ Partial Class FormQuestionList
         Me.optionD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CorrectAnswer = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCourseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colView = New System.Windows.Forms.DataGridViewImageColumn()
@@ -45,7 +46,7 @@ Partial Class FormQuestionList
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colCourseCode, Me.colEdit, Me.colDelete, Me.colView})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colCourseCode, Me.Column1, Me.colEdit, Me.colDelete, Me.colView})
         Me.DataGridView1.Location = New System.Drawing.Point(18, 43)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -137,6 +138,14 @@ Partial Class FormQuestionList
         Me.colCourseCode.ReadOnly = True
         Me.colCourseCode.Width = 106
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Assessment Type"
+        Me.Column1.MinimumWidth = 6
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Width = 125
+        '
         'colEdit
         '
         Me.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -191,6 +200,7 @@ Partial Class FormQuestionList
     Friend WithEvents optionD As DataGridViewTextBoxColumn
     Friend WithEvents CorrectAnswer As DataGridViewTextBoxColumn
     Friend WithEvents colCourseCode As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn
     Friend WithEvents colView As DataGridViewImageColumn

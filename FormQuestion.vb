@@ -1,43 +1,42 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports MySql.Data
+
 Public Class FormQuestion
+    Private assessmentTypeDict As New Dictionary(Of String, Integer)
+    Private courseDict As New Dictionary(Of String, Integer)
 
     Public Sub fetchAssessmentType()
         Try
             If OPENDB() Then
-                Dim Astype As String = "SELECT assessTypeID, AssessmentType from tb_assessmenttype"
+                Dim Astype As String = "SELECT assessTypeID, AssessmentType FROM tb_assessmenttype"
                 Using cmd As New MySqlCommand(Astype, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
                         While dtreader.Read
+                            Dim assessTypeID As Integer = dtreader.GetInt32("assessTypeID")
                             Dim assessmentType As String = dtreader.GetString("AssessmentType")
                             cmbAssessmentType.Items.Add(assessmentType)
+                            assessmentTypeDict(assessmentType) = assessTypeID
                         End While
                     End Using
                 End Using
             End If
         Catch ex As Exception
-
+            ' Handle exception
         End Try
     End Sub
 
     Public Sub fetchCourse()
         Try
             If OPENDB() Then
-                Dim fetch As String = "SELECT * FROM tb_course"
+                Dim fetch As String = "SELECT courseID, courseCode FROM tb_course"
                 Using cmd As New MySqlCommand(fetch, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
-
                         While dtreader.Read
                             Dim courseID As Integer = dtreader.GetInt32("courseID")
-                            Dim courseTitle As String = dtreader.GetString("courseTitle")
                             Dim courseCode As String = dtreader.GetString("courseCode")
-
-
                             cmbCourse.Items.Add(courseCode)
-                            lblcoursecode.Text = courseCode
+                            courseDict(courseCode) = courseID
                         End While
-
-                        'MsgBox("Course Fetched Successfully", MsgBoxStyle.Information, "Success")
                     End Using
                 End Using
             End If
@@ -46,44 +45,17 @@ Public Class FormQuestion
         End Try
     End Sub
 
-
     Public Sub insertQuestions()
         Try
             If OPENDB() Then
-                ' Fetch the courseID based on courseCode
-                Dim courseID As Integer
-                Dim getCourseIDQuery As String = "SELECT courseID FROM tb_course WHERE courseCode = @courseCode"
-                Using cmdGetCourseID As New MySqlCommand(getCourseIDQuery, conn)
-                    cmdGetCourseID.Parameters.AddWithValue("@courseCode", cmbCourse.Text)
-                    Using reader As MySqlDataReader = cmdGetCourseID.ExecuteReader()
-                        If reader.Read() Then
-                            courseID = Convert.ToInt32(reader("courseID"))
-                        Else
-                            MsgBox("Course not found")
-                            Return
-                        End If
-                    End Using
-                End Using
-
-                ' Fetch the assessTypeID based on AssessmentType
-                Dim assessTypeID As Integer
-                Dim getAssessTypeIDQuery As String = "SELECT assessTypeID FROM tb_assessmenttype WHERE AssessmentType = @AssessmentType"
-                Using cmdGetAssessTypeID As New MySqlCommand(getAssessTypeIDQuery, conn)
-                    cmdGetAssessTypeID.Parameters.AddWithValue("@AssessmentType", cmbAssessmentType.Text)
-                    Using reader As MySqlDataReader = cmdGetAssessTypeID.ExecuteReader()
-                        If reader.Read() Then
-                            assessTypeID = Convert.ToInt32(reader("assessTypeID"))
-                        Else
-                            MsgBox("Assessment Type not found")
-                            Return
-                        End If
-                    End Using
-                End Using
+                ' Get the courseID and assessTypeID from the dictionaries
+                Dim courseID As Integer = courseDict(cmbCourse.Text)
+                Dim assessTypeID As Integer = assessmentTypeDict(cmbAssessmentType.Text)
 
                 ' Insert into tb_questionanswer
                 Dim qu As String = "
-            INSERT INTO tb_questionanswer 
-            VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
+                INSERT INTO tb_questionanswer
+                VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
                 Using cmd As New MySqlCommand(qu, conn)
                     ' Add parameters for the question
                     cmd.Parameters.AddWithValue("@question", txtQuestion.Text)
@@ -93,15 +65,14 @@ Public Class FormQuestion
                     cmd.Parameters.AddWithValue("@optionD", txtD.Text)
                     cmd.Parameters.AddWithValue("@correctAnswer", cmbCorrectAnswer.Text)
                     cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
-
                     ' Execute the insert
                     cmd.ExecuteNonQuery()
                 End Using
 
                 ' Insert into tb_coursequestion using LAST_INSERT_ID()
                 Dim qu2 As String = "
-            INSERT INTO tb_coursequestion (courseID, questionID)
-            VALUES (@courseID, LAST_INSERT_ID())"
+                INSERT INTO tb_coursequestion (courseID, questionID)
+                VALUES (@courseID, LAST_INSERT_ID())"
                 Using cmd2 As New MySqlCommand(qu2, conn)
                     ' Add parameter for courseID
                     cmd2.Parameters.AddWithValue("@courseID", courseID)
@@ -122,25 +93,25 @@ Public Class FormQuestion
         End Try
     End Sub
 
-
     Public Sub updateQuestion()
         Try
             If OPENDB() Then
                 ' Update the question in tb_questionanswer
                 Dim upQues As String = "
-                UPDATE tb_questionanswer 
-                SET 
-                    Question = @question, 
-                    OptionA = @OptionA, 
-                    OptionB = @OptionB, 
-                    OptionC = @OptionC, 
-                    OptionD = @OptionD, 
-                    CorrectAnswer = @CorrectAnswer, 
-                    AssessmentType = @AssessmentType 
+                UPDATE tb_questionanswer
+                SET
+                    Question = @question,
+                    OptionA = @OptionA,
+                    OptionB = @OptionB,
+                    OptionC = @OptionC,
+                    OptionD = @OptionD,
+                    CorrectAnswer = @CorrectAnswer,
+                    AssessmentTypeID = @AssessmentTypeID
                 WHERE questionID = @questionID"
                 Using cmd As New MySqlCommand(upQues, conn)
                     ' Fetch questionID from the DataGridView
                     Dim questionID As Integer = Convert.ToInt32(FormQuestionList.DataGridView1.CurrentRow.Cells(0).Value)
+                    Dim assessTypeID As Integer = assessmentTypeDict(cmbAssessmentType.Text)
 
                     cmd.Parameters.AddWithValue("@questionID", questionID)
                     cmd.Parameters.AddWithValue("@question", txtQuestion.Text)
@@ -149,7 +120,7 @@ Public Class FormQuestion
                     cmd.Parameters.AddWithValue("@OptionC", txtC.Text)
                     cmd.Parameters.AddWithValue("@OptionD", txtD.Text)
                     cmd.Parameters.AddWithValue("@CorrectAnswer", cmbCorrectAnswer.Text)
-                    cmd.Parameters.AddWithValue("@AssessmentType", cmbAssessmentType.Text)
+                    cmd.Parameters.AddWithValue("@AssessmentTypeID", assessTypeID)
 
                     ' Execute the update query
                     cmd.ExecuteNonQuery()
@@ -158,12 +129,12 @@ Public Class FormQuestion
                 ' Update the courseID only if it's necessary
                 If cmbCourse.SelectedIndex <> -1 Then
                     Dim upCourseQues As String = "
-                    UPDATE tb_coursequestion 
-                    SET courseID = @courseID 
+                    UPDATE tb_coursequestion
+                    SET courseID = @courseID
                     WHERE questionID = @questionID"
                     Using cmd As New MySqlCommand(upCourseQues, conn)
                         ' Fetch courseID from the combo box
-                        Dim courseID As Integer = Convert.ToInt32(cmbCourse.SelectedValue)
+                        Dim courseID As Integer = courseDict(cmbCourse.Text)
 
                         cmd.Parameters.AddWithValue("@courseID", courseID)
                         cmd.Parameters.AddWithValue("@questionID", FormQuestionList.DataGridView1.CurrentRow.Cells(0).Value.ToString())
@@ -187,18 +158,13 @@ Public Class FormQuestion
 
     Private Sub FormQuestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         fetchCourse()
-        'fetchAssessmentType()
-        'Dim tm As String = timer.Text
-        'MsgBox(tm)
+        fetchAssessmentType()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        ' Fetch assignedID based on your application's logic
-        ' Dim assignedID As Integer = GetAssignedID() ' Replace with actual logic to fetch assignedID
-
         If btnSave.Text = "Save" Then
             If MsgBox("Are you sure you want to add this question?", MsgBoxStyle.YesNo, "Add Question") = MsgBoxResult.Yes Then
-                'insertQuestions(assignedID)
+                insertQuestions()
                 With FormQuestionList
                     .fetchQuestion()
                 End With
@@ -213,10 +179,7 @@ Public Class FormQuestion
         End If
     End Sub
 
-    ' Example method to get assignedID, replace with your actual logic
-    'Private Function GetAssignedID() As Integer
-    '    ' Logic to fetch assignedID
-    '    ' For example, it might be based on a selected value from a combo box or other UI component
-    '    Return Convert.ToInt32(cmbAssignedID.SelectedValue) ' Adjust as needed
-    'End Function
+    Private Sub cmbAssessmentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAssessmentType.SelectedIndexChanged
+
+    End Sub
 End Class
