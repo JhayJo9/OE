@@ -1,27 +1,40 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports MySql.Data
 Public Class FormCourseList
-    Public Sub fetchCourse()
+    Public Sub FetchCourse()
         Try
             DataGridView1.Rows.Clear()
 
+            ' Check if connection exists and is open
             If OPENDB() Then
-                Dim fetch As String = "SELECT * FROM tb_course"
-                Using cmd As New MySqlCommand(fetch, conn)
-                    Using dtreader As MySqlDataReader = cmd.ExecuteReader
+                Const query As String = "SELECT courseID, courseTitle, courseCode FROM tb_course ORDER BY courseID"
 
-                        While dtreader.Read
-                            Dim courseID As Integer = dtreader.GetInt32("courseID")
-                            Dim courseTitle As String = dtreader.GetString("courseTitle")
-                            Dim courseCode As String = dtreader.GetString("courseCode")
+                Using cmd As New MySqlCommand(query, conn)
+                    Using dtreader As MySqlDataReader = cmd.ExecuteReader()
+                        ' Check if there are rows
+                        If dtreader.HasRows Then
+                            While dtreader.Read()
+                                ' Use IsDBNull check to prevent null errors
+                                Dim courseID As Integer = If(dtreader.IsDBNull(0), 0, dtreader.GetInt32(0))
+                                Dim courseTitle As String = If(dtreader.IsDBNull(1), String.Empty, dtreader.GetString(1))
+                                Dim courseCode As String = If(dtreader.IsDBNull(2), String.Empty, dtreader.GetString(2))
 
-                            DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
-                        End While
+                                DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
+                            End While
+                        End If
                     End Using
                 End Using
+            Else
+                MessageBox.Show("Database connection failed.", "Connection Error",
+                          MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
+
+        Catch ex As MySqlException
+            MessageBox.Show($"Database Error: {ex.Message}", "Database Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MsgBox("SELECT COURSE: " & ex.Message)
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -77,5 +90,18 @@ Public Class FormCourseList
                 .ShowDialog()
             End With
         End If
+    End Sub
+
+    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+        Try
+            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+                conn.Close()
+                conn.Dispose()
+            End If
+        Catch ex As Exception
+            ' Log the error
+        Finally
+            MyBase.OnFormClosing(e)
+        End Try
     End Sub
 End Class

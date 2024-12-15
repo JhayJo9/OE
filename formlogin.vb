@@ -32,10 +32,11 @@ Public Class formlogin
                                 Case "admin"
                                     OpenNewForm(New AdminDashboard())
                                 Case "student"
-                                    OpenNewForm(New StudentDashboard())
-
-                                    _STUDENTD = dtreader.GetInt32("studentID")
-
+                                    Dim dashboard As New StudentDashboard()
+                                    dashboard.StudentId = dtreader.GetInt32("studentID")
+                                    OpenNewForm(dashboard)
+                                    MsgBox(dtreader.GetInt32("studentID")) ' 1
+                                    Debug.WriteLine(_STUDENTD)
                                 Case Else
                                     ShowError("Invalid user role")
                             End Select

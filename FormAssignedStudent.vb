@@ -160,7 +160,7 @@ Public Class FormAssignedStudent
                             cmbCourseCode.Items.Add(courseCode)
                         End While
                     Else
-                        MessageBox.Show("No courses found for the given section code.", "Information",
+                        MessageBox.Show("Fetch_Course: No courses found for the given section code.", "Information",
                                   MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End Using ' reader will automatically close
