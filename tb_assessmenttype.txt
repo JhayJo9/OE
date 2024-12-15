@@ -1,0 +1,3 @@
+Field	Type	Null	Key	Default	Extra
+assessTypeID	int(11)	NO	PRI	NULL	auto_increment
+AssessmentType	varchar(50)	NO		NULL	

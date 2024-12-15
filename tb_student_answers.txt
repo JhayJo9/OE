@@ -1,0 +1,9 @@
+Field	Type	Null	Key	Default	Extra
+answerID	int(11)	NO	PRI	NULL	auto_increment
+sessionID	int(11)	YES	MUL	NULL	
+studentID	int(11)	YES	MUL	NULL	
+courseID	int(11)	YES	MUL	NULL	
+assessTypeID	int(11)	YES	MUL	NULL	
+questionID	int(11)	YES	MUL	NULL	
+selectedAnswer	char(1)	YES		NULL	
+submissionDateTime	datetime	YES		NULL	

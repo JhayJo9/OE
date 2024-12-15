@@ -1,0 +1,6 @@
+Field	Type	Null	Key	Default	Extra
+assesID	int(11)	NO	PRI	NULL	auto_increment
+studentID	int(11)	YES	MUL	NULL	
+courseID	int(11)	YES	MUL	NULL	
+sectionID	int(11)	YES	MUL	NULL	
+assessTypeID	int(11)	YES	MUL	NULL	

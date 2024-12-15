@@ -1,0 +1,8 @@
+Field	Type	Null	Key	Default	Extra
+sessionID	int(11)	NO	PRI	NULL	auto_increment
+studentID	int(11)	YES	MUL	NULL	
+courseID	int(11)	YES	MUL	NULL	
+assessTypeID	int(11)	YES	MUL	NULL	
+startDateTime	datetime	YES		NULL	
+endDateTime	datetime	YES		NULL	
+status	varchar(20)	YES		NULL	

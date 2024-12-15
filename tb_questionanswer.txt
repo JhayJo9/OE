@@ -1,0 +1,8 @@
+Field	Type	Null	Key	Default	Extra
+questionID	int(11)	NO	PRI	NULL	auto_increment
+Question	varchar(100)	NO		NULL	
+OptionA	varchar(100)	NO		NULL	
+OptionB	varchar(100)	NO		NULL	
+OptionC	varchar(100)	NO		NULL	
+OptionD	varchar(100)	NO		NULL	
+CorrectAnswer	varchar(20)	NO		NULL	

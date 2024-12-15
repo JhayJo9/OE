@@ -1,0 +1,11 @@
+Field	Type	Null	Key	Default	Extra
+studentID	int(11)	NO	PRI	NULL	auto_increment
+studentNo	varchar(45)	NO	UNI	NULL	
+LastName	varchar(50)	NO		NULL	
+FirstName	varchar(50)	NO		NULL	
+MiddleName	varchar(50)	NO		NULL	
+DateOfBirth	date	NO		NULL	
+Gender	varchar(50)	NO		NULL	
+Email	varchar(50)	NO		NULL	
+ContactNumber	varchar(15)	NO		NULL	
+SectionCode	varchar(50)	NO		NULL	

@@ -1,0 +1,4 @@
+Field	Type	Null	Key	Default	Extra
+coursequestionID	int(11)	NO	PRI	NULL	auto_increment
+courseID	varchar(50)	NO		NULL	
+questionID	varchar(50)	NO		NULL	

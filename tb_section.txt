@@ -1,0 +1,7 @@
+Field	Type	Null	Key	Default	Extra
+sectionID	int(11)	NO	PRI	NULL	auto_increment
+section	varchar(50)	NO		NULL	
+courseCode	varchar(50)	NO		NULL	
+scheduleDate	datetime	YES		NULL	
+scheduleTime	time	YES		NULL	
+location	varchar(50)	YES		NULL	
