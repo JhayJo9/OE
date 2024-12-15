@@ -271,6 +271,12 @@
     <Compile Include="FormSectionList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormStudentResults.Designer.vb">
+      <DependentUpon>FormStudentResults.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormStudentResults.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormUserList.Designer.vb">
       <DependentUpon>FormUserList.vb</DependentUpon>
     </Compile>
@@ -297,12 +303,6 @@
       <DependentUpon>SplashScreen1.vb</DependentUpon>
     </Compile>
     <Compile Include="SplashScreen1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StaffDashboard.Designer.vb">
-      <DependentUpon>StaffDashboard.vb</DependentUpon>
-    </Compile>
-    <Compile Include="StaffDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StudentDashboard.Designer.vb">
@@ -396,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSectionList.resx">
       <DependentUpon>FormSectionList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStudentResults.resx">
+      <DependentUpon>FormStudentResults.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUserList.resx">
       <DependentUpon>FormUserList.vb</DependentUpon>

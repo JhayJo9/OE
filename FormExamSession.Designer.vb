@@ -23,17 +23,20 @@ Partial Class FormExamSession
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblDateTime = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtQuestions = New System.Windows.Forms.TextBox()
         Me.rbA = New System.Windows.Forms.RadioButton()
         Me.rbB = New System.Windows.Forms.RadioButton()
         Me.rbC = New System.Windows.Forms.RadioButton()
         Me.rbD = New System.Windows.Forms.RadioButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gbAnswers = New System.Windows.Forms.GroupBox()
         Me.btnPrev = New System.Windows.Forms.Button()
         Me.btnNext = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.lblUser = New System.Windows.Forms.Label()
+        Me.lblQuestionNumber = New System.Windows.Forms.Label()
+        Me.btnSubmit = New System.Windows.Forms.Button()
+        Me.gbAnswers.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -49,15 +52,15 @@ Partial Class FormExamSession
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "EXAM SESSION"
         '
-        'Label2
+        'lblDateTime
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(37, 100)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 15)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Label2"
+        Me.lblDateTime.AutoSize = True
+        Me.lblDateTime.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDateTime.Location = New System.Drawing.Point(37, 100)
+        Me.lblDateTime.Name = "lblDateTime"
+        Me.lblDateTime.Size = New System.Drawing.Size(43, 15)
+        Me.lblDateTime.TabIndex = 1
+        Me.lblDateTime.Text = "Label2"
         '
         'Label3
         '
@@ -128,19 +131,19 @@ Partial Class FormExamSession
         Me.rbD.Text = "RadioButton4"
         Me.rbD.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'gbAnswers
         '
-        Me.GroupBox1.Controls.Add(Me.rbB)
-        Me.GroupBox1.Controls.Add(Me.rbD)
-        Me.GroupBox1.Controls.Add(Me.rbA)
-        Me.GroupBox1.Controls.Add(Me.rbC)
-        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(40, 346)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(975, 159)
-        Me.GroupBox1.TabIndex = 8
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "GroupBox1"
+        Me.gbAnswers.Controls.Add(Me.rbB)
+        Me.gbAnswers.Controls.Add(Me.rbD)
+        Me.gbAnswers.Controls.Add(Me.rbA)
+        Me.gbAnswers.Controls.Add(Me.rbC)
+        Me.gbAnswers.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbAnswers.Location = New System.Drawing.Point(40, 346)
+        Me.gbAnswers.Name = "gbAnswers"
+        Me.gbAnswers.Size = New System.Drawing.Size(975, 159)
+        Me.gbAnswers.TabIndex = 8
+        Me.gbAnswers.TabStop = False
+        Me.gbAnswers.Text = "GroupBox1"
         '
         'btnPrev
         '
@@ -162,6 +165,36 @@ Partial Class FormExamSession
         Me.btnNext.Text = "Next"
         Me.btnNext.UseVisualStyleBackColor = True
         '
+        'lblUser
+        '
+        Me.lblUser.AutoSize = True
+        Me.lblUser.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUser.Location = New System.Drawing.Point(40, 115)
+        Me.lblUser.Name = "lblUser"
+        Me.lblUser.Size = New System.Drawing.Size(43, 15)
+        Me.lblUser.TabIndex = 11
+        Me.lblUser.Text = "Label2"
+        '
+        'lblQuestionNumber
+        '
+        Me.lblQuestionNumber.AutoSize = True
+        Me.lblQuestionNumber.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblQuestionNumber.Location = New System.Drawing.Point(37, 130)
+        Me.lblQuestionNumber.Name = "lblQuestionNumber"
+        Me.lblQuestionNumber.Size = New System.Drawing.Size(43, 15)
+        Me.lblQuestionNumber.TabIndex = 12
+        Me.lblQuestionNumber.Text = "Label2"
+        '
+        'btnSubmit
+        '
+        Me.btnSubmit.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSubmit.Location = New System.Drawing.Point(305, 512)
+        Me.btnSubmit.Name = "btnSubmit"
+        Me.btnSubmit.Size = New System.Drawing.Size(125, 36)
+        Me.btnSubmit.TabIndex = 13
+        Me.btnSubmit.Text = "Next"
+        Me.btnSubmit.UseVisualStyleBackColor = True
+        '
         'FormExamSession
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 17.0!)
@@ -169,33 +202,39 @@ Partial Class FormExamSession
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1059, 578)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnSubmit)
+        Me.Controls.Add(Me.lblQuestionNumber)
+        Me.Controls.Add(Me.lblUser)
         Me.Controls.Add(Me.btnNext)
         Me.Controls.Add(Me.btnPrev)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.gbAnswers)
         Me.Controls.Add(Me.txtQuestions)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblDateTime)
         Me.Controls.Add(Me.Label1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormExamSession"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gbAnswers.ResumeLayout(False)
+        Me.gbAnswers.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblDateTime As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents txtQuestions As TextBox
     Friend WithEvents rbA As RadioButton
     Friend WithEvents rbB As RadioButton
     Friend WithEvents rbC As RadioButton
     Friend WithEvents rbD As RadioButton
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gbAnswers As GroupBox
     Friend WithEvents btnPrev As Button
     Friend WithEvents btnNext As Button
+    Friend WithEvents lblUser As Label
+    Friend WithEvents lblQuestionNumber As Label
+    Friend WithEvents btnSubmit As Button
 End Class

@@ -4,26 +4,28 @@ Public Class FormQuestionList
 
     Public Sub fetchQuestion()
         Try
-
             DataGridView1.Rows.Clear()
 
             If OPENDB() Then
                 Dim qu As String = "
-                        SELECT 
-                            q.QuestionID, 
-                            q.Question, 
-                            q.OptionA, 
-                            q.OptionB, 
-                            q.OptionC, 
-                            q.OptionD, 
-                            q.CorrectAnswer,
-                            c.CourseCode 
-                        FROM 
-                            tb_questionanswer q
-                        INNER JOIN 
-                            tb_coursequestion cq ON q.QuestionID = cq.QuestionID
-                        INNER JOIN 
-                            tb_course c ON c.CourseID = cq.CourseID"
+                    SELECT 
+                        q.QuestionID, 
+                        q.Question, 
+                        q.OptionA, 
+                        q.OptionB, 
+                        q.OptionC, 
+                        q.OptionD, 
+                        q.CorrectAnswer,
+                        c.CourseCode,
+                        assess.AssessmentType
+                    FROM 
+                        tb_questionanswer q
+                    INNER JOIN 
+                        tb_coursequestion cq ON q.QuestionID = cq.QuestionID
+                    INNER JOIN 
+                        tb_course c ON c.CourseID = cq.CourseID
+                    INNER JOIN 
+                        tb_assessmenttype assess ON assess.assessTypeID = q.AssessmentTypeID"
                 Using cmd As New MySqlCommand(qu, conn)
                     Using dtreader As MySqlDataReader = cmd.ExecuteReader
 
@@ -36,12 +38,10 @@ Public Class FormQuestionList
                             Dim optionC As String = dtreader.GetString("OptionC")
                             Dim optionD As String = dtreader.GetString("OptionD")
                             Dim correctAnswer As String = dtreader.GetString("CorrectAnswer")
-                            'Dim dateCreated As Date = dtreader.GetDateTime("dateEdited")
-                            'Dim assessmentType As String = dtreader.GetString("AssessmentType")
                             Dim courseCode As String = dtreader.GetString("courseCode")
+                            Dim assessmentType As String = dtreader.GetString("AssessmentType")
 
-
-                            DataGridView1.Rows.Add(questionID, question, optionA, optionB, optionC, optionD, correctAnswer, courseCode)
+                            DataGridView1.Rows.Add(questionID, question, optionA, optionB, optionC, optionD, correctAnswer, courseCode, assessmentType)
                         End While
                     End Using
                 End Using
