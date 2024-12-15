@@ -194,11 +194,11 @@ Public Class FormQuestion
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' Fetch assignedID based on your application's logic
-        Dim assignedID As Integer = GetAssignedID() ' Replace with actual logic to fetch assignedID
+        ' Dim assignedID As Integer = GetAssignedID() ' Replace with actual logic to fetch assignedID
 
         If btnSave.Text = "Save" Then
             If MsgBox("Are you sure you want to add this question?", MsgBoxStyle.YesNo, "Add Question") = MsgBoxResult.Yes Then
-                insertQuestions(assignedID)
+                'insertQuestions(assignedID)
                 With FormQuestionList
                     .fetchQuestion()
                 End With
@@ -214,9 +214,9 @@ Public Class FormQuestion
     End Sub
 
     ' Example method to get assignedID, replace with your actual logic
-    Private Function GetAssignedID() As Integer
-        ' Logic to fetch assignedID
-        ' For example, it might be based on a selected value from a combo box or other UI component
-        Return Convert.ToInt32(cmbAssignedID.SelectedValue) ' Adjust as needed
-    End Function
+    'Private Function GetAssignedID() As Integer
+    '    ' Logic to fetch assignedID
+    '    ' For example, it might be based on a selected value from a combo box or other UI component
+    '    Return Convert.ToInt32(cmbAssignedID.SelectedValue) ' Adjust as needed
+    'End Function
 End Class

@@ -193,6 +193,18 @@
     <Compile Include="AdminDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormExamListForStudent.Designer.vb">
+      <DependentUpon>FormExamListForStudent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormExamListForStudent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormExamSession.Designer.vb">
+      <DependentUpon>FormExamSession.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormExamSession.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormQuestionList.Designer.vb">
       <DependentUpon>FormQuestionList.vb</DependentUpon>
     </Compile>
@@ -345,6 +357,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExamListForStudent.resx">
+      <DependentUpon>FormExamListForStudent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormExamSession.resx">
+      <DependentUpon>FormExamSession.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuestionList.resx">
       <DependentUpon>FormQuestionList.vb</DependentUpon>

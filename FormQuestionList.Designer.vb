@@ -31,7 +31,6 @@ Partial Class FormQuestionList
         Me.optionC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.optionD = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CorrectAnswer = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colAssessmentType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colCourseCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colEdit = New System.Windows.Forms.DataGridViewImageColumn()
         Me.colDelete = New System.Windows.Forms.DataGridViewImageColumn()
@@ -46,7 +45,7 @@ Partial Class FormQuestionList
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colAssessmentType, Me.colCourseCode, Me.colEdit, Me.colDelete, Me.colView})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.questionID, Me.Question, Me.questionA, Me.optionB, Me.optionC, Me.optionD, Me.CorrectAnswer, Me.colCourseCode, Me.colEdit, Me.colDelete, Me.colView})
         Me.DataGridView1.Location = New System.Drawing.Point(18, 43)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -129,15 +128,6 @@ Partial Class FormQuestionList
         Me.CorrectAnswer.ReadOnly = True
         Me.CorrectAnswer.Width = 116
         '
-        'colAssessmentType
-        '
-        Me.colAssessmentType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.colAssessmentType.HeaderText = "Assessment Type"
-        Me.colAssessmentType.MinimumWidth = 6
-        Me.colAssessmentType.Name = "colAssessmentType"
-        Me.colAssessmentType.ReadOnly = True
-        Me.colAssessmentType.Width = 133
-        '
         'colCourseCode
         '
         Me.colCourseCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -200,7 +190,6 @@ Partial Class FormQuestionList
     Friend WithEvents optionC As DataGridViewTextBoxColumn
     Friend WithEvents optionD As DataGridViewTextBoxColumn
     Friend WithEvents CorrectAnswer As DataGridViewTextBoxColumn
-    Friend WithEvents colAssessmentType As DataGridViewTextBoxColumn
     Friend WithEvents colCourseCode As DataGridViewTextBoxColumn
     Friend WithEvents colEdit As DataGridViewImageColumn
     Friend WithEvents colDelete As DataGridViewImageColumn

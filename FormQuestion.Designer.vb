@@ -47,7 +47,7 @@ Partial Class FormQuestion
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(33, 63)
+        Me.Label1.Location = New System.Drawing.Point(39, 86)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(94, 16)
         Me.Label1.TabIndex = 0
@@ -56,7 +56,7 @@ Partial Class FormQuestion
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 110)
+        Me.Label3.Location = New System.Drawing.Point(39, 182)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(63, 16)
         Me.Label3.TabIndex = 2
@@ -65,7 +65,7 @@ Partial Class FormQuestion
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(87, 188)
+        Me.Label4.Location = New System.Drawing.Point(93, 260)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(19, 16)
         Me.Label4.TabIndex = 3
@@ -74,7 +74,7 @@ Partial Class FormQuestion
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(87, 221)
+        Me.Label5.Location = New System.Drawing.Point(93, 293)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(19, 16)
         Me.Label5.TabIndex = 4
@@ -83,7 +83,7 @@ Partial Class FormQuestion
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(87, 255)
+        Me.Label6.Location = New System.Drawing.Point(93, 327)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(19, 16)
         Me.Label6.TabIndex = 5
@@ -92,7 +92,7 @@ Partial Class FormQuestion
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(86, 288)
+        Me.Label7.Location = New System.Drawing.Point(92, 360)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(20, 16)
         Me.Label7.TabIndex = 6
@@ -101,7 +101,7 @@ Partial Class FormQuestion
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(52, 326)
+        Me.Label8.Location = New System.Drawing.Point(58, 398)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(54, 16)
         Me.Label8.TabIndex = 7
@@ -110,7 +110,7 @@ Partial Class FormQuestion
         'cmbCourse
         '
         Me.cmbCourse.FormattingEnabled = True
-        Me.cmbCourse.Location = New System.Drawing.Point(192, 60)
+        Me.cmbCourse.Location = New System.Drawing.Point(42, 105)
         Me.cmbCourse.Name = "cmbCourse"
         Me.cmbCourse.Size = New System.Drawing.Size(223, 24)
         Me.cmbCourse.TabIndex = 9
@@ -119,14 +119,14 @@ Partial Class FormQuestion
         '
         Me.cmbCorrectAnswer.FormattingEnabled = True
         Me.cmbCorrectAnswer.Items.AddRange(New Object() {"A", "B", "C", "D"})
-        Me.cmbCorrectAnswer.Location = New System.Drawing.Point(149, 323)
+        Me.cmbCorrectAnswer.Location = New System.Drawing.Point(155, 395)
         Me.cmbCorrectAnswer.Name = "cmbCorrectAnswer"
         Me.cmbCorrectAnswer.Size = New System.Drawing.Size(195, 24)
         Me.cmbCorrectAnswer.TabIndex = 10
         '
         'txtQuestion
         '
-        Me.txtQuestion.Location = New System.Drawing.Point(149, 107)
+        Me.txtQuestion.Location = New System.Drawing.Point(155, 179)
         Me.txtQuestion.Multiline = True
         Me.txtQuestion.Name = "txtQuestion"
         Me.txtQuestion.Size = New System.Drawing.Size(638, 72)
@@ -134,35 +134,35 @@ Partial Class FormQuestion
         '
         'txtA
         '
-        Me.txtA.Location = New System.Drawing.Point(149, 185)
+        Me.txtA.Location = New System.Drawing.Point(155, 257)
         Me.txtA.Name = "txtA"
         Me.txtA.Size = New System.Drawing.Size(638, 22)
         Me.txtA.TabIndex = 13
         '
         'txtB
         '
-        Me.txtB.Location = New System.Drawing.Point(149, 221)
+        Me.txtB.Location = New System.Drawing.Point(155, 293)
         Me.txtB.Name = "txtB"
         Me.txtB.Size = New System.Drawing.Size(638, 22)
         Me.txtB.TabIndex = 14
         '
         'txtC
         '
-        Me.txtC.Location = New System.Drawing.Point(149, 252)
+        Me.txtC.Location = New System.Drawing.Point(155, 324)
         Me.txtC.Name = "txtC"
         Me.txtC.Size = New System.Drawing.Size(638, 22)
         Me.txtC.TabIndex = 15
         '
         'txtD
         '
-        Me.txtD.Location = New System.Drawing.Point(149, 288)
+        Me.txtD.Location = New System.Drawing.Point(155, 360)
         Me.txtD.Name = "txtD"
         Me.txtD.Size = New System.Drawing.Size(638, 22)
         Me.txtD.TabIndex = 16
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(175, 396)
+        Me.btnSave.Location = New System.Drawing.Point(181, 468)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(99, 40)
         Me.btnSave.TabIndex = 17
@@ -171,7 +171,7 @@ Partial Class FormQuestion
         '
         'btnNext
         '
-        Me.btnNext.Location = New System.Drawing.Point(304, 396)
+        Me.btnNext.Location = New System.Drawing.Point(310, 468)
         Me.btnNext.Name = "btnNext"
         Me.btnNext.Size = New System.Drawing.Size(99, 40)
         Me.btnNext.TabIndex = 18
@@ -180,7 +180,7 @@ Partial Class FormQuestion
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(55, 396)
+        Me.btnBack.Location = New System.Drawing.Point(61, 468)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(94, 42)
         Me.btnBack.TabIndex = 20
@@ -190,7 +190,7 @@ Partial Class FormQuestion
         'lblcoursecode
         '
         Me.lblcoursecode.AutoSize = True
-        Me.lblcoursecode.Location = New System.Drawing.Point(593, 68)
+        Me.lblcoursecode.Location = New System.Drawing.Point(754, 438)
         Me.lblcoursecode.Name = "lblcoursecode"
         Me.lblcoursecode.Size = New System.Drawing.Size(48, 16)
         Me.lblcoursecode.TabIndex = 21
@@ -199,7 +199,7 @@ Partial Class FormQuestion
         'cmbAssessmentType
         '
         Me.cmbAssessmentType.FormattingEnabled = True
-        Me.cmbAssessmentType.Location = New System.Drawing.Point(192, 30)
+        Me.cmbAssessmentType.Location = New System.Drawing.Point(42, 62)
         Me.cmbAssessmentType.Name = "cmbAssessmentType"
         Me.cmbAssessmentType.Size = New System.Drawing.Size(223, 24)
         Me.cmbAssessmentType.TabIndex = 22
@@ -207,7 +207,7 @@ Partial Class FormQuestion
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(33, 33)
+        Me.Label2.Location = New System.Drawing.Point(41, 43)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(153, 16)
         Me.Label2.TabIndex = 23
@@ -217,7 +217,7 @@ Partial Class FormQuestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(872, 467)
+        Me.ClientSize = New System.Drawing.Size(1070, 627)
         Me.ControlBox = False
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.cmbAssessmentType)

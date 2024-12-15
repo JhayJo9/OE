@@ -2,6 +2,7 @@
 Imports MySql.Data
 Module connection
     Public conn As MySqlConnection
+    Public _STUDENTD As Integer
     Dim strConn As String
     Dim result As Boolean
 
@@ -11,6 +12,10 @@ Module connection
     'Public verifyUsername As String
     'Public verifyPassword As String
 
+    'Private connection As MySqlConnection
+    'Private connectionString As String = "Server=localhost;Database=exam;Uid=Yohan;Pwd=Yohan;"
+
+    ' Public connectionStringFormS As New MySqlConnection(connectionString)
     Public Function OPENDB() As Boolean
         Try
             If conn Is Nothing Then
