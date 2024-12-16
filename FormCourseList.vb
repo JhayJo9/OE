@@ -1,32 +1,40 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports MySql.Data
 Public Class FormCourseList
-
-
-
-    Public Sub fetchCourse()
+    Public Sub FetchCourse()
         Try
             DataGridView1.Rows.Clear()
 
+            ' Check if connection exists and is open
             If OPENDB() Then
-                Dim fetch As String = "SELECT * FROM tb_course"
-                Using cmd As New MySqlCommand(fetch, conn)
-                    Using dtreader As MySqlDataReader = cmd.ExecuteReader
+                Const query As String = "SELECT courseID, courseTitle, courseCode FROM tb_course ORDER BY courseID"
 
-                        While dtreader.Read
-                            Dim courseID As Integer = dtreader.GetInt32("courseID")
-                            Dim courseTitle As String = dtreader.GetString("courseTitle")
-                            Dim courseCode As String = dtreader.GetString("courseCode")
+                Using cmd As New MySqlCommand(query, conn)
+                    Using dtreader As MySqlDataReader = cmd.ExecuteReader()
+                        ' Check if there are rows
+                        If dtreader.HasRows Then
+                            While dtreader.Read()
+                                ' Use IsDBNull check to prevent null errors
+                                Dim courseID As Integer = If(dtreader.IsDBNull(0), 0, dtreader.GetInt32(0))
+                                Dim courseTitle As String = If(dtreader.IsDBNull(1), String.Empty, dtreader.GetString(1))
+                                Dim courseCode As String = If(dtreader.IsDBNull(2), String.Empty, dtreader.GetString(2))
 
-                            DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
-                        End While
-
-                        'MsgBox("Course Fetched Successfully", MsgBoxStyle.Information, "Success")
+                                DataGridView1.Rows.Add(courseID, courseTitle, courseCode)
+                            End While
+                        End If
                     End Using
                 End Using
+            Else
+                MessageBox.Show("Database connection failed.", "Connection Error",
+                          MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
+
+        Catch ex As MySqlException
+            MessageBox.Show($"Database Error: {ex.Message}", "Database Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MsgBox("SELECT COURSE: " & ex.Message)
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -38,7 +46,7 @@ Public Class FormCourseList
                     cmd.Parameters.AddWithValue("@courseID", DataGridView1.CurrentRow.Cells(0).Value.ToString)
                     cmd.ExecuteNonQuery()
                 End Using
-                MsgBox("Course Deleted")
+                MessageBox.Show("Record deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             MsgBox("Delete Course: " & ex.Message)
@@ -56,6 +64,7 @@ Public Class FormCourseList
 
     Private Sub btnAddnew_Click(sender As Object, e As EventArgs) Handles btnAddnew.Click
         With Formcourse
+
             .ShowDialog()
         End With
     End Sub
@@ -64,18 +73,35 @@ Public Class FormCourseList
         Dim colName As String = DataGridView1.Columns(e.ColumnIndex).Name
 
         If colName = "colDelete" Then
-            If MsgBox("Delete course?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                deleteCourse()
-                fetchCourse()
+
+            If MessageBox.Show("Are you sure you want to delete this course?: " & DataGridView1.CurrentRow.Cells(1).Value.ToString, "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                Try
+                    deleteCourse()
+                    fetchCourse()
+                Catch ex As Exception
+                    MessageBox.Show("Error deleting record: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
             End If
         ElseIf colName = "colEdit" Then
             With Formcourse
+                .btnAddCourse.Text = "UPDATE"
                 .txtAddCourse.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString
                 .txtsddcourseCode.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString
-                .btnAddCourse.Enabled = False
-                .btnEdit.Enabled = True
                 .ShowDialog()
             End With
         End If
+    End Sub
+
+    Protected Overrides Sub OnFormClosing(ByVal e As FormClosingEventArgs)
+        Try
+            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+                conn.Close()
+                conn.Dispose()
+            End If
+        Catch ex As Exception
+            ' Log the error
+        Finally
+            MyBase.OnFormClosing(e)
+        End Try
     End Sub
 End Class

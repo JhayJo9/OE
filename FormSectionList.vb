@@ -18,20 +18,20 @@ Public Class FormSectionList
                             Dim courseCode As String = dtreader.GetString("courseCode")
 
                             ' Handle the date more safely
-                            Dim shed As DateTime = dtreader.GetDateTime("scheduleDate")
+                            'Dim shed As DateTime = dtreader.GetDateTime("scheduleDate")
                             ' Alternative TimeSpan handling
-                            Dim scheduleTime As String
-                            If Not dtreader.IsDBNull(dtreader.GetOrdinal("scheduleTime")) Then
-                                Dim timeSpan As TimeSpan = dtreader.GetTimeSpan("scheduleTime")
-                                scheduleTime = timeSpan.ToString("hh\:mm\:ss")
-                            Else
-                                scheduleTime = "00:00:00"
-                            End If
+                            'Dim scheduleTime As String
+                            'If Not dtreader.IsDBNull(dtreader.GetOrdinal("scheduleTime")) Then
+                            '    Dim timeSpan As TimeSpan = dtreader.GetTimeSpan("scheduleTime")
+                            '    scheduleTime = timeSpan.ToString("hh\:mm\:ss")
+                            'Else
+                            '    scheduleTime = "00:00:00"
+                            'End If
 
-                            Dim room As String = dtreader.GetString("location")
+                            'Dim room As String = dtreader.GetString("location")
 
                             ' Add to DataGridView
-                            DataGridView1.Rows.Add(id, section, courseCode, shed.ToString("yyyy-MM-dd"), scheduleTime, room)
+                            DataGridView1.Rows.Add(id, section, courseCode)
                         End While
                     End Using
                 End Using

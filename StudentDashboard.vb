@@ -1,6 +1,9 @@
-﻿Imports System.Net.Http.Headers
+﻿Public Class StudentDashboard
 
-Public Class StudentDashboard
+    Private Sub StudentDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lblUser.Text = UserSession.StudentId.ToString()
+    End Sub
+
     Private Sub btnSection_Click(sender As Object, e As EventArgs) Handles btnSection.Click
         With FormExamListForStudent
             .TopLevel = False
@@ -19,17 +22,7 @@ Public Class StudentDashboard
         End With
     End Sub
 
-    Private Sub btnAddQuestion_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub btnExam_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        'loseConnection()
-
         Me.Close()
         formlogin.Show()
     End Sub

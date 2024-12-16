@@ -52,6 +52,7 @@ Public Class FormQuestion
                 Dim courseID As Integer = courseDict(cmbCourse.Text)
                 Dim assessTypeID As Integer = assessmentTypeDict(cmbAssessmentType.Text)
 
+
                 ' Insert into tb_questionanswer
                 Dim qu As String = "
                 INSERT INTO tb_questionanswer
@@ -69,6 +70,11 @@ Public Class FormQuestion
                     cmd.ExecuteNonQuery()
                 End Using
 
+                Debug.WriteLine(txtA.Text)
+                Debug.WriteLine(txtB.Text)
+                Debug.WriteLine(txtC.Text)
+                Debug.WriteLine(txtD)
+
                 ' Insert into tb_coursequestion using LAST_INSERT_ID()
                 Dim qu2 As String = "
                 INSERT INTO tb_coursequestion (courseID, questionID)
@@ -79,6 +85,8 @@ Public Class FormQuestion
                     ' Execute the insert
                     cmd2.ExecuteNonQuery()
                 End Using
+
+                Debug.WriteLine($"Course ID: {courseID}, Assessment Type ID: {assessTypeID}")
 
                 ' Optional success message or clearing input fields
                 MsgBox("Question added successfully!", MsgBoxStyle.Information, "Success")
@@ -165,6 +173,10 @@ Public Class FormQuestion
         If btnSave.Text = "Save" Then
             If MsgBox("Are you sure you want to add this question?", MsgBoxStyle.YesNo, "Add Question") = MsgBoxResult.Yes Then
                 insertQuestions()
+                'Dim courseID As Integer = courseDict(cmbCourse.Text)
+                'Dim assessTypeID As Integer = assessmentTypeDict(cmbAssessmentType.Text)
+
+                'Debug.WriteLine($"Course ID: {courseID}, Assessment Type ID: {assessTypeID}")
                 With FormQuestionList
                     .fetchQuestion()
                 End With

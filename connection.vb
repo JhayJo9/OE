@@ -3,6 +3,7 @@ Imports MySql.Data
 Module connection
     Public conn As MySqlConnection
     Public _STUDENTD As Integer
+    Public _STUDENTNAME As String
     Dim strConn As String
     Dim result As Boolean
 

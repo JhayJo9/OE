@@ -23,6 +23,7 @@ Partial Class StudentDashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblUser = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.btnResults = New System.Windows.Forms.Button()
@@ -36,6 +37,7 @@ Partial Class StudentDashboard
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.lblUser)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.Button11)
         Me.Panel1.Controls.Add(Me.btnResults)
@@ -47,6 +49,15 @@ Partial Class StudentDashboard
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(241, 614)
         Me.Panel1.TabIndex = 15
+        '
+        'lblUser
+        '
+        Me.lblUser.AutoSize = True
+        Me.lblUser.Location = New System.Drawing.Point(58, 68)
+        Me.lblUser.Name = "lblUser"
+        Me.lblUser.Size = New System.Drawing.Size(42, 16)
+        Me.lblUser.TabIndex = 13
+        Me.lblUser.Text = "User: "
         '
         'Label1
         '
@@ -135,4 +146,5 @@ Partial Class StudentDashboard
     Friend WithEvents btnRegisterStudents As Button
     Friend WithEvents panelStudent As Panel
     Friend WithEvents btnResults As Button
+    Friend WithEvents lblUser As Label
 End Class

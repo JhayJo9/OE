@@ -27,7 +27,7 @@ Partial Class AdminDashboard
         Me.btnRegisterStudents = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.btnSection = New System.Windows.Forms.Button()
-        Me.btnExam = New System.Windows.Forms.Button()
+        Me.btnShedule = New System.Windows.Forms.Button()
         Me.btnAssginStudent = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
@@ -83,14 +83,14 @@ Partial Class AdminDashboard
         Me.btnSection.Text = "Section"
         Me.btnSection.UseVisualStyleBackColor = True
         '
-        'btnExam
+        'btnShedule
         '
-        Me.btnExam.Location = New System.Drawing.Point(50, 204)
-        Me.btnExam.Name = "btnExam"
-        Me.btnExam.Size = New System.Drawing.Size(146, 37)
-        Me.btnExam.TabIndex = 7
-        Me.btnExam.Text = "Exam"
-        Me.btnExam.UseVisualStyleBackColor = True
+        Me.btnShedule.Location = New System.Drawing.Point(50, 204)
+        Me.btnShedule.Name = "btnShedule"
+        Me.btnShedule.Size = New System.Drawing.Size(146, 37)
+        Me.btnShedule.TabIndex = 7
+        Me.btnShedule.Text = "Schedules"
+        Me.btnShedule.UseVisualStyleBackColor = True
         '
         'btnAssginStudent
         '
@@ -136,7 +136,7 @@ Partial Class AdminDashboard
         Me.Panel1.Controls.Add(Me.Button11)
         Me.Panel1.Controls.Add(Me.btnAssginStudent)
         Me.Panel1.Controls.Add(Me.btnExit)
-        Me.Panel1.Controls.Add(Me.btnExam)
+        Me.Panel1.Controls.Add(Me.btnShedule)
         Me.Panel1.Controls.Add(Me.btnAddCourse)
         Me.Panel1.Controls.Add(Me.btnSection)
         Me.Panel1.Controls.Add(Me.btnAddQuestion)
@@ -186,7 +186,7 @@ Partial Class AdminDashboard
     Friend WithEvents btnRegisterStudents As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents btnSection As Button
-    Friend WithEvents btnExam As Button
+    Friend WithEvents btnShedule As Button
     Friend WithEvents btnAssginStudent As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button

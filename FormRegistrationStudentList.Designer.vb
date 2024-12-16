@@ -38,6 +38,7 @@ Partial Class FormRegistrationStudentList
         Me.btnAddnew = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.dgwRegistrationList = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewImageColumn1 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.studentNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ff = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Firstnamef = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -79,7 +80,7 @@ Partial Class FormRegistrationStudentList
         Me.questionID.MinimumWidth = 6
         Me.questionID.Name = "questionID"
         Me.questionID.ReadOnly = True
-        Me.questionID.Width = 125
+        Me.questionID.Width = 102
         '
         'Question
         '
@@ -96,7 +97,7 @@ Partial Class FormRegistrationStudentList
         Me.questionA.MinimumWidth = 6
         Me.questionA.Name = "questionA"
         Me.questionA.ReadOnly = True
-        Me.questionA.Width = 125
+        Me.questionA.Width = 45
         '
         'optionB
         '
@@ -105,7 +106,7 @@ Partial Class FormRegistrationStudentList
         Me.optionB.MinimumWidth = 6
         Me.optionB.Name = "optionB"
         Me.optionB.ReadOnly = True
-        Me.optionB.Width = 125
+        Me.optionB.Width = 45
         '
         'optionC
         '
@@ -114,7 +115,7 @@ Partial Class FormRegistrationStudentList
         Me.optionC.MinimumWidth = 6
         Me.optionC.Name = "optionC"
         Me.optionC.ReadOnly = True
-        Me.optionC.Width = 125
+        Me.optionC.Width = 45
         '
         'optionD
         '
@@ -123,7 +124,7 @@ Partial Class FormRegistrationStudentList
         Me.optionD.MinimumWidth = 6
         Me.optionD.Name = "optionD"
         Me.optionD.ReadOnly = True
-        Me.optionD.Width = 125
+        Me.optionD.Width = 46
         '
         'CorrectAnswer
         '
@@ -132,7 +133,7 @@ Partial Class FormRegistrationStudentList
         Me.CorrectAnswer.MinimumWidth = 6
         Me.CorrectAnswer.Name = "CorrectAnswer"
         Me.CorrectAnswer.ReadOnly = True
-        Me.CorrectAnswer.Width = 125
+        Me.CorrectAnswer.Width = 116
         '
         'colAssessmentType
         '
@@ -141,7 +142,7 @@ Partial Class FormRegistrationStudentList
         Me.colAssessmentType.MinimumWidth = 6
         Me.colAssessmentType.Name = "colAssessmentType"
         Me.colAssessmentType.ReadOnly = True
-        Me.colAssessmentType.Width = 125
+        Me.colAssessmentType.Width = 133
         '
         'colCourseCode
         '
@@ -150,7 +151,7 @@ Partial Class FormRegistrationStudentList
         Me.colCourseCode.MinimumWidth = 6
         Me.colCourseCode.Name = "colCourseCode"
         Me.colCourseCode.ReadOnly = True
-        Me.colCourseCode.Width = 125
+        Me.colCourseCode.Width = 106
         '
         'colEdit
         '
@@ -159,7 +160,7 @@ Partial Class FormRegistrationStudentList
         Me.colEdit.MinimumWidth = 6
         Me.colEdit.Name = "colEdit"
         Me.colEdit.ReadOnly = True
-        Me.colEdit.Width = 125
+        Me.colEdit.Width = 36
         '
         'colDelete
         '
@@ -168,7 +169,7 @@ Partial Class FormRegistrationStudentList
         Me.colDelete.MinimumWidth = 6
         Me.colDelete.Name = "colDelete"
         Me.colDelete.ReadOnly = True
-        Me.colDelete.Width = 125
+        Me.colDelete.Width = 53
         '
         'colView
         '
@@ -179,7 +180,7 @@ Partial Class FormRegistrationStudentList
         Me.colView.ReadOnly = True
         Me.colView.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.colView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colView.Width = 125
+        Me.colView.Width = 65
         '
         'btnAddnew
         '
@@ -216,6 +217,15 @@ Partial Class FormRegistrationStudentList
         Me.dgwRegistrationList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgwRegistrationList.Size = New System.Drawing.Size(1014, 491)
         Me.dgwRegistrationList.TabIndex = 2
+        '
+        'DataGridViewImageColumn1
+        '
+        Me.DataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.DataGridViewImageColumn1.HeaderText = "Edit"
+        Me.DataGridViewImageColumn1.Image = Global.Offline__Examinaton.My.Resources.Resources.edit
+        Me.DataGridViewImageColumn1.MinimumWidth = 6
+        Me.DataGridViewImageColumn1.Name = "DataGridViewImageColumn1"
+        Me.DataGridViewImageColumn1.Width = 36
         '
         'studentNo
         '
@@ -294,6 +304,7 @@ Partial Class FormRegistrationStudentList
         '
         Me.EDITT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.EDITT.HeaderText = "Edit"
+        Me.EDITT.Image = Global.Offline__Examinaton.My.Resources.Resources.edit1
         Me.EDITT.MinimumWidth = 6
         Me.EDITT.Name = "EDITT"
         Me.EDITT.ReadOnly = True
@@ -354,6 +365,7 @@ Partial Class FormRegistrationStudentList
     Friend WithEvents btnAddnew As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents dgwRegistrationList As DataGridView
+    Friend WithEvents DataGridViewImageColumn1 As DataGridViewImageColumn
     Friend WithEvents studentNo As DataGridViewTextBoxColumn
     Friend WithEvents ff As DataGridViewTextBoxColumn
     Friend WithEvents Firstnamef As DataGridViewTextBoxColumn

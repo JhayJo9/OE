@@ -8,12 +8,11 @@ Public Class formlogin
 
 
     Public Sub CheckUser()
-
         If conn.State = ConnectionState.Open Then
             conn.Close()
         End If
-        Try
 
+        Try
             conn.Open()
 
             Dim query As String = "SELECT password, role, studentID FROM tb_generatedusernamepassword WHERE username = @username"
@@ -26,16 +25,16 @@ Public Class formlogin
                         Dim passwordHash As String = dtreader.GetString("password")
                         Dim role As String = dtreader.GetString("role")
 
-                        ' Use a proper password verification method
-                        If txtPassword.Text = passwordHash Then
+                        If VerifyPassword(txtPassword.Text, passwordHash) Then
                             Select Case role.ToLower()
                                 Case "admin"
                                     OpenNewForm(New AdminDashboard())
                                 Case "student"
-                                    OpenNewForm(New StudentDashboard())
+                                    UserSession.StudentId = dtreader.GetInt32("studentID")
+                                    UserSession.Username = txtUsername.Text.Trim()
 
-                                    _STUDENTD = dtreader.GetInt32("studentID")
-
+                                    Dim dashboard As New StudentDashboard()
+                                    OpenNewForm(dashboard)
                                 Case Else
                                     ShowError("Invalid user role")
                             End Select
@@ -53,6 +52,8 @@ Public Class formlogin
             ShowError("Database error occurred. Please try again later.")
         Catch ex As Exception
             MsgBox("CHECK USER: " & ex.Message)
+        Finally
+            conn.Close()
         End Try
     End Sub
 

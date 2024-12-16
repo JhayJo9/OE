@@ -9,40 +9,44 @@ Public Class FormExamListForStudent
             conn.Open()
 
             ' Modified query to include exam completion status
-            Dim q As String = "SELECT 
-                    c.courseID,
-                    c.courseCode,
-                    assess.assessTypeID,
-                    assess.AssessmentType,
-                    assi.assesID,   
-                    COUNT(DISTINCT qa.questionID) as QuestionCount,
-                    CASE 
-                        WHEN EXISTS (
-                            SELECT 1 FROM tb_student_answers sa 
-                            WHERE sa.studentID = s.studentID 
-                            AND sa.courseID = c.courseID 
-                            AND sa.assessTypeID = assess.assessTypeID
-                        ) THEN 1 
-                        ELSE 0 
-                    END as HasTakenExam
-                FROM 
-                    tb_student s
-                INNER JOIN 
-                    tb_assignedstudents assi ON s.studentID = assi.studentID
-                INNER JOIN 
-                    tb_course c ON c.courseID = assi.courseID
-                INNER JOIN 
-                    tb_assessmenttype assess ON assess.assessTypeID = assi.assessTypeID
-                LEFT JOIN 
-                    tb_question_assignment qa ON qa.assignedID = assi.assesID
-                WHERE 
-                    s.studentID = @studentID
-                GROUP BY 
-                    c.courseID, c.courseCode, assess.assessTypeID, 
-                    assess.AssessmentType, assi.assesID"
+            Dim q As String = "
+                        SELECT
+                        s.studentID,
+                        c.courseID,
+                        c.courseCode,
+                        assess.assessTypeID,
+                        assess.AssessmentType,
+                        assi.assesID,
+                        COUNT(DISTINCT qa.questionID) AS QuestionCount,
+                        CASE 
+                            WHEN EXISTS (
+                                SELECT 1 
+                                FROM tb_student_answers sa 
+                                WHERE sa.studentID = s.studentID 
+                                AND sa.courseID = c.courseID 
+                                AND sa.assessTypeID = assess.assessTypeID
+                            ) THEN 1 
+                            ELSE 0 
+                        END AS HasTakenExam
+                    FROM 
+                        tb_student s
+                    INNER JOIN 
+                        tb_assignedstudents assi ON s.studentID = assi.studentID
+                    INNER JOIN 
+                        tb_course c ON c.courseID = assi.courseID
+                    INNER JOIN 
+                        tb_assessmenttype assess ON assess.assessTypeID = assi.assessTypeID
+                    LEFT JOIN 
+                        tb_question_assignment qa ON qa.assignedID = assi.assesID
+                    WHERE 
+                        s.studentID = @studentID
+                    GROUP BY 
+                        c.courseID, c.courseCode, assess.assessTypeID, 
+                        assess.AssessmentType, assi.assesID
+                    LIMIT 0, 1000;"
 
             Using cmd As New MySqlCommand(q, conn)
-                cmd.Parameters.AddWithValue("@studentID", _STUDENTD)
+                cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     g.Rows.Clear()
                     While reader.Read()
@@ -90,26 +94,22 @@ Public Class FormExamListForStudent
         If e.ColumnIndex = g.Columns("colTakeExam").Index AndAlso e.RowIndex >= 0 Then
             Try
                 Dim rowData As Dictionary(Of String, Object) = DirectCast(g.Rows(e.RowIndex).Tag, Dictionary(Of String, Object))
-
                 ' Check if exam was already taken
                 If CBool(rowData("hasTakenExam")) Then
                     MsgBox("You have already taken this exam and cannot retake it.", MsgBoxStyle.Information, "Exam Already Taken")
                     Return
                 End If
-
                 ' Check if there are questions
                 If CInt(rowData("questionCount")) = 0 Then
                     MsgBox("No questions available for this exam.")
                     Return
                 End If
-
                 ' Double-check if exam was taken (in case of concurrent access)
                 If HasTakenExam(CInt(rowData("courseID")), CInt(rowData("assessTypeID"))) Then
                     MsgBox("You have already taken this exam and cannot retake it.", MsgBoxStyle.Information, "Exam Already Taken")
                     Fetch_Data() ' Refresh the grid
                     Return
                 End If
-
                 ' Create and show exam form
                 Dim examForm As New FormExamSession With {
                     .StudentID = _STUDENTD,

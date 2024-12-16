@@ -4,6 +4,7 @@ Imports Mysqlx.Cursor
 Public Class Formcourse
 
 
+
     Public Sub insertCourse()
         Try
 
@@ -13,7 +14,7 @@ Public Class Formcourse
                 cmd.Parameters.AddWithValue("@courseCode", txtsddcourseCode.Text)
 
                 cmd.ExecuteNonQuery()
-                MsgBox("Course Added Successfully", MsgBoxStyle.Information, "Success")
+                MessageBox.Show("Record added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 txtAddCourse.Clear()
                 txtsddcourseCode.Clear()
@@ -46,12 +47,17 @@ Public Class Formcourse
     End Sub
 
     Private Sub btnAddCourse_Click(sender As Object, e As EventArgs) Handles btnAddCourse.Click
-        If MsgBox("Are you sure you want to add this course?", MsgBoxStyle.YesNo, "Add Course") = MsgBoxResult.Yes Then
+
+        If btnAddCourse.Text = "SAVE" Then
             insertCourse()
             With FormCourseList
                 .fetchCourse()
             End With
+        ElseIf btnAddCourse.Text = "UPDATE" Then
+            updateCourse()
         End If
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -59,17 +65,12 @@ Public Class Formcourse
         Me.Close()
     End Sub
 
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        If MsgBox("Are you sure you want to update this course?", MsgBoxStyle.YesNo, "Update Course") = MsgBoxResult.Yes Then
-            updateCourse()
-            With FormCourseList
-
-                .fetchCourse()
-            End With
-        End If
-    End Sub
 
     Private Sub Formcourse_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub txtAddCourse_TextChanged(sender As Object, e As EventArgs) Handles txtAddCourse.TextChanged
 
     End Sub
 End Class

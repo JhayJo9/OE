@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Formcourse
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Formcourse
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btnAddCourse = New System.Windows.Forms.Button()
@@ -29,7 +29,6 @@ Partial Class Formcourse
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtsddcourseCode = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnEdit = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label3
@@ -48,7 +47,7 @@ Partial Class Formcourse
         Me.btnAddCourse.Name = "btnAddCourse"
         Me.btnAddCourse.Size = New System.Drawing.Size(140, 31)
         Me.btnAddCourse.TabIndex = 19
-        Me.btnAddCourse.Text = "ADD COURSE"
+        Me.btnAddCourse.Text = "SAVE"
         Me.btnAddCourse.UseVisualStyleBackColor = True
         '
         'txtAddCourse
@@ -94,22 +93,12 @@ Partial Class Formcourse
         Me.Button1.Text = "Back"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'btnEdit
-        '
-        Me.btnEdit.Location = New System.Drawing.Point(368, 153)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(140, 31)
-        Me.btnEdit.TabIndex = 25
-        Me.btnEdit.Text = "UPDATE"
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
         'Formcourse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(617, 226)
         Me.ControlBox = False
-        Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnAddCourse)
         Me.Controls.Add(Me.txtAddCourse)
@@ -131,5 +120,4 @@ Partial Class Formcourse
     Friend WithEvents Label2 As Label
     Friend WithEvents txtsddcourseCode As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents btnEdit As Button
 End Class
