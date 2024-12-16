@@ -161,6 +161,18 @@
     <Compile Include="FormAssignedStudentsList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAssignSchedule.Designer.vb">
+      <DependentUpon>FormAssignSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssignSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssignScheduleList.Designer.vb">
+      <DependentUpon>FormAssignScheduleList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssignScheduleList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formcourse.Designer.vb">
       <DependentUpon>Formcourse.vb</DependentUpon>
     </Compile>
@@ -349,6 +361,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssignedStudentsList.resx">
       <DependentUpon>FormAssignedStudentsList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssignSchedule.resx">
+      <DependentUpon>FormAssignSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssignScheduleList.resx">
+      <DependentUpon>FormAssignScheduleList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formcourse.resx">
       <DependentUpon>Formcourse.vb</DependentUpon>

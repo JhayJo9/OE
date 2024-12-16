@@ -31,124 +31,207 @@ Partial Class FormAssignedStudent
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.cmbCourseCode = New System.Windows.Forms.ComboBox()
-        Me.txtSectionCode = New System.Windows.Forms.TextBox()
         Me.lblStudentId = New System.Windows.Forms.Label()
         Me.txtStudentID = New System.Windows.Forms.TextBox()
+        Me.dtpScheduleDate = New System.Windows.Forms.DateTimePicker()
+        Me.txtLocation = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.sdfasdf = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.dtpScheduleTime = New System.Windows.Forms.DateTimePicker()
+        Me.cmbSection = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'cmbAssessmentType
         '
+        Me.cmbAssessmentType.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAssessmentType.FormattingEnabled = True
         Me.cmbAssessmentType.Location = New System.Drawing.Point(59, 76)
         Me.cmbAssessmentType.Name = "cmbAssessmentType"
-        Me.cmbAssessmentType.Size = New System.Drawing.Size(212, 24)
+        Me.cmbAssessmentType.Size = New System.Drawing.Size(212, 23)
         Me.cmbAssessmentType.TabIndex = 0
         '
         'cmbStudentName
         '
+        Me.cmbStudentName.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbStudentName.FormattingEnabled = True
         Me.cmbStudentName.Location = New System.Drawing.Point(59, 129)
         Me.cmbStudentName.Name = "cmbStudentName"
-        Me.cmbStudentName.Size = New System.Drawing.Size(321, 24)
+        Me.cmbStudentName.Size = New System.Drawing.Size(321, 23)
         Me.cmbStudentName.Sorted = True
         Me.cmbStudentName.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(59, 54)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(157, 16)
+        Me.Label1.Size = New System.Drawing.Size(133, 15)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Select Assessment Type"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(59, 110)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(93, 16)
+        Me.Label2.Size = New System.Drawing.Size(83, 15)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Select Student"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(59, 163)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(86, 16)
+        Me.Label3.Size = New System.Drawing.Size(75, 15)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Course Code"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(413, 110)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(88, 16)
+        Me.Label4.Size = New System.Drawing.Size(76, 15)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Section Code"
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(74, 239)
+        Me.btnSave.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.Location = New System.Drawing.Point(140, 220)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(99, 23)
+        Me.btnSave.Size = New System.Drawing.Size(99, 33)
         Me.btnSave.TabIndex = 9
         Me.btnSave.Text = "SAVE"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(179, 239)
+        Me.btnBack.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBack.Location = New System.Drawing.Point(59, 220)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(75, 23)
+        Me.btnBack.Size = New System.Drawing.Size(75, 33)
         Me.btnBack.TabIndex = 10
         Me.btnBack.Text = "BACK"
         Me.btnBack.UseVisualStyleBackColor = True
         '
         'cmbCourseCode
         '
+        Me.cmbCourseCode.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbCourseCode.FormattingEnabled = True
         Me.cmbCourseCode.Location = New System.Drawing.Point(59, 182)
         Me.cmbCourseCode.Name = "cmbCourseCode"
-        Me.cmbCourseCode.Size = New System.Drawing.Size(321, 24)
+        Me.cmbCourseCode.Size = New System.Drawing.Size(321, 23)
         Me.cmbCourseCode.TabIndex = 11
-        '
-        'txtSectionCode
-        '
-        Me.txtSectionCode.Enabled = False
-        Me.txtSectionCode.Location = New System.Drawing.Point(416, 130)
-        Me.txtSectionCode.Name = "txtSectionCode"
-        Me.txtSectionCode.Size = New System.Drawing.Size(228, 22)
-        Me.txtSectionCode.TabIndex = 12
         '
         'lblStudentId
         '
         Me.lblStudentId.AutoSize = True
+        Me.lblStudentId.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStudentId.Location = New System.Drawing.Point(306, 54)
         Me.lblStudentId.Name = "lblStudentId"
-        Me.lblStudentId.Size = New System.Drawing.Size(71, 16)
+        Me.lblStudentId.Size = New System.Drawing.Size(66, 15)
         Me.lblStudentId.TabIndex = 13
         Me.lblStudentId.Text = "Student ID "
         '
         'txtStudentID
         '
         Me.txtStudentID.Enabled = False
+        Me.txtStudentID.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStudentID.Location = New System.Drawing.Point(309, 78)
         Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.Size = New System.Drawing.Size(228, 22)
+        Me.txtStudentID.Size = New System.Drawing.Size(228, 23)
         Me.txtStudentID.TabIndex = 14
+        '
+        'dtpScheduleDate
+        '
+        Me.dtpScheduleDate.Enabled = False
+        Me.dtpScheduleDate.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpScheduleDate.Location = New System.Drawing.Point(416, 184)
+        Me.dtpScheduleDate.Name = "dtpScheduleDate"
+        Me.dtpScheduleDate.Size = New System.Drawing.Size(200, 23)
+        Me.dtpScheduleDate.TabIndex = 15
+        '
+        'txtLocation
+        '
+        Me.txtLocation.Enabled = False
+        Me.txtLocation.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtLocation.Location = New System.Drawing.Point(594, 78)
+        Me.txtLocation.Name = "txtLocation"
+        Me.txtLocation.Size = New System.Drawing.Size(228, 23)
+        Me.txtLocation.TabIndex = 16
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(413, 165)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(84, 15)
+        Me.Label5.TabIndex = 17
+        Me.Label5.Text = "Schedule Date"
+        '
+        'sdfasdf
+        '
+        Me.sdfasdf.AutoSize = True
+        Me.sdfasdf.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.sdfasdf.Location = New System.Drawing.Point(591, 54)
+        Me.sdfasdf.Name = "sdfasdf"
+        Me.sdfasdf.Size = New System.Drawing.Size(53, 15)
+        Me.sdfasdf.TabIndex = 18
+        Me.sdfasdf.Text = "Location"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(630, 165)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(85, 15)
+        Me.Label7.TabIndex = 20
+        Me.Label7.Text = "Schedule Time"
+        '
+        'dtpScheduleTime
+        '
+        Me.dtpScheduleTime.Enabled = False
+        Me.dtpScheduleTime.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpScheduleTime.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpScheduleTime.Location = New System.Drawing.Point(633, 184)
+        Me.dtpScheduleTime.Name = "dtpScheduleTime"
+        Me.dtpScheduleTime.ShowUpDown = True
+        Me.dtpScheduleTime.Size = New System.Drawing.Size(200, 23)
+        Me.dtpScheduleTime.TabIndex = 19
+        '
+        'cmbSection
+        '
+        Me.cmbSection.Font = New System.Drawing.Font("Calibri", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbSection.FormattingEnabled = True
+        Me.cmbSection.Location = New System.Drawing.Point(416, 129)
+        Me.cmbSection.Name = "cmbSection"
+        Me.cmbSection.Size = New System.Drawing.Size(321, 23)
+        Me.cmbSection.TabIndex = 21
         '
         'FormAssignedStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(803, 328)
+        Me.ClientSize = New System.Drawing.Size(893, 296)
         Me.ControlBox = False
+        Me.Controls.Add(Me.cmbSection)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.dtpScheduleTime)
+        Me.Controls.Add(Me.sdfasdf)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.txtLocation)
+        Me.Controls.Add(Me.dtpScheduleDate)
         Me.Controls.Add(Me.txtStudentID)
         Me.Controls.Add(Me.lblStudentId)
-        Me.Controls.Add(Me.txtSectionCode)
         Me.Controls.Add(Me.cmbCourseCode)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnSave)
@@ -177,5 +260,11 @@ Partial Class FormAssignedStudent
     Friend WithEvents lblStudentId As Label
     Public WithEvents txtStudentID As TextBox
     Public WithEvents cmbCourseCode As ComboBox
-    Public WithEvents txtSectionCode As TextBox
+    Friend WithEvents dtpScheduleDate As DateTimePicker
+    Public WithEvents txtLocation As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents sdfasdf As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents dtpScheduleTime As DateTimePicker
+    Public WithEvents cmbSection As ComboBox
 End Class

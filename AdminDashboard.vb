@@ -41,10 +41,10 @@
         End With
     End Sub
 
-    Private Sub btnExam_Click(sender As Object, e As EventArgs) Handles btnExam.Click
-        With FormExamList
+    Private Sub btnExam_Click(sender As Object, e As EventArgs) Handles btnShedule.Click
+        With FormAssignScheduleList
             .TopLevel = False
-            panell.Controls.Add(FormExamList)
+            panell.Controls.Add(FormAssignScheduleList)
             .BringToFront()
             .Show()
         End With

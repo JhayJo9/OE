@@ -160,7 +160,7 @@ Public Class FormAssignedStudentsList
             Case "ColView"
                 Try
                     Using frm As New FormAssignedStudent
-                        frm.txtSectionCode.Enabled = False
+                        'frm.txtSectionCode.Enabled = False
                         frm.txtStudentID.Enabled = False
                         frm.cmbAssessmentType.Enabled = False
                         frm.cmbCourseCode.Enabled = False
@@ -170,7 +170,7 @@ Public Class FormAssignedStudentsList
                         frm.txtStudentID.Text = studentID.ToString()
                         frm.cmbStudentName.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(2).Value.ToString()
                         frm.cmbCourseCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(3).Value.ToString()
-                        frm.txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
+                        'frm.txtSectionCode.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(4).Value.ToString()
                         frm.cmbAssessmentType.Text = dgvAssignedStudents.Rows(e.RowIndex).Cells(5).Value.ToString()
                     End Using
                 Catch ex As Exception
