@@ -266,7 +266,12 @@ Public Class FormRegistrationStudent
         Dim userID As Integer = 0
         Dim studentID As Integer = 0
         Dim studentNo As Integer = 0
+
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
         Try
+            conn.Open()
             If OPENDB() Then
                 ' First, get the latest studentID from tb_student
                 Dim queryStudentID As String = "SELECT MAX(studentID) as studentID , MAX(studentNo) as studentNo FROM tb_student"

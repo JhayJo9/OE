@@ -42,6 +42,8 @@ Partial Class FormQuestion
         Me.lblcoursecode = New System.Windows.Forms.Label()
         Me.cmbAssessmentType = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.cmbSection = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -213,12 +215,31 @@ Partial Class FormQuestion
         Me.Label2.TabIndex = 23
         Me.Label2.Text = "Select Assessmenr Typ:"
         '
+        'cmbSection
+        '
+        Me.cmbSection.FormattingEnabled = True
+        Me.cmbSection.Location = New System.Drawing.Point(42, 149)
+        Me.cmbSection.Name = "cmbSection"
+        Me.cmbSection.Size = New System.Drawing.Size(223, 24)
+        Me.cmbSection.TabIndex = 24
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(39, 130)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(89, 16)
+        Me.Label9.TabIndex = 25
+        Me.Label9.Text = "Select Setion:"
+        '
         'FormQuestion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 627)
         Me.ControlBox = False
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.cmbSection)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.cmbAssessmentType)
         Me.Controls.Add(Me.lblcoursecode)
@@ -267,4 +288,6 @@ Partial Class FormQuestion
     Friend WithEvents lblcoursecode As Label
     Friend WithEvents cmbAssessmentType As ComboBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents cmbSection As ComboBox
+    Friend WithEvents Label9 As Label
 End Class
