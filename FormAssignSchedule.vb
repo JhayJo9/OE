@@ -6,6 +6,8 @@ Public Class FormAssignSchedule
 
     Dim _ASSESSMENTTYPEID As Integer
 
+
+
     Public Property ScheduleListForm As FormAssignScheduleList
 
     Private Sub FormAssignSchedule_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -48,9 +50,7 @@ Public Class FormAssignSchedule
 
     Private Sub fetchAssessmentTypes()
         Try
-
             cmbAssessmentType.Items.Clear()
-
             If conn Is Nothing Then
                 conn = New MySqlConnection(connectionString)
             End If
@@ -67,6 +67,7 @@ Public Class FormAssignSchedule
             End Using
         Catch ex As Exception
             MsgBox("Fetch Assessment Types Error: " & ex.Message)
+            Debug.WriteLine("Fetch Assessment Types Error: " & ex.Message)
         Finally
             conn.Close()
         End Try
@@ -96,6 +97,10 @@ Public Class FormAssignSchedule
     End Sub
 
     Public Sub InsertData()
+        Debug.WriteLine(cmbAssessmentType.SelectedValue)
+        MsgBox(cmbAssessmentType.SelectedValue)
+
+        _ASSESSMENTTYPEID = cmbAssessmentType.SelectedValue
         Try
             If conn Is Nothing Then
                 conn = New MySqlConnection(connectionString)

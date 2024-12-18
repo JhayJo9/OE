@@ -2,9 +2,11 @@
 Imports MySql.Data
 
 Public Class FormQuestion
-    Private assessmentTypeDict As New Dictionary(Of String, Integer)
-    Private courseDict As New Dictionary(Of String, Integer)
 
+    Private assessmentTypeDict As New Dictionary(Of String, Integer)
+
+    Private courseDict As New Dictionary(Of String, Integer)
+    Public sectionDict As New Dictionary(Of String, Integer)
     Public Sub fetchAssessmentType()
         Try
             If OPENDB() Then
@@ -21,7 +23,7 @@ Public Class FormQuestion
                 End Using
             End If
         Catch ex As Exception
-            ' Handle exception
+            MsgBox("SELECT ASSESSMENT TYPE: " & ex.Message)
         End Try
     End Sub
 
@@ -45,20 +47,56 @@ Public Class FormQuestion
         End Try
     End Sub
 
+    Private Sub fetchSections()
+        Try
+            If OPENDB() Then
+                Dim query As String = "SELECT sectionID, section FROM tb_section"
+                Using cmd As New MySqlCommand(query, conn)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        While reader.Read()
+                            Dim sectionID As Integer = reader.GetInt32("sectionID")
+                            Dim sectionName As String = reader.GetString("section")
+                            cmbSection.Items.Add(New With {.Text = sectionName, .Value = sectionID})
+                        End While
+                    End Using
+                End Using
+            End If
+        Catch ex As Exception
+            MsgBox("SELECT SECTION: " & ex.Message)
+        End Try
+    End Sub
     Public Sub insertQuestions()
         Try
             If OPENDB() Then
-                ' Get the courseID and assessTypeID from the dictionaries
-                Dim courseID As Integer = courseDict(cmbCourse.Text)
-                Dim assessTypeID As Integer = assessmentTypeDict(cmbAssessmentType.Text)
+                ' Get the courseID, assessTypeID, and sectionID from the selected items
+                Dim selectedCourse As String = cmbCourse.Text
+                Dim selectedAssessmentType As String = cmbAssessmentType.Text
+                Dim selectedSection As Object = cmbSection.SelectedItem
 
+                If Not courseDict.ContainsKey(selectedCourse) Then
+                    MsgBox("Course not found in dictionary: " & selectedCourse)
+                    Return
+                End If
+
+                If Not assessmentTypeDict.ContainsKey(selectedAssessmentType) Then
+                    MsgBox("Assessment type not found in dictionary: " & selectedAssessmentType)
+                    Return
+                End If
+
+                If selectedSection Is Nothing Then
+                    MsgBox("Section not selected.")
+                    Return
+                End If
+
+                Dim courseID As Integer = courseDict(selectedCourse)
+                Dim assessTypeID As Integer = assessmentTypeDict(selectedAssessmentType)
+                Dim sectionID As Integer = selectedSection.Value
 
                 ' Insert into tb_questionanswer
                 Dim qu As String = "
-                INSERT INTO tb_questionanswer
-                VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
+            INSERT INTO tb_questionanswer
+            VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
                 Using cmd As New MySqlCommand(qu, conn)
-                    ' Add parameters for the question
                     cmd.Parameters.AddWithValue("@question", txtQuestion.Text)
                     cmd.Parameters.AddWithValue("@optionA", txtA.Text)
                     cmd.Parameters.AddWithValue("@optionB", txtB.Text)
@@ -66,35 +104,31 @@ Public Class FormQuestion
                     cmd.Parameters.AddWithValue("@optionD", txtD.Text)
                     cmd.Parameters.AddWithValue("@correctAnswer", cmbCorrectAnswer.Text)
                     cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
-                    ' Execute the insert
                     cmd.ExecuteNonQuery()
                 End Using
 
-                Debug.WriteLine(txtA.Text)
-                Debug.WriteLine(txtB.Text)
-                Debug.WriteLine(txtC.Text)
-                Debug.WriteLine(txtD)
-
-                ' Insert into tb_coursequestion using LAST_INSERT_ID()
+                ' Insert into tb_course_assessment_section_question using LAST_INSERT_ID()
                 Dim qu2 As String = "
-                INSERT INTO tb_coursequestion (courseID, questionID)
-                VALUES (@courseID, LAST_INSERT_ID())"
+            INSERT INTO tb_course_assessment_section_question (courseID, assessTypeID, sectionID, questionID)
+            VALUES (@courseID, @assessTypeID, @sectionID, LAST_INSERT_ID())"
                 Using cmd2 As New MySqlCommand(qu2, conn)
-                    ' Add parameter for courseID
                     cmd2.Parameters.AddWithValue("@courseID", courseID)
-                    ' Execute the insert
+                    cmd2.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                    cmd2.Parameters.AddWithValue("@sectionID", sectionID)
                     cmd2.ExecuteNonQuery()
                 End Using
 
-                Debug.WriteLine($"Course ID: {courseID}, Assessment Type ID: {assessTypeID}")
-
-                ' Optional success message or clearing input fields
                 MsgBox("Question added successfully!", MsgBoxStyle.Information, "Success")
+                ' Clear form fields after successful insertion
                 txtQuestion.Clear()
                 txtA.Clear()
                 txtB.Clear()
                 txtC.Clear()
                 txtD.Clear()
+                cmbCorrectAnswer.SelectedIndex = -1
+                cmbCourse.SelectedIndex = -1
+                cmbAssessmentType.SelectedIndex = -1
+                cmbSection.SelectedIndex = -1
             End If
         Catch ex As Exception
             MsgBox("INSERTING QUESTION: " & ex.Message)
@@ -167,6 +201,7 @@ Public Class FormQuestion
     Private Sub FormQuestion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         fetchCourse()
         fetchAssessmentType()
+        fetchSections()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -192,6 +227,10 @@ Public Class FormQuestion
     End Sub
 
     Private Sub cmbAssessmentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAssessmentType.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
 
     End Sub
 End Class

@@ -4,6 +4,9 @@ Imports System.Data.SqlClient
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Security.Cryptography.X509Certificates
 
+''' <summary>
+''' Form for assigning students to courses, sections, and assessment types.
+''' </summary>
 Public Class FormAssignedStudent
 
     ' Existing variables...
@@ -18,32 +21,95 @@ Public Class FormAssignedStudent
     Dim assessTypeID As Integer = 0
     Dim questionIDs As New List(Of Integer)
 
-    Private Sub FetchSections()
+    ''' <summary>
+    ''' Fetches the list of assessment types from the database and populates the cmbAssessmentType combo box.
+    ''' </summary>
+    Public Sub Fetch_AssessmentType()
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+
         Try
-            If conn Is Nothing Then
-                conn = New MySqlConnection(connectionString)
-            End If
+            conn.Open()
+            Dim query As String = "SELECT * FROM tb_assessmenttype"
+            Dim cmd As New MySqlCommand(query, conn)
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            While reader.Read
+                cmbAssessmentType.Items.Add(reader.GetString("AssessmentType"))
+            End While
+        Catch ex As Exception
+            Debug.WriteLine("ASSESSMENT TYPE: " & ex.Message)
+        End Try
+    End Sub
 
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-
+    ''' <summary>
+    ''' Fetches the list of sections from the database and populates the cmbSection combo box.
+    ''' </summary>
+    Public Sub FetchSections()
+        cmbSection.Items.Clear()
+        If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+        Try
             conn.Open()
             Dim query As String = "SELECT section FROM tb_section"
             Using cmd As New MySqlCommand(query, conn)
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
-                    While reader.Read()
-                        cmbSection.Items.Add(reader.GetString("section"))
-                    End While
+                    If reader.HasRows Then
+                        While reader.Read()
+                            'SectionID = reader.GetInt32("section")
+                            cmbSection.Items.Add(reader.GetString("section"))
+                        End While
+                    Else
+                        MessageBox.Show("No sections found in the database.", "Information",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
+                End Using
+            End Using
+            conn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show("SECTION Error: " & ex.Message, "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message, "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+    End Sub
+
+    ''' <summary>
+    ''' Fetches the list of courses from the database and populates the cmbCourseCode combo box.
+    ''' </summary>
+    Public Sub Fetch_Course()
+        If conn.State = ConnectionState.Open Then
+            conn.Close()
+        End If
+        Try
+            conn.Open()
+            Dim query As String = "SELECT courseID, CourseCode FROM tb_course"
+            Using cmd As New MySqlCommand(query, conn)
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.HasRows Then
+                        While reader.Read()
+                            CourseID = reader.GetInt32("courseID")
+                            cmbCourseCode.Items.Add(reader.GetString("CourseCode"))
+                        End While
+                    Else
+                        MessageBox.Show("No courses found in the database.", "Information",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                 End Using
             End Using
         Catch ex As Exception
-            MsgBox("Fetch Sections Error: " & ex.Message)
-        Finally
-            conn.Close()
+            MessageBox.Show("An error occurred: " & ex.Message, "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Fetches the list of students from the database and populates the cmbStudentName combo box.
+    ''' </summary>
     Public Sub Fetch_Student()
         txtStudentID.Clear()
         cmbStudentName.Items.Clear()
@@ -89,61 +155,10 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
-    Public Sub Fetch_AsessementType()
-        If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
-        Try
-            conn.Open()
-            Dim type As String = "SELECT assessTypeID, AssessmentType FROM tb_assessmenttype"
-            Dim cmd As New MySqlCommand(type, conn)
-            Dim readerType As MySqlDataReader = cmd.ExecuteReader
-
-            While readerType.Read()
-                assessTypeID = readerType.GetInt32("assessTypeID")
-                Dim assessmentType As String = readerType.GetString("AssessmentType")
-                cmbAssessmentType.Items.Add(assessmentType)
-            End While
-        Catch ex As Exception
-            MsgBox("ASSESMENT TYPE: " & ex.Message)
-            conn.Close()
-        End Try
-    End Sub
-
-    Public Sub FetchSectionCode(studentID As Integer)
-        Dim query As String = "SELECT 
-                                s.studentID,
-                                sec.section,
-                                sec.sectionID  
-                            FROM 
-                                tb_student s
-                            JOIN 
-                                tb_assignedsection asg ON s.studentID = asg.studentID
-                            JOIN 
-                                tb_section sec ON asg.sectionID = sec.sectionID
-                            WHERE 
-                                s.studentID = @studentID;"
-        Try
-            Using connection As New MySqlConnection(connectionString)
-                Using command As New MySqlCommand(query, connection)
-                    command.Parameters.AddWithValue("@studentID", CInt(studentID))
-                    connection.Open()
-                    Using reader As MySqlDataReader = command.ExecuteReader()
-                        If reader.Read() Then
-                            Dim sectionCode As String = reader("section").ToString()
-                            SectionID = reader.GetInt32("sectionID")
-                            Fetch_Course(sectionCode)
-                        Else
-                            MessageBox.Show("No section found for the given student ID.")
-                        End If
-                    End Using
-                End Using
-            End Using
-        Catch ex As Exception
-            MsgBox("FETCH SECTION: " & ex.Message)
-        End Try
-    End Sub
-
+    ''' <summary>
+    ''' Fetches the list of courses for a given section code and populates the cmbCourseCode combo box.
+    ''' </summary>
+    ''' <param name="secCode">The section code.</param>
     Public Sub Fetch_Course(secCode As String)
         cmbCourseCode.Items.Clear()
         If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
@@ -186,19 +201,26 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Fetches the list of questions for the selected course and assessment type.
+    ''' </summary>
     Public Sub Fetch_Questions()
+
+        Debug.WriteLine(CourseID)
+        Debug.WriteLine(assessTypeID)
         questionIDs.Clear()
         If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
             conn.Close()
         End If
         Try
             conn.Open()
-            Dim query As String = "SELECT q.questionID FROM tb_questionanswer q 
-                               JOIN tb_coursequestion cq ON q.questionID = cq.questionID 
-                               WHERE cq.courseID = @courseID AND q.assessmentTypeID = @assessmentTypeID"
+            Dim query As String = "SELECT 
+	                                q.questionID 
+                                FROM tb_course_assessment_section_question q 
+                                WHERE q.courseID = @courseID AND q.assessTypeID = @assessTypeID"
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@courseID", CourseID)
-            cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
+            cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
             Using reader As MySqlDataReader = cmd.ExecuteReader()
                 If reader.HasRows Then
                     While reader.Read()
@@ -216,6 +238,9 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Assigns the fetched questions to the selected student.
+    ''' </summary>
     Public Sub Assign_Questions_To_Student()
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 OrElse questionIDs.Count = 0 Then
             MessageBox.Show("One or more required IDs are not set or no questions found. Please ensure all fields are selected and questions are available.")
@@ -245,6 +270,12 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Fetches the schedule details for the selected course, section, and assessment type.
+    ''' </summary>
+    ''' <param name="courseCode">The course code.</param>
+    ''' <param name="section">The section.</param>
+    ''' <param name="assessTypeID">The assessment type ID.</param>
     Private Sub FetchScheduleDetails(courseCode As String, section As String, assessTypeID As Integer)
         Dim query As String = "SELECT scheduleDate, scheduleTime, location FROM tb_schedule WHERE courseCode = @courseCode AND section = @section AND assessTypeID = @assessTypeID"
         Try
@@ -271,6 +302,9 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Inserts the assigned student data into the database.
+    ''' </summary>
     Public Sub insert_Data()
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 Then
             MessageBox.Show("One or more required IDs are not set. Please ensure all fields are selected.")
@@ -283,11 +317,25 @@ Public Class FormAssignedStudent
         Try
             conn.Open()
 
-            Dim insert As String = "INSERT INTO tb_assignedstudents VALUES  (null, @studentID, @courseCode, @sectionCode, @assessTypeID, @scheduleDate, @scheduleTime, @location)"
+            ' Ensure assessment type, course, and section have questions assigned
+            Dim queryCheck As String = "SELECT COUNT(*) FROM tb_course_assessment_section_question WHERE courseID = @courseID AND assessTypeID = @assessTypeID AND sectionID = @sectionID"
+            Using cmdCheck As New MySqlCommand(queryCheck, conn)
+                cmdCheck.Parameters.AddWithValue("@courseID", CourseID)
+                cmdCheck.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                cmdCheck.Parameters.AddWithValue("@sectionID", SectionID)
+                Dim questionCount As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
+                If questionCount = 0 Then
+                    MsgBox("Selected course, assessment type, and section do not have assigned questions. Please add questions before assigning.")
+                    conn.Close()
+                    Return
+                End If
+            End Using
+
+            Dim insert As String = "INSERT INTO tb_assignedstudents VALUES (null, @studentID, @courseID, @sectionID, @assessTypeID, @scheduleDate, @scheduleTime, @location)"
             Using cmd As New MySqlCommand(insert, conn)
                 cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
-                cmd.Parameters.AddWithValue("@courseCode", CInt(CourseID))
-                cmd.Parameters.AddWithValue("@sectionCode", CInt(SectionID))
+                cmd.Parameters.AddWithValue("@courseID", CInt(CourseID))
+                cmd.Parameters.AddWithValue("@sectionID", 1)
                 cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
                 cmd.Parameters.AddWithValue("@scheduleDate", dtpScheduleDate.Value.ToString("yyyy-MM-dd"))
                 cmd.Parameters.AddWithValue("@scheduleTime", dtpScheduleTime.Value.ToString("HH:mm:ss"))
@@ -306,10 +354,10 @@ Public Class FormAssignedStudent
             MsgBox("INSERT DATA: " & ex.Message)
         End Try
     End Sub
-
     Private Sub FormAssignedStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Fetch_Course()
         Fetch_Student()
-        Fetch_AsessementType()
+        Fetch_AssessmentType()
         FetchSections()
         cmbStudentName_SelectedIndexChanged(cmbStudentName, EventArgs.Empty)
     End Sub
@@ -317,19 +365,30 @@ Public Class FormAssignedStudent
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         Me.Close()
     End Sub
-
     Private Sub cmbCourseCode_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCourseCode.SelectedIndexChanged
         If cmbCourseCode.SelectedIndex <> -1 AndAlso cmbSection.SelectedIndex <> -1 AndAlso cmbAssessmentType.SelectedIndex <> -1 Then
             FetchScheduleDetails(cmbCourseCode.SelectedItem.ToString(), cmbSection.SelectedItem.ToString(), assessTypeID)
         End If
     End Sub
-
     Private Sub cmbSection_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSection.SelectedIndexChanged
         If cmbCourseCode.SelectedIndex <> -1 AndAlso cmbSection.SelectedIndex <> -1 AndAlso cmbAssessmentType.SelectedIndex <> -1 Then
             FetchScheduleDetails(cmbCourseCode.SelectedItem.ToString(), cmbSection.SelectedItem.ToString(), assessTypeID)
         End If
-    End Sub
+        Try
+            conn.Open()
+            Dim query As String = "SELECT sectionID, section FROM tb_section WHERE section = @type"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@type", cmbSection.SelectedItem.ToString())
+                SectionID = Convert.ToInt32(cmd.ExecuteScalar())
 
+                MsgBox("hdfghc: " & SectionID)
+            End Using
+        Catch ex As Exception
+            MsgBox("Error getting assessment type ID: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
     Private Sub cmbAssessmentType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAssessmentType.SelectedIndexChanged
         If cmbCourseCode.SelectedIndex <> -1 AndAlso cmbSection.SelectedIndex <> -1 AndAlso cmbAssessmentType.SelectedIndex <> -1 Then
             FetchScheduleDetails(cmbCourseCode.SelectedItem.ToString(), cmbSection.SelectedItem.ToString(), assessTypeID)
@@ -338,12 +397,15 @@ Public Class FormAssignedStudent
         If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
             conn.Close()
         End If
+
         Try
             conn.Open()
-            Dim query As String = "SELECT assessTypeID FROM tb_assessmenttype WHERE AssessmentType = @type"
+            Dim query As String = "SELECT assessTypeID, AssessmentType FROM tb_assessmenttype WHERE AssessmentType = @type"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@type", cmbAssessmentType.SelectedItem.ToString())
                 assessTypeID = Convert.ToInt32(cmd.ExecuteScalar())
+
+                MsgBox("hdfghc: " & assessTypeID)
             End Using
         Catch ex As Exception
             MsgBox("Error getting assessment type ID: " & ex.Message)
@@ -351,7 +413,6 @@ Public Class FormAssignedStudent
             conn.Close()
         End Try
     End Sub
-
     Private Sub cmbStudentName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStudentName.SelectedIndexChanged
         FetchSectionID()
     End Sub
@@ -365,13 +426,16 @@ Public Class FormAssignedStudent
             If studentDictionary.ContainsKey(selectedName) Then
                 studentid = studentDictionary(selectedName)
                 txtStudentID.Text = studentid.ToString()
-                FetchSectionCode(studentid)
+                'FetchSectionCode(studentid)
             Else
                 MsgBox("Student not found in dictionary.")
             End If
         End If
     End Sub
 
+    ''' <summary>
+    ''' Updates the assigned student data in the database.
+    ''' </summary>
     Public Sub Update_Data()
         If conn.State = ConnectionState.Open Then
             conn.Close()
@@ -380,6 +444,7 @@ Public Class FormAssignedStudent
             conn.Open()
             Dim ud As String = "UPDATE tb_assignedstudents SET courseID = @courseID, sectionID = @sectionID, assessTypeID = @assessTypeID, scheduleDate = @scheduleDate, scheduleTime = @scheduleTime, location = @location WHERE studentID = @studentID"
             Dim cmd As New MySqlCommand(ud, conn)
+            ' cmd.Parameters.AddWithValue("@courseID", Course)
             cmd.Parameters.AddWithValue("@courseID", CourseID)
             cmd.Parameters.AddWithValue("@sectionID", SectionID)
             cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
@@ -398,10 +463,17 @@ Public Class FormAssignedStudent
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Handles the KeyPress event of the combo boxes to prevent manual input.
+    ''' </summary>
     Private Sub ComboBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbAssessmentType.KeyPress, cmbCourseCode.KeyPress, cmbStudentName.KeyPress
         e.Handled = True
     End Sub
 
+    ''' <summary>
+    ''' Handles the Click event of the btnSave control.
+    ''' Fetches questions and inserts or updates the assigned student data.
+    ''' </summary>
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Fetch_Questions()
 
@@ -411,14 +483,46 @@ Public Class FormAssignedStudent
         Debug.WriteLine("assessTypeID: " & assessTypeID)
         Debug.WriteLine("questionIDs count: " & questionIDs.Count)
 
-        ' MsgBox("VALUES: " & studentid & " " & CourseID & " " & SectionID & " " & assessTypeID & " " & questionIDs.Count)
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 OrElse questionIDs.Count = 0 Then
             MessageBox.Show("One or more required IDs are not set or no questions found. Please ensure all fields are selected and questions are available.")
             Return
         End If
 
         Try
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+
+            conn.Open()
             If btnSave.Text = "SAVE" Then
+                ' Check if the selected assessment type, section, course, and student are already assigned
+                Dim queryCheck As String = "SELECT COUNT(*) FROM tb_assignedstudents WHERE studentID = @studentID AND courseID = @courseID AND sectionID = @sectionID AND assessTypeID = @assessTypeID"
+                Using cmdCheck As New MySqlCommand(queryCheck, conn)
+                    cmdCheck.Parameters.AddWithValue("@studentID", studentid)
+                    cmdCheck.Parameters.AddWithValue("@courseID", CourseID)
+                    cmdCheck.Parameters.AddWithValue("@sectionID", SectionID)
+                    cmdCheck.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                    Dim count As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
+                    If count > 0 Then
+                        MsgBox("This student is already assigned to the selected course, section, and assessment type.")
+                        Return
+                    End If
+                End Using
+
+                ' Check if the selected assessment type, section, and course have records in tb_schedule
+                Dim queryScheduleCheck As String = "SELECT COUNT(*) FROM tb_schedule WHERE courseCode = @courseCode AND section = @section AND assessTypeID = @assessTypeID"
+                Using cmdScheduleCheck As New MySqlCommand(queryScheduleCheck, conn)
+                    cmdScheduleCheck.Parameters.AddWithValue("@courseCode", cmbCourseCode.SelectedItem.ToString())
+                    cmdScheduleCheck.Parameters.AddWithValue("@section", cmbSection.SelectedItem.ToString())
+                    cmdScheduleCheck.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                    Dim scheduleCount As Integer = Convert.ToInt32(cmdScheduleCheck.ExecuteScalar())
+                    If scheduleCount = 0 Then
+                        MsgBox("No schedule found for the selected course, section, and assessment type.")
+                        conn.Close()
+                        Return
+                    End If
+                End Using
+
                 insert_Data()
             ElseIf btnSave.Text = "UPDATE" Then
                 Update_Data()
@@ -432,4 +536,3 @@ Public Class FormAssignedStudent
     End Sub
 
 End Class
-

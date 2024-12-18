@@ -22,12 +22,14 @@ Partial Class FormExamListForStudent
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.g = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colTakeExam = New System.Windows.Forms.DataGridViewButtonColumn()
         CType(Me.g, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -43,7 +45,7 @@ Partial Class FormExamListForStudent
         Me.g.BackgroundColor = System.Drawing.Color.Silver
         Me.g.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.g.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.g.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.colTakeExam})
+        Me.g.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column5, Me.Column6, Me.colTakeExam})
         Me.g.Location = New System.Drawing.Point(12, 33)
         Me.g.MultiSelect = False
         Me.g.Name = "g"
@@ -66,24 +68,36 @@ Partial Class FormExamListForStudent
         Me.Column2.MinimumWidth = 6
         Me.Column2.Name = "Column2"
         '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Schedule Date"
-        Me.Column3.MinimumWidth = 6
-        Me.Column3.Name = "Column3"
-        '
         'Column4
         '
         Me.Column4.HeaderText = "Total Questions"
         Me.Column4.MinimumWidth = 6
         Me.Column4.Name = "Column4"
         '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Schedule Date"
+        Me.Column3.MinimumWidth = 6
+        Me.Column3.Name = "Column3"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Schedule Time"
+        Me.Column5.MinimumWidth = 6
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Room No."
+        Me.Column6.MinimumWidth = 6
+        Me.Column6.Name = "Column6"
+        '
         'colTakeExam
         '
         Me.colTakeExam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.colTakeExam.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.colTakeExam.DefaultCellStyle = DataGridViewCellStyle1
         Me.colTakeExam.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.colTakeExam.HeaderText = "Take Exam"
         Me.colTakeExam.MinimumWidth = 6
@@ -91,7 +105,7 @@ Partial Class FormExamListForStudent
         Me.colTakeExam.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.colTakeExam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.colTakeExam.Text = "Take Exam"
-        Me.colTakeExam.Width = 97
+        Me.colTakeExam.Width = 105
         '
         'FormExamListForStudent
         '
@@ -108,10 +122,12 @@ Partial Class FormExamListForStudent
         Me.ResumeLayout(False)
 
     End Sub
+    Public WithEvents g As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents colTakeExam As DataGridViewButtonColumn
-    Public WithEvents g As DataGridView
 End Class

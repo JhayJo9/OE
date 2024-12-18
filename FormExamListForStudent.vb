@@ -3,82 +3,92 @@
 Public Class FormExamListForStudent
     Public Sub Fetch_Data()
         Try
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+            If conn.State = ConnectionState.Open Then conn.Close()
             conn.Open()
 
-            ' Modified query to include exam completion status
+            ' Modified query to include question count, date, time, and location
             Dim q As String = "
-                        SELECT
-                        s.studentID,
-                        c.courseID,
-                        c.courseCode,
-                        assess.assessTypeID,
-                        assess.AssessmentType,
-                        assi.assesID,
-                        COUNT(DISTINCT qa.questionID) AS QuestionCount,
-                        CASE 
-                            WHEN EXISTS (
-                                SELECT 1 
-                                FROM tb_student_answers sa 
-                                WHERE sa.studentID = s.studentID 
-                                AND sa.courseID = c.courseID 
-                                AND sa.assessTypeID = assess.assessTypeID
-                            ) THEN 1 
-                            ELSE 0 
-                        END AS HasTakenExam
-                    FROM 
-                        tb_student s
-                    INNER JOIN 
-                        tb_assignedstudents assi ON s.studentID = assi.studentID
-                    INNER JOIN 
-                        tb_course c ON c.courseID = assi.courseID
-                    INNER JOIN 
-                        tb_assessmenttype assess ON assess.assessTypeID = assi.assessTypeID
-                    LEFT JOIN 
-                        tb_question_assignment qa ON qa.assignedID = assi.assesID
-                    WHERE 
-                        s.studentID = @studentID
-                    GROUP BY 
-                        c.courseID, c.courseCode, assess.assessTypeID, 
-                        assess.AssessmentType, assi.assesID
-                    LIMIT 0, 1000;"
+        SELECT
+            c.courseCode,
+            assess.AssessmentType,
+            COUNT(DISTINCT q.questionID) AS QuestionCount,
+            sch.scheduleDate,
+            sch.scheduleTime,
+            sch.location,
+            CASE 
+                WHEN EXISTS (
+                    SELECT 1 
+                    FROM tb_student_answers sa 
+                    WHERE sa.studentID = s.studentID 
+                    AND sa.courseID = c.courseID 
+                    AND sa.assessTypeID = assess.assessTypeID
+                ) THEN 1 
+                ELSE 0 
+            END AS HasTakenExam
+        FROM 
+            tb_student s
+        INNER JOIN 
+            tb_assignedstudents assi ON s.studentID = assi.studentID
+        INNER JOIN 
+            tb_course c ON c.courseID = assi.courseID
+        INNER JOIN 
+            tb_assessmenttype assess ON assess.assessTypeID = assi.assessTypeID
+        INNER JOIN 
+            tb_section sec ON sec.sectionID = assi.sectionID
+        LEFT JOIN 
+            tb_coursequestion cq ON cq.courseID = c.courseID
+        LEFT JOIN 
+            tb_questionanswer q ON q.assessmentTypeID = assess.assessTypeID AND q.questionID = cq.questionID
+        LEFT JOIN
+            tb_schedule sch ON sch.courseCode = c.courseCode AND sch.section = sec.section AND sch.assessTypeID = assess.assessTypeID
+        WHERE 
+            s.studentID = @studentID
+        GROUP BY 
+            c.courseID, c.courseCode, assess.assessTypeID, assess.AssessmentType, assi.assesID, sch.scheduleDate, sch.scheduleTime, sch.location;"
 
+            ' Use DataTable for simpler loading
             Using cmd As New MySqlCommand(q, conn)
                 cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
-                Using reader As MySqlDataReader = cmd.ExecuteReader()
-                    g.Rows.Clear()
-                    While reader.Read()
-                        Dim hasTaken As Boolean = Convert.ToBoolean(reader("HasTakenExam"))
+                Using DataTableReader As MySqlDataReader = cmd.ExecuteReader()
 
-                        ' Add row with question count and status
-                        Dim rowIndex As Integer = g.Rows.Add(
-                            reader("courseCode"),
-                            reader("AssessmentType"),
-                            reader("QuestionCount").ToString() & " Questions",
-                            If(hasTaken, "Completed", "Take Exam")
-                        )
+                    While DataTableReader.Read()
+                        Dim course As String = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("courseCode")), String.Empty, DataTableReader("courseCode").ToString())
+                        Dim assessType As String = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("AssessmentType")), String.Empty, DataTableReader("AssessmentType").ToString())
+                        Dim questionCount As Integer = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("QuestionCount")), 0, Convert.ToInt32(DataTableReader("QuestionCount")))
+                        Dim scheduleDate As Date = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("scheduleDate")), Date.MinValue, Convert.ToDateTime(DataTableReader("scheduleDate")))
+                        Dim scheduleTime As TimeSpan = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("scheduleTime")), TimeSpan.Zero, TimeSpan.Parse(DataTableReader("scheduleTime").ToString()))
+                        Dim location As String = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("location")), String.Empty, DataTableReader.GetString("location").ToString())
+                        Dim hasTakenExam As Boolean = If(DataTableReader.IsDBNull(DataTableReader.GetOrdinal("HasTakenExam")), False, Convert.ToBoolean(DataTableReader("HasTakenExam")))
 
-                        ' Store IDs and exam status in row's Tag property
-                        g.Rows(rowIndex).Tag = New Dictionary(Of String, Object) From {
-                            {"courseID", reader("courseID")},
-                            {"assessTypeID", reader("assessTypeID")},
-                            {"assesID", reader("assesID")},
-                            {"questionCount", reader("QuestionCount")},
-                            {"hasTakenExam", hasTaken}
-                        }
-
-                        ' Disable "Take Exam" button if already taken
-                        If hasTaken Then
-                            g.Rows(rowIndex).Cells("colTakeExam").Style.BackColor = Color.LightGray
-                            g.Rows(rowIndex).Cells("colTakeExam").Style.ForeColor = Color.DarkGray
-                        End If
+                        g.Rows.Add(course, assessType, questionCount, scheduleDate, scheduleTime, location, hasTakenExam)
                     End While
                 End Using
             End Using
+            'FIX DataGridView
+            ' Bind DataTable directly to DataGridView
+            ' g.DataSource = dt
+
+            ' Optional: Set column formats or rename headers if needed
+            'g.Columns("QuestionCount").HeaderText = "Total Questions"
+            'g.Columns("scheduleDate").HeaderText = "Date"
+            'g.Columns("scheduleTime").HeaderText = "Time"
+            'g.Columns("HasTakenExam").HeaderText = "Exam Status"
+
+            ' You can format specific cells here, like disabling buttons for completed exams
+            For Each row As DataGridViewRow In g.Rows
+                Dim hasTaken As Boolean = Convert.ToBoolean(row.Cells("HasTakenExam").Value)
+                If hasTaken Then
+                    row.Cells("HasTakenExam").Value = "Completed"
+                    row.DefaultCellStyle.BackColor = Color.LightGray
+                Else
+                    row.Cells("HasTakenExam").Value = "Take Exam"
+                End If
+            Next
+
         Catch ex As Exception
             MsgBox("FETCHING DATA: " & ex.Message)
+        Finally
+            conn.Close()
         End Try
     End Sub
 
@@ -112,7 +122,7 @@ Public Class FormExamListForStudent
                 End If
                 ' Create and show exam form
                 Dim examForm As New FormExamSession With {
-                    .StudentID = _STUDENTD,
+                    .StudentID = UserSession.StudentId,
                     .CourseID = CInt(rowData("courseID")),
                     .AssessTypeID = CInt(rowData("assessTypeID")),
                     .AssesID = CInt(rowData("assesID"))
@@ -127,6 +137,7 @@ Public Class FormExamListForStudent
             End Try
         End If
     End Sub
+
     Private Function HasTakenExam(courseID As Integer, assessTypeID As Integer) As Boolean
         Try
             If conn.State = ConnectionState.Open Then
@@ -140,7 +151,7 @@ Public Class FormExamListForStudent
                                  AND assessTypeID = @assessTypeID"
 
             Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@studentID", _STUDENTD)
+                cmd.Parameters.AddWithValue("@studentID", UserSession.StudentId)
                 cmd.Parameters.AddWithValue("@courseID", courseID)
                 cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
                 Return Convert.ToInt32(cmd.ExecuteScalar()) > 0
@@ -151,20 +162,4 @@ Public Class FormExamListForStudent
             Return False
         End Try
     End Function
-    ' Optional: Add refresh button
-    'Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-    '    Fetch_Data()
-    'End Sub
-
-    ' Optional: Add search/filter functionality
-    'Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-    '    For Each row As DataGridViewRow In dgvStudentExams.Rows
-    '        If row.Cells("Course").Value.ToString().ToLower().Contains(txtSearch.Text.ToLower()) OrElse
-    '       row.Cells("Assessment").Value.ToString().ToLower().Contains(txtSearch.Text.ToLower()) Then
-    '            row.Visible = True
-    '        Else
-    '            row.Visible = False
-    '        End If
-    '    Next
-    'End Sub
 End Class
