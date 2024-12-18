@@ -30,7 +30,8 @@ Partial Class FormExamListForStudent
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colTakeExam = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ExamStatus = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.btnVerifyExam = New System.Windows.Forms.Button()
         CType(Me.g, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -45,7 +46,7 @@ Partial Class FormExamListForStudent
         Me.g.BackgroundColor = System.Drawing.Color.Silver
         Me.g.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.g.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.g.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column5, Me.Column6, Me.colTakeExam})
+        Me.g.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column5, Me.Column6, Me.ExamStatus})
         Me.g.Location = New System.Drawing.Point(12, 33)
         Me.g.MultiSelect = False
         Me.g.Name = "g"
@@ -92,20 +93,29 @@ Partial Class FormExamListForStudent
         Me.Column6.MinimumWidth = 6
         Me.Column6.Name = "Column6"
         '
-        'colTakeExam
+        'ExamStatus
         '
-        Me.colTakeExam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.ExamStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.colTakeExam.DefaultCellStyle = DataGridViewCellStyle1
-        Me.colTakeExam.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.colTakeExam.HeaderText = "Take Exam"
-        Me.colTakeExam.MinimumWidth = 6
-        Me.colTakeExam.Name = "colTakeExam"
-        Me.colTakeExam.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colTakeExam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colTakeExam.Text = "Take Exam"
-        Me.colTakeExam.Width = 105
+        Me.ExamStatus.DefaultCellStyle = DataGridViewCellStyle1
+        Me.ExamStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ExamStatus.HeaderText = "Take Exam"
+        Me.ExamStatus.MinimumWidth = 6
+        Me.ExamStatus.Name = "ExamStatus"
+        Me.ExamStatus.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ExamStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.ExamStatus.Text = "Take Exam"
+        Me.ExamStatus.Width = 97
+        '
+        'btnVerifyExam
+        '
+        Me.btnVerifyExam.Location = New System.Drawing.Point(117, 4)
+        Me.btnVerifyExam.Name = "btnVerifyExam"
+        Me.btnVerifyExam.Size = New System.Drawing.Size(75, 23)
+        Me.btnVerifyExam.TabIndex = 1
+        Me.btnVerifyExam.Text = "Button1"
+        Me.btnVerifyExam.UseVisualStyleBackColor = True
         '
         'FormExamListForStudent
         '
@@ -113,6 +123,7 @@ Partial Class FormExamListForStudent
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(967, 567)
         Me.ControlBox = False
+        Me.Controls.Add(Me.btnVerifyExam)
         Me.Controls.Add(Me.g)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "FormExamListForStudent"
@@ -129,5 +140,6 @@ Partial Class FormExamListForStudent
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents colTakeExam As DataGridViewButtonColumn
+    Friend WithEvents ExamStatus As DataGridViewButtonColumn
+    Friend WithEvents btnVerifyExam As Button
 End Class

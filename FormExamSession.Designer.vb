@@ -22,6 +22,7 @@ Partial Class FormExamSession
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblDateTime = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -36,6 +37,7 @@ Partial Class FormExamSession
         Me.lblUser = New System.Windows.Forms.Label()
         Me.lblQuestionNumber = New System.Windows.Forms.Label()
         Me.btnSubmit = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.gbAnswers.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -237,4 +239,5 @@ Partial Class FormExamSession
     Friend WithEvents lblUser As Label
     Friend WithEvents lblQuestionNumber As Label
     Friend WithEvents btnSubmit As Button
+    Friend WithEvents Timer1 As Timer
 End Class

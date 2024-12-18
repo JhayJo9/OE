@@ -98,19 +98,6 @@ Offline  Examinaton
  Assigns the fetched questions to the selected student.
  </summary>
 </member>
-<member name="M:Offline__Examinaton.FormAssignedStudent.FetchScheduleDetails(System.String,System.String,System.Int32)">
- <summary>
- Fetches the schedule details for the selected course, section, and assessment type.
- </summary>
- <param name="courseCode">The course code.</param>
- <param name="section">The section.</param>
- <param name="assessTypeID">The assessment type ID.</param>
-</member>
-<member name="M:Offline__Examinaton.FormAssignedStudent.insert_Data">
- <summary>
- Inserts the assigned student data into the database.
- </summary>
-</member>
 <member name="M:Offline__Examinaton.FormAssignedStudent.Update_Data">
  <summary>
  Updates the assigned student data in the database.
