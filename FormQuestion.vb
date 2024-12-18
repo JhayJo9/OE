@@ -7,6 +7,79 @@ Public Class FormQuestion
 
     Private courseDict As New Dictionary(Of String, Integer)
     Public sectionDict As New Dictionary(Of String, Integer)
+
+    Private Sub ClearForm()
+        ' Clear all form fields after successful insertion
+        txtQuestion.Clear()
+        txtA.Clear()
+        txtB.Clear()
+        txtC.Clear()
+        txtD.Clear()
+        'cmbCorrectAnswer.SelectedIndex = -1
+        'cmbCourse.SelectedIndex = -1
+        'cmbAssessmentType.SelectedIndex = -1
+        'cmbSection.SelectedIndex = -1
+    End Sub
+
+
+    Private Function ValidateForm() As Boolean
+        ' Validate that all required fields are filled before proceeding
+        If String.IsNullOrWhiteSpace(txtQuestion.Text) Then
+            MsgBox("Question cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            txtQuestion.Focus()
+            Return False
+        End If
+
+        If String.IsNullOrWhiteSpace(txtA.Text) Then
+            MsgBox("Option A cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            txtA.Focus()
+            Return False
+        End If
+
+        If String.IsNullOrWhiteSpace(txtB.Text) Then
+            MsgBox("Option B cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            txtB.Focus()
+            Return False
+        End If
+
+        If String.IsNullOrWhiteSpace(txtC.Text) Then
+            MsgBox("Option C cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            txtC.Focus()
+            Return False
+        End If
+
+        If String.IsNullOrWhiteSpace(txtD.Text) Then
+            MsgBox("Option D cannot be empty.", MsgBoxStyle.Exclamation, "Validation Error")
+            txtD.Focus()
+            Return False
+        End If
+
+        If cmbCorrectAnswer.SelectedIndex = -1 Then
+            MsgBox("Please select the correct answer.", MsgBoxStyle.Exclamation, "Validation Error")
+            cmbCorrectAnswer.Focus()
+            Return False
+        End If
+
+        If cmbCourse.SelectedIndex = -1 Then
+            MsgBox("Please select a course.", MsgBoxStyle.Exclamation, "Validation Error")
+            cmbCourse.Focus()
+            Return False
+        End If
+
+        If cmbAssessmentType.SelectedIndex = -1 Then
+            MsgBox("Please select an assessment type.", MsgBoxStyle.Exclamation, "Validation Error")
+            cmbAssessmentType.Focus()
+            Return False
+        End If
+
+        If cmbSection.SelectedIndex = -1 Then
+            MsgBox("Please select a section.", MsgBoxStyle.Exclamation, "Validation Error")
+            cmbSection.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
     Public Sub fetchAssessmentType()
         Try
             If OPENDB() Then
@@ -67,6 +140,11 @@ Public Class FormQuestion
     End Sub
     Public Sub insertQuestions()
         Try
+            ' Validate the form controls
+            If Not ValidateForm() Then
+                Return
+            End If
+
             If OPENDB() Then
                 ' Get the courseID, assessTypeID, and sectionID from the selected items
                 Dim selectedCourse As String = cmbCourse.Text
@@ -83,11 +161,6 @@ Public Class FormQuestion
                     Return
                 End If
 
-                If selectedSection Is Nothing Then
-                    MsgBox("Section not selected.")
-                    Return
-                End If
-
                 Dim courseID As Integer = courseDict(selectedCourse)
                 Dim assessTypeID As Integer = assessmentTypeDict(selectedAssessmentType)
                 Dim sectionID As Integer = selectedSection.Value
@@ -97,11 +170,11 @@ Public Class FormQuestion
             INSERT INTO tb_questionanswer
             VALUES (null, @question, @optionA, @optionB, @optionC, @optionD, @correctAnswer, @assessmentTypeID)"
                 Using cmd As New MySqlCommand(qu, conn)
-                    cmd.Parameters.AddWithValue("@question", txtQuestion.Text)
-                    cmd.Parameters.AddWithValue("@optionA", txtA.Text)
-                    cmd.Parameters.AddWithValue("@optionB", txtB.Text)
-                    cmd.Parameters.AddWithValue("@optionC", txtC.Text)
-                    cmd.Parameters.AddWithValue("@optionD", txtD.Text)
+                    cmd.Parameters.AddWithValue("@question", txtQuestion.Text.Trim())
+                    cmd.Parameters.AddWithValue("@optionA", txtA.Text.Trim())
+                    cmd.Parameters.AddWithValue("@optionB", txtB.Text.Trim())
+                    cmd.Parameters.AddWithValue("@optionC", txtC.Text.Trim())
+                    cmd.Parameters.AddWithValue("@optionD", txtD.Text.Trim())
                     cmd.Parameters.AddWithValue("@correctAnswer", cmbCorrectAnswer.Text)
                     cmd.Parameters.AddWithValue("@assessmentTypeID", assessTypeID)
                     cmd.ExecuteNonQuery()
@@ -118,17 +191,13 @@ Public Class FormQuestion
                     cmd2.ExecuteNonQuery()
                 End Using
 
+                Debug.WriteLine(courseID)
+                Debug.WriteLine(assessTypeID)
+                Debug.WriteLine(sectionID)
                 MsgBox("Question added successfully!", MsgBoxStyle.Information, "Success")
+
                 ' Clear form fields after successful insertion
-                txtQuestion.Clear()
-                txtA.Clear()
-                txtB.Clear()
-                txtC.Clear()
-                txtD.Clear()
-                cmbCorrectAnswer.SelectedIndex = -1
-                cmbCourse.SelectedIndex = -1
-                cmbAssessmentType.SelectedIndex = -1
-                cmbSection.SelectedIndex = -1
+                ClearForm()
             End If
         Catch ex As Exception
             MsgBox("INSERTING QUESTION: " & ex.Message)

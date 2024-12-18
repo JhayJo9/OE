@@ -269,13 +269,6 @@ Public Class FormAssignedStudent
             conn.Close()
         End Try
     End Sub
-
-    ''' <summary>
-    ''' Fetches the schedule details for the selected course, section, and assessment type.
-    ''' </summary>
-    ''' <param name="courseCode">The course code.</param>
-    ''' <param name="section">The section.</param>
-    ''' <param name="assessTypeID">The assessment type ID.</param>
     Private Sub FetchScheduleDetails(courseCode As String, section As String, assessTypeID As Integer)
         Dim query As String = "SELECT scheduleDate, scheduleTime, location FROM tb_schedule WHERE courseCode = @courseCode AND section = @section AND assessTypeID = @assessTypeID"
         Try
@@ -301,57 +294,102 @@ Public Class FormAssignedStudent
             MsgBox("Fetch Schedule Details Error: " & ex.Message)
         End Try
     End Sub
-
-    ''' <summary>
-    ''' Inserts the assigned student data into the database.
-    ''' </summary>
     Public Sub insert_Data()
         If studentid = 0 OrElse CourseID = 0 OrElse SectionID = 0 OrElse assessTypeID = 0 Then
             MessageBox.Show("One or more required IDs are not set. Please ensure all fields are selected.")
             Return
         End If
 
-        If conn.State = ConnectionState.Open Then
-            conn.Close()
-        End If
+        If conn.State = ConnectionState.Open Then conn.Close()
+
         Try
             conn.Open()
+            Using transaction As MySqlTransaction = conn.BeginTransaction()
+                Try
+                    ' First insert into tb_assignedstudents and get the assesID
+                    Dim insert As String = "
+                    INSERT INTO tb_assignedstudents 
+                    (studentID, courseID, sectionID, assessTypeID, scheduleDate, scheduleTime, location) 
+                    VALUES 
+                    (@studentID, @courseID, @sectionID, @assessTypeID, @scheduleDate, @scheduleTime, @location);
+                    SELECT LAST_INSERT_ID();"
 
-            ' Ensure assessment type, course, and section have questions assigned
-            Dim queryCheck As String = "SELECT COUNT(*) FROM tb_course_assessment_section_question WHERE courseID = @courseID AND assessTypeID = @assessTypeID AND sectionID = @sectionID"
-            Using cmdCheck As New MySqlCommand(queryCheck, conn)
-                cmdCheck.Parameters.AddWithValue("@courseID", CourseID)
-                cmdCheck.Parameters.AddWithValue("@assessTypeID", assessTypeID)
-                cmdCheck.Parameters.AddWithValue("@sectionID", SectionID)
-                Dim questionCount As Integer = Convert.ToInt32(cmdCheck.ExecuteScalar())
-                If questionCount = 0 Then
-                    MsgBox("Selected course, assessment type, and section do not have assigned questions. Please add questions before assigning.")
-                    conn.Close()
-                    Return
-                End If
+                    Dim assesID As Integer
+
+                    Using cmd As New MySqlCommand(insert, conn, transaction)
+                        cmd.Parameters.AddWithValue("@studentID", studentid)
+                        cmd.Parameters.AddWithValue("@courseID", CourseID)
+                        cmd.Parameters.AddWithValue("@sectionID", SectionID)
+                        cmd.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                        cmd.Parameters.AddWithValue("@scheduleDate", dtpScheduleDate.Value.ToString("yyyy-MM-dd"))
+                        cmd.Parameters.AddWithValue("@scheduleTime", dtpScheduleTime.Value.ToString("HH:mm:ss"))
+                        cmd.Parameters.AddWithValue("@location", txtLocation.Text)
+
+                        assesID = Convert.ToInt32(cmd.ExecuteScalar())
+                    End Using
+
+                    ' Get questions from tb_course_assessment_section_question
+                    Dim getQuestionsQuery As String = "
+                    SELECT questionID 
+                    FROM tb_course_assessment_section_question 
+                    WHERE courseID = @courseID 
+                    AND assessTypeID = @assessTypeID 
+                    AND sectionID = @sectionID"
+
+                    Dim questionList As New List(Of Integer)
+
+                    Using cmdQuestions As New MySqlCommand(getQuestionsQuery, conn, transaction)
+                        cmdQuestions.Parameters.AddWithValue("@courseID", CourseID)
+                        cmdQuestions.Parameters.AddWithValue("@assessTypeID", assessTypeID)
+                        cmdQuestions.Parameters.AddWithValue("@sectionID", SectionID)
+
+                        Using reader As MySqlDataReader = cmdQuestions.ExecuteReader()
+                            While reader.Read()
+                                questionList.Add(reader.GetInt32("questionID"))
+                            End While
+                        End Using
+                    End Using
+
+                    If questionList.Count = 0 Then
+                        Throw New Exception("No questions found for this combination of course, section, and assessment type")
+                    End If
+
+                    ' Assign questions to the exam in tb_question_assignment
+                    For Each questionId In questionList
+                        Dim assignQuery As String = "
+                        INSERT INTO tb_question_assignment 
+                        (assignedID, questionID) 
+                        VALUES 
+                        (@assesID, @questionID)"
+
+                        Using cmdAssign As New MySqlCommand(assignQuery, conn, transaction)
+                            cmdAssign.Parameters.AddWithValue("@assesID", assesID)
+                            cmdAssign.Parameters.AddWithValue("@questionID", questionId)
+                            cmdAssign.ExecuteNonQuery()
+                        End Using
+
+                        MsgBox("tb_question_assignment " & assesID & questionId)
+                    Next
+
+                    transaction.Commit()
+                    MsgBox($"Successfully assigned student with {questionList.Count} questions")
+
+                    ' Refresh the list
+                    With FormAssignedStudentsList
+                        .Fetch_Data()
+                    End With
+
+                Catch ex As Exception
+                    transaction.Rollback()
+                    Throw New Exception("Failed to assign student and questions: " & ex.Message)
+                End Try
+
             End Using
 
-            Dim insert As String = "INSERT INTO tb_assignedstudents VALUES (null, @studentID, @courseID, @sectionID, @assessTypeID, @scheduleDate, @scheduleTime, @location)"
-            Using cmd As New MySqlCommand(insert, conn)
-                cmd.Parameters.AddWithValue("@studentID", CInt(studentid))
-                cmd.Parameters.AddWithValue("@courseID", CInt(CourseID))
-                cmd.Parameters.AddWithValue("@sectionID", 1)
-                cmd.Parameters.AddWithValue("@assessTypeID", CInt(assessTypeID))
-                cmd.Parameters.AddWithValue("@scheduleDate", dtpScheduleDate.Value.ToString("yyyy-MM-dd"))
-                cmd.Parameters.AddWithValue("@scheduleTime", dtpScheduleTime.Value.ToString("HH:mm:ss"))
-                cmd.Parameters.AddWithValue("@location", txtLocation.Text)
-                cmd.ExecuteNonQuery()
-            End Using
-
-            MsgBox("Student Assigned Successfully")
-
-            With FormAssignedStudentsList
-                .Fetch_Data()
-            End With
-
-            conn.Close()
         Catch ex As Exception
-            MsgBox("INSERT DATA: " & ex.Message)
+            MsgBox("Error assigning student: " & ex.Message)
+        Finally
+            conn.Close()
         End Try
     End Sub
     Private Sub FormAssignedStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
