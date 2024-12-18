@@ -1,0 +1,4 @@
+Field	Type	Null	Key	Default	Extra
+questionAssignmentID	int(11)	NO	PRI	NULL	auto_increment
+questionID	int(11)	YES	MUL	NULL	
+assignedID	int(11)	YES	MUL	NULL	

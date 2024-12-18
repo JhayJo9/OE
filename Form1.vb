@@ -15,13 +15,13 @@
 
     End Sub
 
-    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+    Private Sub PictureBox4_Click(sender As Object, e As EventArgs)
         Me.Hide()
         formFeeDetail.Show()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Hide()
-        formDashboard.Show()
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        'Me.Hide()
+        'ad.Show()
     End Sub
 End Class

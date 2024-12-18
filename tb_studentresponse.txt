@@ -1,0 +1,7 @@
+Field	Type	Null	Key	Default	Extra
+studentRID	int(11)	NO	PRI	NULL	
+courseID	int(11)	NO	MUL	NULL	
+examID	int(10)	NO		NULL	
+studentID	int(11)	NO	MUL	NULL	
+answerFromStudent	varchar(100)	NO		NULL	
+ScoreOfStudent	int(11)	NO		NULL	

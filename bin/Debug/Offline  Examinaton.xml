@@ -22,6 +22,16 @@ Offline  Examinaton
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.edit">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.edit1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Offline__Examinaton.My.Resources.Resources.Fees">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -41,6 +51,68 @@ Offline  Examinaton
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member>
+<member name="P:Offline__Examinaton.My.Resources.Resources.reject">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="T:Offline__Examinaton.FormAssignedStudent">
+ <summary>
+ Form for assigning students to courses, sections, and assessment types.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Fetch_AssessmentType">
+ <summary>
+ Fetches the list of assessment types from the database and populates the cmbAssessmentType combo box.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.FetchSections">
+ <summary>
+ Fetches the list of sections from the database and populates the cmbSection combo box.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Fetch_Course">
+ <summary>
+ Fetches the list of courses from the database and populates the cmbCourseCode combo box.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Fetch_Student">
+ <summary>
+ Fetches the list of students from the database and populates the cmbStudentName combo box.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Fetch_Course(System.String)">
+ <summary>
+ Fetches the list of courses for a given section code and populates the cmbCourseCode combo box.
+ </summary>
+ <param name="secCode">The section code.</param>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Fetch_Questions">
+ <summary>
+ Fetches the list of questions for the selected course and assessment type.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Assign_Questions_To_Student">
+ <summary>
+ Assigns the fetched questions to the selected student.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.Update_Data">
+ <summary>
+ Updates the assigned student data in the database.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.ComboBox_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+ <summary>
+ Handles the KeyPress event of the combo boxes to prevent manual input.
+ </summary>
+</member>
+<member name="M:Offline__Examinaton.FormAssignedStudent.btnSave_Click(System.Object,System.EventArgs)">
+ <summary>
+ Handles the Click event of the btnSave control.
+ Fetches questions and inserts or updates the assigned student data.
+ </summary>
 </member>
 </members>
 </doc>
